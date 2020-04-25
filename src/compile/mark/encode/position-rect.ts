@@ -212,18 +212,33 @@ function getBinSpacing(
   channel: PositionChannel | PolarPositionChannel,
   spacing: number,
   reverse: boolean | SignalRef,
-  translate: number
+  translate: number,
+  offset: number | SignalRef
 ) {
   if (isPolarPositionChannel(channel)) {
     return 0;
   }
 
-  const offset = channel === 'x' || channel === 'y2' ? -spacing / 2 : spacing / 2;
+  const spacingOffset = channel === 'x' || channel === 'y2' ? -spacing / 2 : spacing / 2;
 
   if (isSignalRef(reverse)) {
-    return {signal: `${reverse.signal} ? ${translate - offset} : ${translate + offset}`};
+    const offsetExpr = isSignalRef(offset) ? offset.signal : offset ? `${offset}` : '';
+    return {
+      signal: `${reverse.signal} ? ${translate - spacingOffset}${offsetExpr ? '-' + offsetExpr : ''} : ${
+        translate + spacingOffset
+      }${offsetExpr ? '+' + offsetExpr : ''}`
+    };
   } else {
-    return reverse ? translate - offset : translate + offset;
+    if (isSignalRef(offset)) {
+      const translateAndSpacingOffset = translate + (reverse ? -spacingOffset : spacingOffset);
+      return {
+        signal: `${translateAndSpacingOffset || ''}${reverse ? ' - ' : translateAndSpacingOffset ? ' + ' : ''}${
+          offset.signal
+        }`
+      };
+    }
+    offset = offset || 0;
+    return translate + (reverse ? -offset - spacingOffset : +offset + spacingOffset);
   }
 }
 
@@ -255,6 +270,8 @@ export function rectBinPosition({
   const vgChannel = getVgPositionChannel(channel);
   const vgChannel2 = getVgPositionChannel(channel2);
 
+  const offset = getOffset(channel, markDef);
+
   if (isBinning(fieldDef.bin) || fieldDef.timeUnit) {
     return {
       [vgChannel2]: rectBinRef({
@@ -263,7 +280,7 @@ export function rectBinPosition({
         scaleName,
         markDef,
         band: (1 - band) / 2,
-        offset: getBinSpacing(channel2, spacing, reverse, axisTranslate),
+        offset: getBinSpacing(channel2, spacing, reverse, axisTranslate, offset),
         config
       }),
       [vgChannel]: rectBinRef({
@@ -272,7 +289,7 @@ export function rectBinPosition({
         scaleName,
         markDef,
         band: 1 - (1 - band) / 2,
-        offset: getBinSpacing(channel, spacing, reverse, axisTranslate),
+        offset: getBinSpacing(channel, spacing, reverse, axisTranslate, offset),
         config
       })
     };
@@ -282,13 +299,13 @@ export function rectBinPosition({
         fieldDef,
         scaleName,
         {},
-        {offset: getBinSpacing(channel2, spacing, reverse, axisTranslate)}
+        {offset: getBinSpacing(channel2, spacing, reverse, axisTranslate, offset)}
       ),
       [vgChannel]: ref.valueRefForFieldOrDatumDef(
         fieldDef2,
         scaleName,
         {},
-        {offset: getBinSpacing(channel, spacing, reverse, axisTranslate)}
+        {offset: getBinSpacing(channel, spacing, reverse, axisTranslate, offset)}
       )
     };
   } else {

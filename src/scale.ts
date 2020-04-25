@@ -13,55 +13,38 @@ import {Channel, CHANNELS, isColorChannel} from './channel';
 import {DateTime} from './datetime';
 import * as log from './log';
 import {SelectionExtent} from './selection';
-import * as TYPE from './type';
-import {Type, TYPE_INDEX} from './type';
+import {Type, TYPES, ORDINAL, NOMINAL, TEMPORAL, QUANTITATIVE} from './type';
 import {contains, Flag, keys} from './util';
 
-export namespace ScaleType {
+export const ScaleType = {
   // Continuous - Quantitative
-  export const LINEAR: 'linear' = 'linear';
-  export const LOG: 'log' = 'log';
-  export const POW: 'pow' = 'pow';
-  export const SQRT: 'sqrt' = 'sqrt';
-  export const SYMLOG: 'symlog' = 'symlog';
+  LINEAR: 'linear',
+  LOG: 'log',
+  POW: 'pow',
+  SQRT: 'sqrt',
+  SYMLOG: 'symlog',
 
-  export const IDENTITY: 'identity' = 'identity';
-
-  export const SEQUENTIAL: 'sequential' = 'sequential';
+  IDENTITY: 'identity',
+  SEQUENTIAL: 'sequential',
 
   // Continuous - Time
-  export const TIME: 'time' = 'time';
-  export const UTC: 'utc' = 'utc';
+  TIME: 'time',
+  UTC: 'utc',
 
   // Discretizing scales
-  export const QUANTILE: 'quantile' = 'quantile';
-  export const QUANTIZE: 'quantize' = 'quantize';
-  export const THRESHOLD: 'threshold' = 'threshold';
-  export const BIN_ORDINAL: 'bin-ordinal' = 'bin-ordinal';
+  QUANTILE: 'quantile',
+  QUANTIZE: 'quantize',
+  THRESHOLD: 'threshold',
+  BIN_ORDINAL: 'bin-ordinal',
 
   // Discrete scales
-  export const ORDINAL: 'ordinal' = 'ordinal';
-  export const POINT: 'point' = 'point';
-  export const BAND: 'band' = 'band';
-}
+  ORDINAL: 'ordinal',
+  POINT: 'point',
+  BAND: 'band'
+} as const;
 
-export type ScaleType =
-  | typeof ScaleType.LINEAR
-  | typeof ScaleType.LOG
-  | typeof ScaleType.POW
-  | typeof ScaleType.SQRT
-  | typeof ScaleType.SYMLOG
-  | typeof ScaleType.IDENTITY
-  | typeof ScaleType.SEQUENTIAL
-  | typeof ScaleType.TIME
-  | typeof ScaleType.UTC
-  | typeof ScaleType.QUANTILE
-  | typeof ScaleType.QUANTIZE
-  | typeof ScaleType.THRESHOLD
-  | typeof ScaleType.BIN_ORDINAL
-  | typeof ScaleType.ORDINAL
-  | typeof ScaleType.POINT
-  | typeof ScaleType.BAND;
+type ValueOf<T> = T[keyof T];
+export type ScaleType = ValueOf<typeof ScaleType>;
 
 /**
  * Index for scale categories -- only scale of the same categories can be merged together.
@@ -773,11 +756,11 @@ export function channelScalePropertyIncompatability(channel: Channel, propName: 
 }
 
 export function scaleTypeSupportDataType(specifiedType: ScaleType, fieldDefType: Type): boolean {
-  if (contains([TYPE.ORDINAL, TYPE.NOMINAL], fieldDefType)) {
+  if (contains([ORDINAL, NOMINAL], fieldDefType)) {
     return specifiedType === undefined || hasDiscreteDomain(specifiedType);
-  } else if (fieldDefType === TYPE.TEMPORAL) {
+  } else if (fieldDefType === TEMPORAL) {
     return contains([ScaleType.TIME, ScaleType.UTC, undefined], specifiedType);
-  } else if (fieldDefType === TYPE.QUANTITATIVE) {
+  } else if (fieldDefType === QUANTITATIVE) {
     return contains(
       [
         ScaleType.LOG,
@@ -843,7 +826,7 @@ export interface ScaleTypeIndex {
 function generateScaleTypeIndex() {
   const index: ScaleTypeIndex = {};
   for (const channel of CHANNELS) {
-    for (const fieldDefType of keys(TYPE_INDEX)) {
+    for (const fieldDefType of TYPES) {
       for (const scaleType of SCALE_TYPES) {
         const key = generateScaleTypeIndexKey(channel, fieldDefType);
         if (channelSupportScaleType(channel, scaleType) && scaleTypeSupportDataType(scaleType, fieldDefType)) {

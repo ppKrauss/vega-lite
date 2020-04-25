@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Punchcard Visualization like on Github. The day on y-axis uses a custom order from Monday to Sunday.  The sort property supports both full day names (e.g., 'Monday') and their three letter initials (e.g., 'mon') -- both of which are case insensitive.",
+  "description": "Testing labelAngle signals",
   "background": "white",
   "padding": 5,
   "style": "cell",
@@ -106,39 +106,50 @@
   "axes": [
     {
       "scale": "x",
-      "orient": "bottom",
+      "orient": "top",
       "grid": false,
       "title": "time (hours)",
-      "labelAlign": "right",
-      "labelAngle": 270,
-      "labelBaseline": "middle",
-      "labelOverlap": true,
+      "labelAngle": {"signal": "xLabelAngle"},
       "encode": {
         "labels": {
           "update": {
             "text": {
               "signal": "timeFormat(datum.value, timeUnitSpecifier([\"hours\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))"
+            },
+            "align": {
+              "signal": "((((xLabelAngle % 360) + 360) % 360) % 180 === 0) ? null :(0 < (((xLabelAngle % 360) + 360) % 360) && (((xLabelAngle % 360) + 360) % 360) < 180) === false ? \"left\" : \"right\""
+            },
+            "baseline": {
+              "signal": "(45 < (((xLabelAngle % 360) + 360) % 360) && (((xLabelAngle % 360) + 360) % 360) < 135) || (225 < (((xLabelAngle % 360) + 360) % 360) && (((xLabelAngle % 360) + 360) % 360) < 315) ? \"middle\" :((((xLabelAngle % 360) + 360) % 360) <= 45 || 315 <= (((xLabelAngle % 360) + 360) % 360)) === true ? \"bottom\" : \"top\""
             }
           }
         }
       },
+      "labelOverlap": true,
       "zindex": 0
     },
     {
       "scale": "y",
-      "orient": "left",
+      "orient": "right",
       "grid": false,
       "title": "time (day)",
-      "labelOverlap": true,
+      "labelAngle": {"signal": "yLabelAngle"},
       "encode": {
         "labels": {
           "update": {
             "text": {
               "signal": "timeFormat(datum.value, timeUnitSpecifier([\"day\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))"
+            },
+            "align": {
+              "signal": "(((((yLabelAngle % 360) + 360) % 360) + 90) % 180 === 0) ? \"center\" :(90 < (((yLabelAngle % 360) + 360) % 360) && (((yLabelAngle % 360) + 360) % 360) < 270) === false ? \"left\" : \"right\""
+            },
+            "baseline": {
+              "signal": "(((yLabelAngle % 360) + 360) % 360) <= 45 || 315 <= (((yLabelAngle % 360) + 360) % 360) || (135 <= (((yLabelAngle % 360) + 360) % 360) && (((yLabelAngle % 360) + 360) % 360) <= 225) ? null : (45 <= (((yLabelAngle % 360) + 360) % 360) && (((yLabelAngle % 360) + 360) % 360) <= 135) === false ? \"top\" : \"bottom\""
             }
           }
         }
       },
+      "labelOverlap": true,
       "zindex": 0
     }
   ],
@@ -157,5 +168,19 @@
         }
       }
     }
-  ]
+  ],
+  "config": {
+    "signals": [
+      {
+        "name": "xLabelAngle",
+        "value": 0,
+        "bind": {"input": "range", "min": -360, "max": 360}
+      },
+      {
+        "name": "yLabelAngle",
+        "value": 0,
+        "bind": {"input": "range", "min": -360, "max": 360}
+      }
+    ]
+  }
 }

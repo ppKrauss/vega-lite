@@ -1,6 +1,6 @@
 import {SignalRef, Text} from 'vega';
 import {array} from 'vega-util';
-import {Axis} from '../axis';
+import {AxisConfig} from '../axis';
 import {FieldDefBase, FieldRefOption, OrderFieldDef, vgField} from '../channeldef';
 import {Config, StyleConfigIndex} from '../config';
 import {MarkConfig, MarkDef} from '../mark';
@@ -25,7 +25,7 @@ export function applyMarkConfig(e: VgEncodeEntry, model: UnitModel, propsList: (
   for (const property of propsList) {
     const value = getMarkConfig(property, model.markDef, model.config);
     if (value !== undefined) {
-      e[property] = {value: value};
+      e[property] = signalOrValueRef(value);
     }
   }
   return e;
@@ -89,7 +89,7 @@ export function getMarkStyleConfig<P extends keyof MarkDef>(
   return getStyleConfig(prop, getStyles(mark), styleConfigIndex);
 }
 
-export function getStyleConfig<P extends keyof MarkDef | keyof Axis>(
+export function getStyleConfig<P extends keyof MarkDef | keyof AxisConfig>(
   p: P,
   styles: string | string[],
   styleConfigIndex: StyleConfigIndex
@@ -161,12 +161,22 @@ export function mergeTitleComponent(v1: Explicit<AxisTitleComponent>, v2: Explic
       explicit: v1.explicit,
       value: null
     };
-  } else if (isText(v1Val) && isText(v2Val)) {
+  } else if ((isText(v1Val) || isSignalRef(v1Val)) && (isText(v2Val) || isSignalRef(v2Val))) {
     return {
       explicit: v1.explicit,
       value: mergeTitle(v1Val, v2Val)
     };
-  } else if (!isText(v1Val) && !isText(v2Val)) {
+  } else if (isText(v1Val) || isSignalRef(v1Val)) {
+    return {
+      explicit: v1.explicit,
+      value: v1Val
+    };
+  } else if (isText(v2Val) || isSignalRef(v2Val)) {
+    return {
+      explicit: v1.explicit,
+      value: v2Val
+    };
+  } else if (!isText(v1Val) && !isSignalRef(v1Val) && !isText(v2Val) && !isSignalRef(v2Val)) {
     return {
       explicit: v1.explicit,
       value: mergeTitleFieldDefs(v1Val, v2Val)
