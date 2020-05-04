@@ -1,3 +1,90 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> log_x>;
+    tooltip = "[45]&#010;Calculate {as:log_x,calculate:log(datum.x)/log(10)}"
+  ]
+  "46" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> log_x<br/><font color="grey" point-size="10">OUT:</font> bin_log_x, bin_log_x_end>;
+    tooltip = "[46]&#010;Bin {bin_maxbins_10_log_x:{as:[[bin_log_x,bin_log_x_end]],bin:{maxbins:10},extentSignal:bin_maxbins_10_log_x_extent,field:log_x,signal:bin_maxbins_10_log_x_bins}}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> bin_log_x<br/><font color="grey" point-size="10">OUT:</font> x1>;
+    tooltip = "[47]&#010;Calculate {as:x1,calculate:pow(10, datum.bin_log_x)}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> bin_log_x_end<br/><font color="grey" point-size="10">OUT:</font> x2>;
+    tooltip = "[48]&#010;Calculate {as:x2,calculate:pow(10, datum.bin_log_x_end)}"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> x1, x2, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[51]&#010;Aggregate {dimensions:Set(\x1\,\x2\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x1>;
+    tooltip = "[52]&#010;FilterInvalid {x1:{axis:{tickCount:5},field:x1,scale:{base:10,type:log},type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51" "51" -> "52" "52" -> "53"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> log_x>;
+    tooltip = "[45]&#010;Calculate {as:log_x,calculate:log(datum.x)/log(10)}"
+  ]
+  "46" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> log_x<br/><font color="grey" point-size="10">OUT:</font> bin_log_x, bin_log_x_end>;
+    tooltip = "[46]&#010;Bin {bin_maxbins_10_log_x:{as:[[bin_log_x,bin_log_x_end]],bin:{maxbins:10},extentSignal:bin_maxbins_10_log_x_extent,field:log_x,signal:bin_maxbins_10_log_x_bins}}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> bin_log_x<br/><font color="grey" point-size="10">OUT:</font> x1>;
+    tooltip = "[47]&#010;Calculate {as:x1,calculate:pow(10, datum.bin_log_x)}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> bin_log_x_end<br/><font color="grey" point-size="10">OUT:</font> x2>;
+    tooltip = "[48]&#010;Calculate {as:x2,calculate:pow(10, datum.bin_log_x_end)}"
+  ]
+  "51" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> x1, x2, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[51]&#010;Aggregate {dimensions:Set(\x1\,\x2\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x1>;
+    tooltip = "[52]&#010;FilterInvalid {x1:{axis:{tickCount:5},field:x1,scale:{base:10,type:log},type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "51" "51" -> "52" "52" -> "53"
+}
+{ data: 'main', field: 'x1' }
+{ data: 'main', field: 'x2' }
+{ data: 'main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Log-scaled Histogram.  We may improve the support of this. See https://github.com/vega/vega-lite/issues/4792.",

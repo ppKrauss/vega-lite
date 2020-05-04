@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end>;
+    tooltip = "[45]&#010;Bin -531981355"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_IMDB_Rating_range, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\,\bin_maxbins_10_IMDB_Rating_range\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end>;
+    tooltip = "[45]&#010;Bin -531981355"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_IMDB_Rating_range, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\,\bin_maxbins_10_IMDB_Rating_range\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "48" "48" -> "49"
+}
+{
+  data: 'raw',
+  field: 'bin_maxbins_10_IMDB_Rating_range',
+  sort: { op: 'count', order: 'descending' }
+}
+{ data: 'main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

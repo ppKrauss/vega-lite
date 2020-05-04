@@ -1,3 +1,195 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol!=='IBM'"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[56]&#010;Parse {date:date}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Filter>;
+    tooltip = "[61]&#010;Filter !(length(data(hover_store))) || (vlSelectionTest(hover_store, datum))"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_0_layer_0_lookup_hover</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[64]&#010;Identifier"
+  ]
+  "65" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[65]&#010;Parse {date:date}"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[75]&#010;Identifier"
+  ]
+  "76" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[76]&#010;Parse {date:date}"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> symbol, date<br/><font color="grey" point-size="10">OUT:</font> max_date, argmax_date>;
+    tooltip = "[79]&#010;Aggregate {dimensions:Set(\symbol\),measures:{date:{argmax:Set(\argmax_date\),max:Set(\max_date\)}}}"
+  ]
+  "80" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[80]&#010;FilterInvalid {date:{aggregate:max,field:date,type:temporal},price:{aggregate:{argmax:date},field:price,type:quantitative}}"
+  ]
+  "81" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[81]&#010;Output 82"
+  ]
+  "83" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[83]&#010;Identifier"
+  ]
+  "84" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[84]&#010;Parse {date:date}"
+  ]
+  "85" [
+    label = <Output<br/><i>layer_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[85]&#010;Output 86"
+  ]
+  "87" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> symbol, date<br/><font color="grey" point-size="10">OUT:</font> max_date, argmax_date>;
+    tooltip = "[87]&#010;Aggregate {dimensions:Set(\symbol\),measures:{date:{argmax:Set(\argmax_date\),max:Set(\max_date\)}}}"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[88]&#010;FilterInvalid {date:{aggregate:max,field:date,type:temporal},price:{aggregate:{argmax:date},field:price,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "61" "61" -> "62" "53" -> "64" "64" -> "65" "65" -> "66" "66" -> "68" "48" -> "70" "70" -> "71" "71" -> "73" "73" -> "75" "75" -> "76" "76" -> "77" "77" -> "79" "79" -> "80" "80" -> "81" "73" -> "83" "83" -> "84" "84" -> "85" "85" -> "87" "87" -> "88" "88" -> "89"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol!=='IBM'"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "81" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[81]&#010;Output 82"
+  ]
+  "87" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> symbol, date<br/><font color="grey" point-size="10">OUT:</font> max_date, argmax_date>;
+    tooltip = "[87]&#010;Aggregate {dimensions:Set(\symbol\),measures:{date:{argmax:Set(\argmax_date\),max:Set(\max_date\)}}}"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[88]&#010;FilterInvalid {date:{aggregate:max,field:date,type:temporal},price:{aggregate:{argmax:date},field:price,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "91" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[91]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "91" "91" -> "45" "45" -> "68" "68" -> "59" "59" -> "87" "87" -> "88" "88" -> "81" "81" -> "89"
+}
+{ data: 'layer_0_layer_0_main', field: 'date' }
+{ data: 'layer_0_layer_1_main', field: 'date' }
+{ data: 'layer_1_layer_0_main', field: 'max_date' }
+{ data: 'layer_1_layer_1_main', field: 'max_date' }
+{ data: 'layer_0_layer_0_main', field: 'price' }
+{ data: 'layer_0_layer_1_main', field: 'price' }
+{ data: 'layer_1_layer_0_main', field: 'argmax_date.price' }
+{ data: 'layer_1_layer_1_main', field: 'argmax_date.price' }
+{ data: 'layer_0_layer_0_main', field: 'symbol', sort: true }
+{ data: 'layer_0_layer_1_main', field: 'symbol', sort: true }
+{ data: 'layer_1_layer_0_main', field: 'symbol', sort: true }
+{ data: 'layer_1_layer_1_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Multi-series line chart with labels and interactive highlight on hover.  We also set the selection's initial value to provide a better screenshot",

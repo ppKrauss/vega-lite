@@ -1,3 +1,108 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/countries.json</i>>;
+    tooltip = "[43]&#010;data/countries.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> country<br/><font color="grey" point-size="10">OUT:</font> country>;
+    tooltip = "[45]&#010;Parse {country:string}"
+  ]
+  "46" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> country>;
+    tooltip = "[46]&#010;Filter indexof([China,India,United States,Indonesia,Brazil], datum[country]) !== -1"
+  ]
+  "47" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[47]&#010;Parse {year:number}"
+  ]
+  "48" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[48]&#010;Filter indexof([1955,2000], datum[year]) !== -1"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[53]&#010;Identifier"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> life_expect>;
+    tooltip = "[61]&#010;FilterInvalid {life_expect:{axis:{title:Life Expectancy (years)},field:life_expect,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51" "51" -> "53" "53" -> "54" "54" -> "56" "51" -> "58" "58" -> "59" "59" -> "61" "61" -> "62"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/countries.json</i>>;
+    tooltip = "[43]&#010;data/countries.json"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> country, year<br/><font color="grey" point-size="10">OUT:</font> country, year>;
+    tooltip = "[45]&#010;Parse {country:string,year:number}"
+  ]
+  "46" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> country>;
+    tooltip = "[46]&#010;Filter indexof([China,India,United States,Indonesia,Brazil], datum[country]) !== -1"
+  ]
+  "48" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[48]&#010;Filter indexof([1955,2000], datum[year]) !== -1"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> life_expect>;
+    tooltip = "[61]&#010;FilterInvalid {life_expect:{axis:{title:Life Expectancy (years)},field:life_expect,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "48" "48" -> "56" "56" -> "61" "61" -> "62"
+}
+{ data: 'layer_0_main', field: 'life_expect' }
+{ data: 'layer_1_main', field: 'life_expect' }
+{ data: 'layer_0_main', field: 'country', sort: true }
+{ data: 'layer_1_main', field: 'country', sort: true }
+[ 1955, 2000 ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A ranged dot plot that uses 'layer' to convey changing life expectancy for the five most populous countries (between 1955 and 2000).",

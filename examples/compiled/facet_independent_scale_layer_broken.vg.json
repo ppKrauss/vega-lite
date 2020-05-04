@@ -1,3 +1,155 @@
+{ data: 'child_layer_0_main', field: 'age', sort: true }
+{ data: 'child_layer_1_main', field: 'age', sort: true }
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sex<br/><font color="grey" point-size="10">OUT:</font> gender>;
+    tooltip = "[46]&#010;Calculate {as:gender,calculate:datum.sex == 2 ? 'Female' : 'Male'}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> gender>;
+    tooltip = "[51]&#010;Facet c:{fields:[gender],name:column_domain}"
+  ]
+  "52" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[52]&#010;Identifier"
+  ]
+  "53" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[57]&#010;Identifier"
+  ]
+  "58" [
+    label = <Output<br/><i>child_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, gender, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[60]&#010;Aggregate {dimensions:Set(\age\,\gender\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "61" [
+    label = <Output<br/><i>child_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[63]&#010;Identifier"
+  ]
+  "64" [
+    label = <Output<br/><i>child_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, gender, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[66]&#010;Aggregate {dimensions:Set(\age\,\gender\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[67]&#010;FilterInvalid {people:{aggregate:sum,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>child_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "57" "57" -> "58" "58" -> "60" "60" -> "61" "55" -> "63" "63" -> "64" "64" -> "66" "66" -> "67" "67" -> "68"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sex<br/><font color="grey" point-size="10">OUT:</font> gender>;
+    tooltip = "[46]&#010;Calculate {as:gender,calculate:datum.sex == 2 ? 'Female' : 'Male'}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> gender>;
+    tooltip = "[51]&#010;Facet c:{fields:[gender],name:column_domain}"
+  ]
+  "61" [
+    label = <Output<br/><i>child_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "66" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, gender, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[66]&#010;Aggregate {dimensions:Set(\age\,\gender\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[67]&#010;FilterInvalid {people:{aggregate:sum,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>child_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "72" [
+    label = <Output<br/><i>clone_child_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 70"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[73]&#010;FilterInvalid {people:{aggregate:sum,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>clone_child_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 71"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "66" "66" -> "49" "49" -> "72" "72" -> "51" "51" -> "61" "61" -> "67" "67" -> "68" "72" -> "73" "73" -> "74"
+}
+{ data: 'child_layer_0_main', field: 'age', sort: true }
+{ data: 'child_layer_1_main', field: 'age', sort: true }
+{ data: 'child_layer_0_main', field: 'age', sort: true }
+{ data: 'child_layer_1_main', field: 'age', sort: true }
+{ data: 'child_layer_0_main', field: 'age', sort: true }
+{ data: 'child_layer_1_main', field: 'age', sort: true }
+{ data: 'facet', field: 'age', sort: true }
+{ data: 'data_0', field: 'age', sort: true }
+{ data: 'facet', field: 'age', sort: true }
+{ data: 'data_0', field: 'age', sort: true }
+{ data: 'scale_child_layer_0_main', field: 'sum_people' }
+{ data: 'scale_child_layer_1_main', field: 'sum_people' }
+{ data: 'scale_child_layer_0_main', field: 'gender', sort: true }
+{ data: 'scale_child_layer_1_main', field: 'gender', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A trellis bar chart showing the US population distribution of age groups and gender in 2000.",

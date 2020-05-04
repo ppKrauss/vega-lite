@@ -1,3 +1,93 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-temps.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-temps.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> order>;
+    tooltip = "[45]&#010;Calculate {as:order,calculate:(hours(datum.date) + 18) % 24}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[46]&#010;Parse {date:date}"
+  ]
+  "47" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> hours_date>;
+    tooltip = "[47]&#010;TimeUnit {{\as\:\hours_date\,\field\:\date\,\timeUnit\:{\unit\:\hours\}}:{as:hours_date,field:date,timeUnit:{unit:hours}}}"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> hours_date, order>;
+    tooltip = "[52]&#010;Facet r:{fields:[hours_date],name:row_domain,sortField:{field:order}}"
+  ]
+  "53" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[53]&#010;Identifier"
+  ]
+  "54" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "52" "52" -> "53" "53" -> "54" "54" -> "56"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-temps.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-temps.csv"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> order>;
+    tooltip = "[45]&#010;Calculate {as:order,calculate:(hours(datum.date) + 18) % 24}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[46]&#010;Parse {date:date}"
+  ]
+  "47" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> hours_date>;
+    tooltip = "[47]&#010;TimeUnit {{\as\:\hours_date\,\field\:\date\,\timeUnit\:{\unit\:\hours\}}:{as:hours_date,field:date,timeUnit:{unit:hours}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> hours_date, order>;
+    tooltip = "[52]&#010;Facet r:{fields:[hours_date],name:row_domain,sortField:{field:order}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "59" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 58"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "47" "47" -> "50" "50" -> "59" "59" -> "52" "52" -> "56"
+}
+{ data: 'scale_child_main', field: 'date' }
+{ data: 'scale_child_main', field: 'temp' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Average temperatures in Seattle, broken down by hour. Derived from [Seattle Annual Temperate](https://vega.github.io/vega/examples/annual-temperature/) example from the Vega example gallery.",

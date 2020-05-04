@@ -1,3 +1,66 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[45]&#010;Parse {Horsepower:number}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Horsepower<br/><font color="grey" point-size="10">OUT:</font> min_Horsepower, max_Horsepower>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\Origin\),measures:{Horsepower:{max:Set(\max_Horsepower\),min:Set(\min_Horsepower\)}}}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[49]&#010;FilterInvalid {Horsepower:{aggregate:min,field:Horsepower,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[45]&#010;Parse {Horsepower:number}"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Horsepower<br/><font color="grey" point-size="10">OUT:</font> min_Horsepower, max_Horsepower>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\Origin\),measures:{Horsepower:{max:Set(\max_Horsepower\),min:Set(\min_Horsepower\)}}}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[49]&#010;FilterInvalid {Horsepower:{aggregate:min,field:Horsepower,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "48" "48" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'Origin', sort: true }
+{ data: 'main', field: 'min_Horsepower' }
+{ data: 'main', field: 'max_Horsepower' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Minimum and maxmimum horsepower of cars from different origins.",

@@ -1,3 +1,57 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> Name<br/><font color="grey" point-size="10">OUT:</font> x_Name_sort_index>;
+    tooltip = "[45]&#010;Calculate {as:x_Name_sort_index,calculate:datum[\Name\]===\Peter\ ? 0 : datum[\Name\]===\Mary\ ? 1 : datum[\Name\]===\Paul\ ? 2 : 3}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> Name<br/><font color="grey" point-size="10">OUT:</font> x_Name_sort_index>;
+    tooltip = "[45]&#010;Calculate {as:x_Name_sort_index,calculate:datum[\Name\]===\Peter\ ? 0 : datum[\Name\]===\Mary\ ? 1 : datum[\Name\]===\Paul\ ? 2 : 3}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "48"
+}
+{
+  data: 'raw',
+  field: 'Name',
+  sort: { op: 'min', field: 'x_Name_sort_index', order: 'ascending' }
+}
+{ data: 'main', field: 'Score' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

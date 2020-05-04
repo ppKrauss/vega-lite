@@ -1,3 +1,103 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol !== 'GOOG'"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> symbol<br/><font color="grey" point-size="10">OUT:</font> row_symbol_sort_index>;
+    tooltip = "[46]&#010;Calculate {as:row_symbol_sort_index,calculate:datum[\symbol\]===\MSFT\ ? 0 : datum[\symbol\]===\AAPL\ ? 1 : datum[\symbol\]===\IBM\ ? 2 : datum[\symbol\]===\AMZN\ ? 3 : 4}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> symbol, row_symbol_sort_index>;
+    tooltip = "[51]&#010;Facet r:{fields:[symbol],name:row_domain,sortIndexField:row_symbol_sort_index}"
+  ]
+  "52" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[52]&#010;Identifier"
+  ]
+  "53" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[53]&#010;Parse {date:date}"
+  ]
+  "54" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> price, date, symbol<br/><font color="grey" point-size="10">OUT:</font> price_start, price_end>;
+    tooltip = "[56]&#010;Stack 1763822755"
+  ]
+  "57" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "51" "51" -> "52" "52" -> "53" "53" -> "54" "54" -> "56" "56" -> "57"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol !== 'GOOG'"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> symbol<br/><font color="grey" point-size="10">OUT:</font> row_symbol_sort_index>;
+    tooltip = "[46]&#010;Calculate {as:row_symbol_sort_index,calculate:datum[\symbol\]===\MSFT\ ? 0 : datum[\symbol\]===\AAPL\ ? 1 : datum[\symbol\]===\IBM\ ? 2 : datum[\symbol\]===\AMZN\ ? 3 : 4}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> symbol, row_symbol_sort_index>;
+    tooltip = "[51]&#010;Facet r:{fields:[symbol],name:row_domain,sortIndexField:row_symbol_sort_index}"
+  ]
+  "53" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[53]&#010;Parse {date:date}"
+  ]
+  "56" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> price, date, symbol<br/><font color="grey" point-size="10">OUT:</font> price_start, price_end>;
+    tooltip = "[56]&#010;Stack 1766040699"
+  ]
+  "57" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "60" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 59"
+  ]
+
+  "43" -> "53" "53" -> "45" "45" -> "46" "46" -> "56" "56" -> "49" "49" -> "60" "60" -> "51" "51" -> "57"
+}
+{ data: 'scale_child_main', field: 'date' }
+{ data: 'scale_child_main', field: 'price_start' }
+{ data: 'scale_child_main', field: 'price_end' }
+{ data: 'scale_child_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Stock prices of four large companies as a small multiples of area charts.",

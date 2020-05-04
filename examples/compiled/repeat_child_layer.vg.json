@@ -1,3 +1,327 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/weather.csv</i>>;
+    tooltip = "[43]&#010;data/weather.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>child__column_temp_max_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>child__column_temp_max_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[55]&#010;Parse {date:date}"
+  ]
+  "56" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date, year_date>;
+    tooltip = "[56]&#010;TimeUnit -77361036"
+  ]
+  "57" [
+    label = <Output<br/><i>child__column_temp_max_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, year_date, location, temp_max<br/><font color="grey" point-size="10">OUT:</font> mean_temp_max>;
+    tooltip = "[59]&#010;Aggregate {dimensions:Set(\month_date\,\year_date\,\location\),measures:{temp_max:{mean:Set(\mean_temp_max\)}}}"
+  ]
+  "60" [
+    label = <Output<br/><i>child__column_temp_max_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[62]&#010;Identifier"
+  ]
+  "63" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[63]&#010;Parse {date:date}"
+  ]
+  "64" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[64]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "65" [
+    label = <Output<br/><i>child__column_temp_max_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, location, temp_max<br/><font color="grey" point-size="10">OUT:</font> mean_temp_max>;
+    tooltip = "[67]&#010;Aggregate {dimensions:Set(\month_date\,\location\),measures:{temp_max:{mean:Set(\mean_temp_max\)}}}"
+  ]
+  "68" [
+    label = <Output<br/><i>child__column_temp_max_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>child__column_precipitation_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Output<br/><i>child__column_precipitation_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[75]&#010;Identifier"
+  ]
+  "76" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[76]&#010;Parse {date:date}"
+  ]
+  "77" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date, year_date>;
+    tooltip = "[77]&#010;TimeUnit -77361036"
+  ]
+  "78" [
+    label = <Output<br/><i>child__column_precipitation_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+  "80" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, year_date, location, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[80]&#010;Aggregate {dimensions:Set(\month_date\,\year_date\,\location\),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "81" [
+    label = <Output<br/><i>child__column_precipitation_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[81]&#010;Output 82"
+  ]
+  "83" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[83]&#010;Identifier"
+  ]
+  "84" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[84]&#010;Parse {date:date}"
+  ]
+  "85" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[85]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "86" [
+    label = <Output<br/><i>child__column_precipitation_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+  "88" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, location, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[88]&#010;Aggregate {dimensions:Set(\month_date\,\location\),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "89" [
+    label = <Output<br/><i>child__column_precipitation_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "91" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[91]&#010;Identifier"
+  ]
+  "92" [
+    label = <Output<br/><i>child__column_wind_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[92]&#010;Output 93"
+  ]
+  "94" [
+    label = <Output<br/><i>child__column_wind_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[94]&#010;Output 95"
+  ]
+  "96" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[96]&#010;Identifier"
+  ]
+  "97" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[97]&#010;Parse {date:date}"
+  ]
+  "98" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date, year_date>;
+    tooltip = "[98]&#010;TimeUnit -77361036"
+  ]
+  "99" [
+    label = <Output<br/><i>child__column_wind_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[99]&#010;Output 100"
+  ]
+  "101" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, year_date, location, wind<br/><font color="grey" point-size="10">OUT:</font> mean_wind>;
+    tooltip = "[101]&#010;Aggregate {dimensions:Set(\month_date\,\year_date\,\location\),measures:{wind:{mean:Set(\mean_wind\)}}}"
+  ]
+  "102" [
+    label = <Output<br/><i>child__column_wind_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[102]&#010;Output 103"
+  ]
+  "104" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[104]&#010;Identifier"
+  ]
+  "105" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[105]&#010;Parse {date:date}"
+  ]
+  "106" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[106]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "107" [
+    label = <Output<br/><i>child__column_wind_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[107]&#010;Output 108"
+  ]
+  "109" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, location, wind<br/><font color="grey" point-size="10">OUT:</font> mean_wind>;
+    tooltip = "[109]&#010;Aggregate {dimensions:Set(\month_date\,\location\),measures:{wind:{mean:Set(\mean_wind\)}}}"
+  ]
+  "110" [
+    label = <Output<br/><i>child__column_wind_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[110]&#010;Output 111"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "60" "52" -> "62" "62" -> "63" "63" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "47" -> "70" "70" -> "71" "71" -> "73" "73" -> "75" "75" -> "76" "76" -> "77" "77" -> "78" "78" -> "80" "80" -> "81" "73" -> "83" "83" -> "84" "84" -> "85" "85" -> "86" "86" -> "88" "88" -> "89" "47" -> "91" "91" -> "92" "92" -> "94" "94" -> "96" "96" -> "97" "97" -> "98" "98" -> "99" "99" -> "101" "101" -> "102" "94" -> "104" "104" -> "105" "105" -> "106" "106" -> "107" "107" -> "109" "109" -> "110"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/weather.csv</i>>;
+    tooltip = "[43]&#010;data/weather.csv"
+  ]
+  "60" [
+    label = <Output<br/><i>child__column_temp_max_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "68" [
+    label = <Output<br/><i>child__column_temp_max_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "81" [
+    label = <Output<br/><i>child__column_precipitation_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[81]&#010;Output 82"
+  ]
+  "88" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, location, precipitation, wind, temp_max<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation, mean_wind, mean_temp_max>;
+    tooltip = "[88]&#010;Aggregate {dimensions:Set(\month_date\,\location\),measures:{precipitation:{mean:Set(\mean_precipitation\)},temp_max:{mean:Set(\mean_temp_max\)},wind:{mean:Set(\mean_wind\)}}}"
+  ]
+  "89" [
+    label = <Output<br/><i>child__column_precipitation_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "101" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, year_date, location, wind, temp_max, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_wind, mean_temp_max, mean_precipitation>;
+    tooltip = "[101]&#010;Aggregate {dimensions:Set(\month_date\,\year_date\,\location\),measures:{precipitation:{mean:Set(\mean_precipitation\)},temp_max:{mean:Set(\mean_temp_max\)},wind:{mean:Set(\mean_wind\)}}}"
+  ]
+  "102" [
+    label = <Output<br/><i>child__column_wind_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[102]&#010;Output 103"
+  ]
+  "106" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date, year_date>;
+    tooltip = "[106]&#010;TimeUnit -77361036"
+  ]
+  "110" [
+    label = <Output<br/><i>child__column_wind_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[110]&#010;Output 111"
+  ]
+  "112" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[112]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "112" "112" -> "106" "106" -> "88" "88" -> "110" "110" -> "68" "68" -> "89" "106" -> "101" "101" -> "60" "60" -> "81" "81" -> "102"
+}
+{
+  data: 'child__column_temp_max_layer_0_main',
+  field: 'location',
+  sort: true
+}
+{
+  data: 'child__column_temp_max_layer_1_main',
+  field: 'location',
+  sort: true
+}
+{
+  data: 'child__column_precipitation_layer_0_main',
+  field: 'location',
+  sort: true
+}
+{
+  data: 'child__column_precipitation_layer_1_main',
+  field: 'location',
+  sort: true
+}
+{
+  data: 'child__column_wind_layer_0_main',
+  field: 'location',
+  sort: true
+}
+{
+  data: 'child__column_wind_layer_1_main',
+  field: 'location',
+  sort: true
+}
+{
+  data: 'child__column_temp_max_layer_0_main',
+  field: 'month_date',
+  sort: true
+}
+{
+  data: 'child__column_temp_max_layer_1_main',
+  field: 'month_date',
+  sort: true
+}
+{ data: 'child__column_temp_max_layer_0_main', field: 'mean_temp_max' }
+{ data: 'child__column_temp_max_layer_1_main', field: 'mean_temp_max' }
+{
+  data: 'child__column_precipitation_layer_0_main',
+  field: 'month_date',
+  sort: true
+}
+{
+  data: 'child__column_precipitation_layer_1_main',
+  field: 'month_date',
+  sort: true
+}
+{
+  data: 'child__column_precipitation_layer_0_main',
+  field: 'mean_precipitation'
+}
+{
+  data: 'child__column_precipitation_layer_1_main',
+  field: 'mean_precipitation'
+}
+{
+  data: 'child__column_wind_layer_0_main',
+  field: 'month_date',
+  sort: true
+}
+{
+  data: 'child__column_wind_layer_1_main',
+  field: 'month_date',
+  sort: true
+}
+{ data: 'child__column_wind_layer_0_main', field: 'mean_wind' }
+{ data: 'child__column_wind_layer_1_main', field: 'mean_wind' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Summarized and per year weather information for Seatle and New York.",

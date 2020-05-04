@@ -1,3 +1,85 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> animal<br/><font color="grey" point-size="10">OUT:</font> emoji>;
+    tooltip = "[45]&#010;Calculate {as:emoji,calculate:{'cattle': '🐄', 'pigs': '🐖', 'sheep': '🐏'}[datum.animal]}"
+  ]
+  "46" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> country, animal<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[46]&#010;WindowTransform {groupby:[country,animal],window:[{as:rank,op:rank}]}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> country>;
+    tooltip = "[51]&#010;Facet r:{fields:[country],name:row_domain}"
+  ]
+  "52" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[52]&#010;Identifier"
+  ]
+  "53" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "51" "51" -> "52" "52" -> "53" "53" -> "55"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> animal<br/><font color="grey" point-size="10">OUT:</font> emoji>;
+    tooltip = "[45]&#010;Calculate {as:emoji,calculate:{'cattle': '🐄', 'pigs': '🐖', 'sheep': '🐏'}[datum.animal]}"
+  ]
+  "46" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> country, animal<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[46]&#010;WindowTransform {groupby:[country,animal],window:[{as:rank,op:rank}]}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> country>;
+    tooltip = "[51]&#010;Facet r:{fields:[country],name:row_domain}"
+  ]
+  "55" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "58" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 57"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "58" "58" -> "51" "51" -> "55"
+}
+{ data: 'scale_child_main', field: 'rank', sort: true }
+{ data: 'scale_child_main', field: 'animal' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

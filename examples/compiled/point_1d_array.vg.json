@@ -1,3 +1,40 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+
+  "43" -> "47"
+}
+{ data: 'main', field: 'a', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

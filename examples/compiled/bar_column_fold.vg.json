@@ -1,3 +1,86 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> gold, silver<br/><font color="grey" point-size="10">OUT:</font> key, value>;
+    tooltip = "[45]&#010;FoldTransform {as:[key,value],fold:[gold,silver]}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> key>;
+    tooltip = "[50]&#010;Facet c:{fields:[key],name:column_domain}"
+  ]
+  "51" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[51]&#010;Identifier"
+  ]
+  "52" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[54]&#010;FilterInvalid {value:{field:value,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> gold, silver<br/><font color="grey" point-size="10">OUT:</font> key, value>;
+    tooltip = "[45]&#010;FoldTransform {as:[key,value],fold:[gold,silver]}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> key>;
+    tooltip = "[50]&#010;Facet c:{fields:[key],name:column_domain}"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[54]&#010;FilterInvalid {value:{field:value,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "58" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 57"
+  ]
+
+  "43" -> "45" "45" -> "54" "54" -> "48" "48" -> "58" "58" -> "50" "50" -> "55"
+}
+{ data: 'scale_child_main', field: 'country', sort: true }
+{ data: 'scale_child_main', field: 'value' }
+{ data: 'scale_child_main', field: 'country', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

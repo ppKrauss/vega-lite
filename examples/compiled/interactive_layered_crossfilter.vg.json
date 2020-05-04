@@ -1,3 +1,367 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/flights-2k.json</i>>;
+    tooltip = "[43]&#010;data/flights-2k.json"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[44]&#010;Parse {date:date}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> time>;
+    tooltip = "[46]&#010;Calculate {as:time,calculate:hours(datum.date)}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[51]&#010;Identifier"
+  ]
+  "52" [
+    label = <Output<br/><i>child__column_distance_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Output<br/><i>child__column_distance_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> distance<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_distance, bin_maxbins_20_distance_end>;
+    tooltip = "[57]&#010;Bin 770591147"
+  ]
+  "58" [
+    label = <Output<br/><i>child__column_distance_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_distance, bin_maxbins_20_distance_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[60]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_distance\,\bin_maxbins_20_distance_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> distance>;
+    tooltip = "[61]&#010;FilterInvalid {distance:{bin:{maxbins:20},field:distance,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>child__column_distance_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Filter>;
+    tooltip = "[64]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "65" [
+    label = <Output<br/><i>child__column_distance_layer_0_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> distance<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_distance, bin_maxbins_20_distance_end>;
+    tooltip = "[68]&#010;Bin 381099565"
+  ]
+  "69" [
+    label = <Filter>;
+    tooltip = "[69]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "70" [
+    label = <Output<br/><i>child__column_distance_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_distance, bin_maxbins_20_distance_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[72]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_distance\,\bin_maxbins_20_distance_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> distance>;
+    tooltip = "[73]&#010;FilterInvalid {distance:{bin:{maxbins:20},field:distance,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>child__column_distance_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[76]&#010;Identifier"
+  ]
+  "77" [
+    label = <Output<br/><i>child__column_delay_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <Output<br/><i>child__column_delay_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[81]&#010;Identifier"
+  ]
+  "82" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> delay<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end>;
+    tooltip = "[82]&#010;Bin -1670131981"
+  ]
+  "83" [
+    label = <Output<br/><i>child__column_delay_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+  "85" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[85]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_delay\,\bin_maxbins_20_delay_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "86" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> delay>;
+    tooltip = "[86]&#010;FilterInvalid {delay:{bin:{maxbins:20},field:delay,type:quantitative}}"
+  ]
+  "87" [
+    label = <Output<br/><i>child__column_delay_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[87]&#010;Output 88"
+  ]
+  "89" [
+    label = <Filter>;
+    tooltip = "[89]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "90" [
+    label = <Output<br/><i>child__column_delay_layer_0_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[90]&#010;Output 91"
+  ]
+  "92" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[92]&#010;Identifier"
+  ]
+  "93" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> delay<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end>;
+    tooltip = "[93]&#010;Bin 1352240275"
+  ]
+  "94" [
+    label = <Filter>;
+    tooltip = "[94]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "95" [
+    label = <Output<br/><i>child__column_delay_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[95]&#010;Output 96"
+  ]
+  "97" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[97]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_delay\,\bin_maxbins_20_delay_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "98" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> delay>;
+    tooltip = "[98]&#010;FilterInvalid {delay:{bin:{maxbins:20},field:delay,type:quantitative}}"
+  ]
+  "99" [
+    label = <Output<br/><i>child__column_delay_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[99]&#010;Output 100"
+  ]
+  "101" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[101]&#010;Identifier"
+  ]
+  "102" [
+    label = <Output<br/><i>child__column_time_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[102]&#010;Output 103"
+  ]
+  "104" [
+    label = <Output<br/><i>child__column_time_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[104]&#010;Output 105"
+  ]
+  "106" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[106]&#010;Identifier"
+  ]
+  "107" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_time, bin_maxbins_20_time_end>;
+    tooltip = "[107]&#010;Bin 1526707291"
+  ]
+  "108" [
+    label = <Output<br/><i>child__column_time_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[108]&#010;Output 109"
+  ]
+  "110" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_time, bin_maxbins_20_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[110]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_time\,\bin_maxbins_20_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "111" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[111]&#010;FilterInvalid {time:{bin:{maxbins:20},field:time,type:quantitative}}"
+  ]
+  "112" [
+    label = <Output<br/><i>child__column_time_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[112]&#010;Output 113"
+  ]
+  "114" [
+    label = <Filter>;
+    tooltip = "[114]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "115" [
+    label = <Output<br/><i>child__column_time_layer_0_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[115]&#010;Output 116"
+  ]
+  "117" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[117]&#010;Identifier"
+  ]
+  "118" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_time, bin_maxbins_20_time_end>;
+    tooltip = "[118]&#010;Bin 1700516701"
+  ]
+  "119" [
+    label = <Filter>;
+    tooltip = "[119]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "120" [
+    label = <Output<br/><i>child__column_time_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[120]&#010;Output 121"
+  ]
+  "122" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_time, bin_maxbins_20_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[122]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_time\,\bin_maxbins_20_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "123" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[123]&#010;FilterInvalid {time:{bin:{maxbins:20},field:time,type:quantitative}}"
+  ]
+  "124" [
+    label = <Output<br/><i>child__column_time_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[124]&#010;Output 125"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "51" "51" -> "52" "52" -> "54" "54" -> "56" "56" -> "57" "57" -> "58" "58" -> "60" "60" -> "61" "61" -> "62" "62" -> "64" "64" -> "65" "54" -> "67" "67" -> "68" "68" -> "69" "69" -> "70" "70" -> "72" "72" -> "73" "73" -> "74" "49" -> "76" "76" -> "77" "77" -> "79" "79" -> "81" "81" -> "82" "82" -> "83" "83" -> "85" "85" -> "86" "86" -> "87" "87" -> "89" "89" -> "90" "79" -> "92" "92" -> "93" "93" -> "94" "94" -> "95" "95" -> "97" "97" -> "98" "98" -> "99" "49" -> "101" "101" -> "102" "102" -> "104" "104" -> "106" "106" -> "107" "107" -> "108" "108" -> "110" "110" -> "111" "111" -> "112" "112" -> "114" "114" -> "115" "104" -> "117" "117" -> "118" "118" -> "119" "119" -> "120" "120" -> "122" "122" -> "123" "123" -> "124"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/flights-2k.json</i>>;
+    tooltip = "[43]&#010;data/flights-2k.json"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[44]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> time>;
+    tooltip = "[46]&#010;Calculate {as:time,calculate:hours(datum.date)}"
+  ]
+  "60" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_distance, bin_maxbins_20_distance_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[60]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_distance\,\bin_maxbins_20_distance_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> distance>;
+    tooltip = "[61]&#010;FilterInvalid {distance:{bin:{maxbins:20},field:distance,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>child__column_distance_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "72" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_distance, bin_maxbins_20_distance_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[72]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_distance\,\bin_maxbins_20_distance_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> distance>;
+    tooltip = "[73]&#010;FilterInvalid {distance:{bin:{maxbins:20},field:distance,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>child__column_distance_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "85" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[85]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_delay\,\bin_maxbins_20_delay_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "86" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> delay>;
+    tooltip = "[86]&#010;FilterInvalid {delay:{bin:{maxbins:20},field:delay,type:quantitative}}"
+  ]
+  "87" [
+    label = <Output<br/><i>child__column_delay_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[87]&#010;Output 88"
+  ]
+  "93" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> delay, distance<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end, bin_maxbins_20_distance, bin_maxbins_20_distance_end>;
+    tooltip = "[93]&#010;Bin 1644525956"
+  ]
+  "94" [
+    label = <Filter>;
+    tooltip = "[94]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "97" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_delay, bin_maxbins_20_delay_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[97]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_delay\,\bin_maxbins_20_delay_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "98" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> delay>;
+    tooltip = "[98]&#010;FilterInvalid {delay:{bin:{maxbins:20},field:delay,type:quantitative}}"
+  ]
+  "99" [
+    label = <Output<br/><i>child__column_delay_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[99]&#010;Output 100"
+  ]
+  "110" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_time, bin_maxbins_20_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[110]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_time\,\bin_maxbins_20_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "111" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[111]&#010;FilterInvalid {time:{bin:{maxbins:20},field:time,type:quantitative}}"
+  ]
+  "112" [
+    label = <Output<br/><i>child__column_time_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[112]&#010;Output 113"
+  ]
+  "118" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_20_time, bin_maxbins_20_time_end>;
+    tooltip = "[118]&#010;Bin 1700516701"
+  ]
+  "119" [
+    label = <Filter>;
+    tooltip = "[119]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "122" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_20_time, bin_maxbins_20_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[122]&#010;Aggregate {dimensions:Set(\bin_maxbins_20_time\,\bin_maxbins_20_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "123" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[123]&#010;FilterInvalid {time:{bin:{maxbins:20},field:time,type:quantitative}}"
+  ]
+  "124" [
+    label = <Output<br/><i>child__column_time_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[124]&#010;Output 125"
+  ]
+
+  "43" -> "44" "44" -> "93" "93" -> "46" "46" -> "118" "118" -> "119" "119" -> "122" "122" -> "123" "123" -> "124" "118" -> "110" "110" -> "111" "111" -> "112" "46" -> "94" "94" -> "97" "97" -> "98" "98" -> "99" "94" -> "72" "72" -> "73" "73" -> "74" "46" -> "60" "60" -> "61" "61" -> "62" "46" -> "85" "85" -> "86" "86" -> "87"
+}
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'child__column_distance_layer_0_main', field: '__count' }
+{ data: 'child__column_distance_layer_1_main', field: '__count' }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'child__column_delay_layer_0_main', field: '__count' }
+{ data: 'child__column_delay_layer_1_main', field: '__count' }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'child__column_time_layer_0_main', field: '__count' }
+{ data: 'child__column_time_layer_1_main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

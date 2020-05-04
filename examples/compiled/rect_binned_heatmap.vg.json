@@ -1,3 +1,74 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[45]&#010;Filter (isValid(datum[IMDB_Rating]) && isFinite(+datum[IMDB_Rating])) && (isValid(datum[Rotten_Tomatoes_Rating]) && isFinite(+datum[Rotten_Tomatoes_Rating]))"
+  ]
+  "46" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_60_IMDB_Rating, bin_maxbins_60_IMDB_Rating_end, bin_maxbins_40_Rotten_Tomatoes_Rating, bin_maxbins_40_Rotten_Tomatoes_Rating_end>;
+    tooltip = "[46]&#010;Bin -1775269816"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_60_IMDB_Rating, bin_maxbins_60_IMDB_Rating_end, bin_maxbins_40_Rotten_Tomatoes_Rating, bin_maxbins_40_Rotten_Tomatoes_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\bin_maxbins_60_IMDB_Rating\,\bin_maxbins_60_IMDB_Rating_end\,\bin_maxbins_40_Rotten_Tomatoes_Rating\,\bin_maxbins_40_Rotten_Tomatoes_Rating_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "50" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[50]&#010;FilterInvalid {IMDB_Rating:{bin:{maxbins:60},field:IMDB_Rating,type:quantitative},Rotten_Tomatoes_Rating:{bin:{maxbins:40},field:Rotten_Tomatoes_Rating,type:quantitative}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50" "50" -> "51"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[45]&#010;Filter (isValid(datum[IMDB_Rating]) && isFinite(+datum[IMDB_Rating])) && (isValid(datum[Rotten_Tomatoes_Rating]) && isFinite(+datum[Rotten_Tomatoes_Rating]))"
+  ]
+  "46" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_60_IMDB_Rating, bin_maxbins_60_IMDB_Rating_end, bin_maxbins_40_Rotten_Tomatoes_Rating, bin_maxbins_40_Rotten_Tomatoes_Rating_end>;
+    tooltip = "[46]&#010;Bin -1775269816"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_60_IMDB_Rating, bin_maxbins_60_IMDB_Rating_end, bin_maxbins_40_Rotten_Tomatoes_Rating, bin_maxbins_40_Rotten_Tomatoes_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\bin_maxbins_60_IMDB_Rating\,\bin_maxbins_60_IMDB_Rating_end\,\bin_maxbins_40_Rotten_Tomatoes_Rating\,\bin_maxbins_40_Rotten_Tomatoes_Rating_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "50" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[50]&#010;FilterInvalid {IMDB_Rating:{bin:{maxbins:60},field:IMDB_Rating,type:quantitative},Rotten_Tomatoes_Rating:{bin:{maxbins:40},field:Rotten_Tomatoes_Rating,type:quantitative}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50" "50" -> "51"
+}
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

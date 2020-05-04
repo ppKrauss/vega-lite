@@ -1,3 +1,99 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol==='GOOG'"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[51]&#010;Parse {date:date}"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[57]&#010;Parse {date:date}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[60]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "48" -> "56" "56" -> "57" "57" -> "58" "58" -> "60" "60" -> "61"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol==='GOOG'"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[60]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[63]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "63" "63" -> "45" "45" -> "54" "54" -> "60" "60" -> "61"
+}
+{ data: 'layer_0_main', field: 'date' }
+{ data: 'layer_1_main', field: 'date' }
+{ data: 'layer_0_main', field: 'price' }
+{ data: 'layer_1_main', field: 'price' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Google's stock price over time.",

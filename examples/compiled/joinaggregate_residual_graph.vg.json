@@ -1,3 +1,90 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating>;
+    tooltip = "[45]&#010;Filter datum.IMDB_Rating != null"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Release_Date<br/><font color="grey" point-size="10">OUT:</font> Release_Date>;
+    tooltip = "[46]&#010;Parse {Release_Date:date}"
+  ]
+  "47" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Release_Date>;
+    tooltip = "[47]&#010;Filter time(datetime(year(datum[Release_Date]), 0, 1, 0, 0, 0, 0)) <= time(datetime(2019, 0, 1, 0, 0, 0, 0))"
+  ]
+  "48" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> AverageRating>;
+    tooltip = "[48]&#010;JoinAggregateTransform {joinaggregate:[{as:AverageRating,field:IMDB_Rating,op:mean}]}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, AverageRating<br/><font color="grey" point-size="10">OUT:</font> RatingDelta>;
+    tooltip = "[49]&#010;Calculate {as:RatingDelta,calculate:datum.IMDB_Rating - datum.AverageRating}"
+  ]
+  "50" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Release_Date, RatingDelta>;
+    tooltip = "[52]&#010;FilterInvalid {RatingDelta:{field:RatingDelta,scale:{domainMid:0},title:Rating Delta,type:quantitative},Release_Date:{field:Release_Date,type:temporal}}"
+  ]
+  "53" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "52" "52" -> "53"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating>;
+    tooltip = "[45]&#010;Filter datum.IMDB_Rating != null"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Release_Date<br/><font color="grey" point-size="10">OUT:</font> Release_Date>;
+    tooltip = "[46]&#010;Parse {Release_Date:date}"
+  ]
+  "47" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Release_Date>;
+    tooltip = "[47]&#010;Filter time(datetime(year(datum[Release_Date]), 0, 1, 0, 0, 0, 0)) <= time(datetime(2019, 0, 1, 0, 0, 0, 0))"
+  ]
+  "48" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> AverageRating>;
+    tooltip = "[48]&#010;JoinAggregateTransform {joinaggregate:[{as:AverageRating,field:IMDB_Rating,op:mean}]}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, AverageRating<br/><font color="grey" point-size="10">OUT:</font> RatingDelta>;
+    tooltip = "[49]&#010;Calculate {as:RatingDelta,calculate:datum.IMDB_Rating - datum.AverageRating}"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Release_Date, RatingDelta>;
+    tooltip = "[52]&#010;FilterInvalid {RatingDelta:{field:RatingDelta,scale:{domainMid:0},title:Rating Delta,type:quantitative},Release_Date:{field:Release_Date,type:temporal}}"
+  ]
+  "53" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "47" "47" -> "48" "48" -> "49" "49" -> "52" "52" -> "53"
+}
+{ data: 'main', field: 'Release_Date' }
+{ data: 'main', field: 'RatingDelta' }
+{ data: 'main', field: 'RatingDelta' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A dot plot showing each movie in the database, and the difference from the average movie rating. The display is sorted by year to visualize everything in sequential order. The graph is for all Movies before 2019.",

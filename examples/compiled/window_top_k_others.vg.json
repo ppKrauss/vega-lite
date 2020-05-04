@@ -1,3 +1,89 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Director, Worldwide_Gross<br/><font color="grey" point-size="10">OUT:</font> aggregate_gross>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Director\),measures:{Worldwide_Gross:{mean:Set(\aggregate_gross\)}}}"
+  ]
+  "46" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> aggregate_gross<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[46]&#010;WindowTransform {sort:[{field:aggregate_gross,order:descending}],window:[{as:rank,op:row_number}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> rank, Director<br/><font color="grey" point-size="10">OUT:</font> ranked_director>;
+    tooltip = "[47]&#010;Calculate {as:ranked_director,calculate:datum.rank < 10 ? datum.Director : 'All Others'}"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> ranked_director, aggregate_gross<br/><font color="grey" point-size="10">OUT:</font> mean_aggregate_gross>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\ranked_director\),measures:{aggregate_gross:{mean:Set(\mean_aggregate_gross\)}}}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> aggregate_gross>;
+    tooltip = "[51]&#010;FilterInvalid {aggregate_gross:{aggregate:mean,field:aggregate_gross,title:null,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "51" "51" -> "52"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Director, Worldwide_Gross<br/><font color="grey" point-size="10">OUT:</font> aggregate_gross>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Director\),measures:{Worldwide_Gross:{mean:Set(\aggregate_gross\)}}}"
+  ]
+  "46" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> aggregate_gross<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[46]&#010;WindowTransform {sort:[{field:aggregate_gross,order:descending}],window:[{as:rank,op:row_number}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> rank, Director<br/><font color="grey" point-size="10">OUT:</font> ranked_director>;
+    tooltip = "[47]&#010;Calculate {as:ranked_director,calculate:datum.rank < 10 ? datum.Director : 'All Others'}"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> ranked_director, aggregate_gross<br/><font color="grey" point-size="10">OUT:</font> mean_aggregate_gross>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\ranked_director\),measures:{aggregate_gross:{mean:Set(\mean_aggregate_gross\)}}}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> aggregate_gross>;
+    tooltip = "[51]&#010;FilterInvalid {aggregate_gross:{aggregate:mean,field:aggregate_gross,title:null,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "51" "51" -> "52"
+}
+{ data: 'main', field: 'mean_aggregate_gross' }
+{
+  data: 'raw',
+  field: 'ranked_director',
+  sort: { op: 'mean', field: 'aggregate_gross', order: 'descending' }
+}
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Top-K plot with \"others\" by Trevor Manz, adapted from https://observablehq.com/@manzt/top-k-plot-with-others-vega-lite-example.",

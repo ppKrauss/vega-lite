@@ -1,3 +1,165 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[52]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{axis:{title:Miles per Gallon},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> Miles_per_Gallon>;
+    tooltip = "[56]&#010;Parse {Miles_per_Gallon:number}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> min_Miles_per_Gallon>;
+    tooltip = "[59]&#010;Aggregate {dimensions:Set(),measures:{Miles_per_Gallon:{min:Set(\min_Miles_per_Gallon\)}}}"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[60]&#010;FilterInvalid {Miles_per_Gallon:{aggregate:min,field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[63]&#010;Identifier"
+  ]
+  "64" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> Miles_per_Gallon>;
+    tooltip = "[64]&#010;Parse {Miles_per_Gallon:number}"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> max_Miles_per_Gallon>;
+    tooltip = "[67]&#010;Aggregate {dimensions:Set(),measures:{Miles_per_Gallon:{max:Set(\max_Miles_per_Gallon\)}}}"
+  ]
+  "68" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[68]&#010;FilterInvalid {Miles_per_Gallon:{aggregate:max,field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "69" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[69]&#010;Output 70"
+  ]
+  "71" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[71]&#010;Identifier"
+  ]
+  "72" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> Miles_per_Gallon>;
+    tooltip = "[72]&#010;Parse {Miles_per_Gallon:number}"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> max_Miles_per_Gallon, min_Miles_per_Gallon>;
+    tooltip = "[75]&#010;Aggregate {dimensions:Set(),measures:{Miles_per_Gallon:{max:Set(\max_Miles_per_Gallon\),min:Set(\min_Miles_per_Gallon\)}}}"
+  ]
+  "76" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[76]&#010;FilterInvalid {Miles_per_Gallon:{aggregate:max,field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "53" "47" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "60" "60" -> "61" "47" -> "63" "63" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "68" -> "69" "47" -> "71" "71" -> "72" "72" -> "73" "73" -> "75" "75" -> "76" "76" -> "77"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[52]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{axis:{title:Miles per Gallon},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[60]&#010;FilterInvalid {Miles_per_Gallon:{aggregate:min,field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "69" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[69]&#010;Output 70"
+  ]
+  "75" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> max_Miles_per_Gallon, min_Miles_per_Gallon>;
+    tooltip = "[75]&#010;Aggregate {dimensions:Set(),measures:{Miles_per_Gallon:{max:Set(\max_Miles_per_Gallon\),min:Set(\min_Miles_per_Gallon\)}}}"
+  ]
+  "76" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[76]&#010;FilterInvalid {Miles_per_Gallon:{aggregate:max,field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> Miles_per_Gallon>;
+    tooltip = "[79]&#010;Parse {Miles_per_Gallon:number}"
+  ]
+
+  "43" -> "79" "79" -> "52" "52" -> "53" "79" -> "75" "75" -> "76" "76" -> "69" "69" -> "77" "75" -> "60" "60" -> "61"
+}
+{ data: 'layer_0_main', field: 'Horsepower' }
+{ data: 'layer_0_main', field: 'Miles_per_Gallon' }
+{ data: 'layer_1_main', field: 'min_Miles_per_Gallon' }
+{ data: 'layer_2_main', field: 'max_Miles_per_Gallon' }
+{ data: 'layer_3_main', field: 'max_Miles_per_Gallon' }
+{ data: 'layer_3_main', field: 'min_Miles_per_Gallon' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A scatterplot showing horsepower and miles per gallons for various cars.",

@@ -1,3 +1,195 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Output<br/><i>concat_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[57]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "58" [
+    label = <Output<br/><i>concat_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Filter>;
+    tooltip = "[60]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "61" [
+    label = <Output<br/><i>concat_0_layer_0_lookup_hover</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[63]&#010;Identifier"
+  ]
+  "64" [
+    label = <Filter>;
+    tooltip = "[64]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[67]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[75]&#010;Identifier"
+  ]
+  "76" [
+    label = <Output<br/><i>concat_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[78]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "79" [
+    label = <Output<br/><i>concat_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <Filter>;
+    tooltip = "[81]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "82" [
+    label = <Output<br/><i>concat_1_layer_0_lookup_hover</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "84" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[84]&#010;Identifier"
+  ]
+  "85" [
+    label = <Filter>;
+    tooltip = "[85]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "86" [
+    label = <Output<br/><i>concat_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[88]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>concat_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "57" "57" -> "58" "58" -> "60" "60" -> "61" "52" -> "63" "63" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "47" -> "70" "70" -> "71" "71" -> "73" "73" -> "75" "75" -> "76" "76" -> "78" "78" -> "79" "79" -> "81" "81" -> "82" "73" -> "84" "84" -> "85" "85" -> "86" "86" -> "88" "88" -> "89"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "57" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[57]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "58" [
+    label = <Output<br/><i>concat_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "64" [
+    label = <Filter>;
+    tooltip = "[64]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[67]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "78" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[78]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "79" [
+    label = <Output<br/><i>concat_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[88]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>concat_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+
+  "43" -> "44" "44" -> "57" "57" -> "58" "44" -> "64" "64" -> "67" "67" -> "68" "64" -> "88" "88" -> "89" "44" -> "78" "78" -> "79"
+}
+{ data: 'concat_0_layer_0_main', field: 'Horsepower' }
+{ data: 'concat_0_layer_1_main', field: 'Horsepower' }
+{ data: 'concat_0_layer_0_main', field: 'Miles_per_Gallon' }
+{ data: 'concat_0_layer_1_main', field: 'Miles_per_Gallon' }
+{ data: 'concat_1_layer_0_main', field: 'Horsepower' }
+{ data: 'concat_1_layer_1_main', field: 'Horsepower' }
+{ data: 'concat_1_layer_0_main', field: 'Acceleration' }
+{ data: 'concat_1_layer_1_main', field: 'Acceleration' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Drag out a rectangular brush to highlight points.",

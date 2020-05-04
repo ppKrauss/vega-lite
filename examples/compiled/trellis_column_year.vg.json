@@ -1,3 +1,102 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> year_date>;
+    tooltip = "[51]&#010;Facet c:{fields:[year_date],name:column_domain}"
+  ]
+  "52" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[52]&#010;Identifier"
+  ]
+  "53" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> quarter_date>;
+    tooltip = "[53]&#010;TimeUnit {{\as\:\quarter_date\,\field\:\date\,\timeUnit\:{\unit\:\quarter\}}:{as:quarter_date,field:date,timeUnit:{unit:quarter}}}"
+  ]
+  "54" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> quarter_date, symbol, price<br/><font color="grey" point-size="10">OUT:</font> mean_price>;
+    tooltip = "[56]&#010;Aggregate {dimensions:Set(\quarter_date\,\symbol\),measures:{price:{mean:Set(\mean_price\)}}}"
+  ]
+  "57" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "51" "51" -> "52" "52" -> "53" "53" -> "54" "54" -> "56" "56" -> "57"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> year_date>;
+    tooltip = "[51]&#010;Facet c:{fields:[year_date],name:column_domain}"
+  ]
+  "53" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> quarter_date>;
+    tooltip = "[53]&#010;TimeUnit {{\as\:\quarter_date\,\field\:\date\,\timeUnit\:{\unit\:\quarter\}}:{as:quarter_date,field:date,timeUnit:{unit:quarter}}}"
+  ]
+  "56" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> quarter_date, symbol, year_date, price<br/><font color="grey" point-size="10">OUT:</font> mean_price>;
+    tooltip = "[56]&#010;Aggregate {dimensions:Set(\quarter_date\,\symbol\,\year_date\),measures:{price:{mean:Set(\mean_price\)}}}"
+  ]
+  "57" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "60" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 59"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "53" "53" -> "56" "56" -> "49" "49" -> "60" "60" -> "51" "51" -> "57"
+}
+{ data: 'scale_child_main', field: 'quarter_date', sort: true }
+{ data: 'scale_child_main', field: 'mean_price' }
+{ data: 'scale_child_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Stock price mean per quarter broken down by years.",

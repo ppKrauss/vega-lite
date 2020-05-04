@@ -1,3 +1,190 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population_engineers_hurricanes.csv</i>>;
+    tooltip = "[43]&#010;data/population_engineers_hurricanes.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[50]&#010;Lookup {secondary:child__row_population_lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "51" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[51]&#010;GeoJSON geo child__row_population_geojson_0 null"
+  ]
+  "52" [
+    label = <Output<br/><i>child__row_population_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> population>;
+    tooltip = "[54]&#010;FilterInvalid {population:{field:population,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>child__row_population_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[57]&#010;Identifier"
+  ]
+  "58" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[58]&#010;Lookup {secondary:child__row_engineers_lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "59" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[59]&#010;GeoJSON geo child__row_engineers_geojson_0 null"
+  ]
+  "60" [
+    label = <Output<br/><i>child__row_engineers_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> engineers>;
+    tooltip = "[62]&#010;FilterInvalid {engineers:{field:engineers,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>child__row_engineers_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[65]&#010;Identifier"
+  ]
+  "66" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[66]&#010;Lookup {secondary:child__row_hurricanes_lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "67" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[67]&#010;GeoJSON geo child__row_hurricanes_geojson_0 null"
+  ]
+  "68" [
+    label = <Output<br/><i>child__row_hurricanes_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> hurricanes>;
+    tooltip = "[70]&#010;FilterInvalid {hurricanes:{field:hurricanes,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>child__row_hurricanes_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[73]&#010;data/us-10m.json"
+  ]
+  "74" [
+    label = <Output<br/><i>child__row_population_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Output<br/><i>child__row_engineers_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Output<br/><i>child__row_hurricanes_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55" "47" -> "57" "57" -> "58" "58" -> "59" "59" -> "60" "60" -> "62" "62" -> "63" "47" -> "65" "65" -> "66" "66" -> "67" "67" -> "68" "68" -> "70" "70" -> "71" "73" -> "74" "73" -> "76" "73" -> "78"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population_engineers_hurricanes.csv</i>>;
+    tooltip = "[43]&#010;data/population_engineers_hurricanes.csv"
+  ]
+  "50" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[50]&#010;Lookup {secondary:child__row_population_lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "51" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[51]&#010;GeoJSON geo child__row_population_geojson_0 null"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> population>;
+    tooltip = "[54]&#010;FilterInvalid {population:{field:population,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>child__row_population_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "58" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[58]&#010;Lookup {secondary:child__row_engineers_lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "59" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[59]&#010;GeoJSON geo child__row_engineers_geojson_0 null"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> engineers>;
+    tooltip = "[62]&#010;FilterInvalid {engineers:{field:engineers,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>child__row_engineers_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "66" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[66]&#010;Lookup {secondary:child__row_hurricanes_lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "67" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[67]&#010;GeoJSON geo child__row_hurricanes_geojson_0 null"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> hurricanes>;
+    tooltip = "[70]&#010;FilterInvalid {hurricanes:{field:hurricanes,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>child__row_hurricanes_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[73]&#010;data/us-10m.json"
+  ]
+  "74" [
+    label = <Output<br/><i>child__row_population_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Output<br/><i>child__row_engineers_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Output<br/><i>child__row_hurricanes_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+
+  "43" -> "50" "50" -> "51" "51" -> "54" "54" -> "55" "43" -> "58" "58" -> "59" "59" -> "62" "62" -> "63" "43" -> "66" "66" -> "67" "67" -> "70" "70" -> "71" "73" -> "76" "76" -> "78" "78" -> "74"
+}
+{ data: 'child__row_population_main', field: 'population' }
+{ data: 'child__row_engineers_main', field: 'engineers' }
+{ data: 'child__row_hurricanes_main', field: 'hurricanes' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "the population per state, engineers per state, and hurricanes per state",

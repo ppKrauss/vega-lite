@@ -1,3 +1,105 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, *<br/><font color="grey" point-size="10">OUT:</font> num_cars>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Origin\,\Cylinders\),measures:{*:{count:Set(\num_cars\)}}}"
+  ]
+  "46" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> num_cars<br/><font color="grey" point-size="10">OUT:</font> max_num_cars>;
+    tooltip = "[46]&#010;JoinAggregateTransform {joinaggregate:[{as:max_num_cars,field:num_cars,op:max}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> num_cars, max_num_cars<br/><font color="grey" point-size="10">OUT:</font> more_than_half>;
+    tooltip = "[47]&#010;Calculate {as:more_than_half,calculate:datum.num_cars > 0.5 * datum.max_num_cars}"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[52]&#010;Identifier"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> num_cars>;
+    tooltip = "[55]&#010;FilterInvalid {num_cars:{field:num_cars,legend:{direction:horizontal,gradientLength:120},title:Count of Records,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "50" -> "58" "58" -> "59" "59" -> "61"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, *<br/><font color="grey" point-size="10">OUT:</font> num_cars>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Origin\,\Cylinders\),measures:{*:{count:Set(\num_cars\)}}}"
+  ]
+  "46" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> num_cars<br/><font color="grey" point-size="10">OUT:</font> max_num_cars>;
+    tooltip = "[46]&#010;JoinAggregateTransform {joinaggregate:[{as:max_num_cars,field:num_cars,op:max}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> num_cars, max_num_cars<br/><font color="grey" point-size="10">OUT:</font> more_than_half>;
+    tooltip = "[47]&#010;Calculate {as:more_than_half,calculate:datum.num_cars > 0.5 * datum.max_num_cars}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> num_cars>;
+    tooltip = "[55]&#010;FilterInvalid {num_cars:{field:num_cars,legend:{direction:horizontal,gradientLength:120},title:Count of Records,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "61" "61" -> "55" "55" -> "56"
+}
+{ data: 'layer_0_main', field: 'Cylinders', sort: true }
+{ data: 'layer_1_main', field: 'Cylinders', sort: true }
+{ data: 'layer_0_main', field: 'Origin', sort: true }
+{ data: 'layer_1_main', field: 'Origin', sort: true }
+{ data: 'layer_0_main', field: 'num_cars' }
+[ false, true ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

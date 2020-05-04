@@ -1,3 +1,125 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end>;
+    tooltip = "[50]&#010;Bin 1021485900"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[53]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_Acceleration\,\bin_maxbins_10_Acceleration_end\,\bin_maxbins_10_Horsepower\,\bin_maxbins_10_Horsepower_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower>;
+    tooltip = "[54]&#010;FilterInvalid {Acceleration:{bin:{maxbins:10},field:Acceleration,type:quantitative},Horsepower:{bin:{maxbins:10},field:Horsepower,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[57]&#010;Identifier"
+  ]
+  "58" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end>;
+    tooltip = "[58]&#010;Bin -1028069684"
+  ]
+  "59" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Origin>;
+    tooltip = "[59]&#010;Filter datum.Origin === 'Japan'"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[62]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_Acceleration\,\bin_maxbins_10_Acceleration_end\,\bin_maxbins_10_Horsepower\,\bin_maxbins_10_Horsepower_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower>;
+    tooltip = "[63]&#010;FilterInvalid {Acceleration:{bin:{maxbins:10},field:Acceleration,type:quantitative},Horsepower:{bin:{maxbins:10},field:Horsepower,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "54" -> "55" "47" -> "57" "57" -> "58" "58" -> "59" "59" -> "60" "60" -> "62" "62" -> "63" "63" -> "64"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "53" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[53]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_Acceleration\,\bin_maxbins_10_Acceleration_end\,\bin_maxbins_10_Horsepower\,\bin_maxbins_10_Horsepower_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower>;
+    tooltip = "[54]&#010;FilterInvalid {Acceleration:{bin:{maxbins:10},field:Acceleration,type:quantitative},Horsepower:{bin:{maxbins:10},field:Horsepower,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "58" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end>;
+    tooltip = "[58]&#010;Bin -1028069684"
+  ]
+  "59" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Origin>;
+    tooltip = "[59]&#010;Filter datum.Origin === 'Japan'"
+  ]
+  "62" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_Acceleration, bin_maxbins_10_Acceleration_end, bin_maxbins_10_Horsepower, bin_maxbins_10_Horsepower_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[62]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_Acceleration\,\bin_maxbins_10_Acceleration_end\,\bin_maxbins_10_Horsepower\,\bin_maxbins_10_Horsepower_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower>;
+    tooltip = "[63]&#010;FilterInvalid {Acceleration:{bin:{maxbins:10},field:Acceleration,type:quantitative},Horsepower:{bin:{maxbins:10},field:Horsepower,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+
+  "43" -> "58" "58" -> "59" "59" -> "62" "62" -> "63" "63" -> "64" "58" -> "53" "53" -> "54" "54" -> "55"
+}
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'layer_0_main', field: '__count' }
+{ data: 'layer_1_main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Cars from Japan compared to all cars. Demonstrates independent legends in layers.",

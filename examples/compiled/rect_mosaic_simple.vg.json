@@ -1,3 +1,85 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, *<br/><font color="grey" point-size="10">OUT:</font> count_*>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Origin\,\Cylinders\),measures:{*:{count:Set(\count_*\)}}}"
+  ]
+  "46" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin<br/><font color="grey" point-size="10">OUT:</font> stack_count_Origin1, stack_count_Origin2>;
+    tooltip = "[46]&#010;Stack {as:[stack_count_Origin1,stack_count_Origin2],facetby:[],groupby:[],offset:normalize,sort:{field:[Origin],order:[ascending]},stackField:count_*}"
+  ]
+  "47" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> Origin, stack_count_Origin1, stack_count_Origin2<br/><font color="grey" point-size="10">OUT:</font> x, x2>;
+    tooltip = "[47]&#010;JoinAggregateTransform {groupby:[Origin],joinaggregate:[{as:x,field:stack_count_Origin1,op:min},{as:x2,field:stack_count_Origin2,op:max}]}"
+  ]
+  "48" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin, Cylinders<br/><font color="grey" point-size="10">OUT:</font> y, y2>;
+    tooltip = "[48]&#010;Stack {as:[y,y2],facetby:[],groupby:[Origin],offset:normalize,sort:{field:[Cylinders],order:[ascending]},stackField:count_*}"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, y, Cylinders>;
+    tooltip = "[51]&#010;FilterInvalid {Cylinders:{field:Cylinders,legend:null,type:quantitative},x:{axis:null,field:x,type:quantitative},y:{axis:null,field:y,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51" "51" -> "52"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, *<br/><font color="grey" point-size="10">OUT:</font> count_*>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Origin\,\Cylinders\),measures:{*:{count:Set(\count_*\)}}}"
+  ]
+  "46" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin<br/><font color="grey" point-size="10">OUT:</font> stack_count_Origin1, stack_count_Origin2>;
+    tooltip = "[46]&#010;Stack {as:[stack_count_Origin1,stack_count_Origin2],facetby:[],groupby:[],offset:normalize,sort:{field:[Origin],order:[ascending]},stackField:count_*}"
+  ]
+  "47" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> Origin, stack_count_Origin1, stack_count_Origin2<br/><font color="grey" point-size="10">OUT:</font> x, x2>;
+    tooltip = "[47]&#010;JoinAggregateTransform {groupby:[Origin],joinaggregate:[{as:x,field:stack_count_Origin1,op:min},{as:x2,field:stack_count_Origin2,op:max}]}"
+  ]
+  "48" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin, Cylinders<br/><font color="grey" point-size="10">OUT:</font> y, y2>;
+    tooltip = "[48]&#010;Stack {as:[y,y2],facetby:[],groupby:[Origin],offset:normalize,sort:{field:[Cylinders],order:[ascending]},stackField:count_*}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, y, Cylinders>;
+    tooltip = "[51]&#010;FilterInvalid {Cylinders:{field:Cylinders,legend:null,type:quantitative},x:{axis:null,field:x,type:quantitative},y:{axis:null,field:y,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "51" "51" -> "52"
+}
+{ data: 'main', field: 'x' }
+{ data: 'main', field: 'x2' }
+{ data: 'main', field: 'y' }
+{ data: 'main', field: 'y2' }
+{ data: 'main', field: 'Origin', sort: true }
+{ data: 'main', field: 'Cylinders' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

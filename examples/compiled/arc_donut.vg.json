@@ -1,3 +1,58 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> value, category<br/><font color="grey" point-size="10">OUT:</font> value_start, value_end>;
+    tooltip = "[47]&#010;Stack {as:[value_start,value_end],facetby:[],impute:false,offset:zero,sort:{field:[category],order:[ascending]},stackField:value,stackby:[category]}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[48]&#010;FilterInvalid {value:{field:value,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "48" "48" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "47" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> value, category<br/><font color="grey" point-size="10">OUT:</font> value_start, value_end>;
+    tooltip = "[47]&#010;Stack {as:[value_start,value_end],facetby:[],impute:false,offset:zero,sort:{field:[category],order:[ascending]},stackField:value,stackby:[category]}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[48]&#010;FilterInvalid {value:{field:value,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "47" "47" -> "48" "48" -> "49"
+}
+{ data: 'main', field: 'value_start' }
+{ data: 'main', field: 'value_end' }
+{ data: 'main', field: 'category', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A simple donut chart with embedded data.",

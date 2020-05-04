@@ -1,3 +1,56 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> utchours_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\utchours_date\,\field\:\date\,\timeUnit\:{\unit\:\hours\,\utc\:true}}:{as:utchours_date,field:date,timeUnit:{unit:hours,utc:true}}}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> utchours_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\utchours_date\,\field\:\date\,\timeUnit\:{\unit\:\hours\,\utc\:true}}:{as:utchours_date,field:date,timeUnit:{unit:hours,utc:true}}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49"
+}
+{ data: 'main', field: 'utchours_date', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Parsing a date in utc and outputting utc.",

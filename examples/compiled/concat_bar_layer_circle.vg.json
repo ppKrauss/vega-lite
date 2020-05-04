@@ -1,3 +1,171 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end>;
+    tooltip = "[55]&#010;Bin -1764862536"
+  ]
+  "56" [
+    label = <Output<br/><i>concat_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[58]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\,\bin_maxbins_10_Rotten_Tomatoes_Rating\,\bin_maxbins_10_Rotten_Tomatoes_Rating_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "59" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[59]&#010;FilterInvalid {IMDB_Rating:{bin:{maxbins:10},field:IMDB_Rating,type:quantitative},Rotten_Tomatoes_Rating:{bin:{maxbins:10},field:Rotten_Tomatoes_Rating,type:quantitative}}"
+  ]
+  "60" [
+    label = <Output<br/><i>concat_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[62]&#010;Identifier"
+  ]
+  "63" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end>;
+    tooltip = "[63]&#010;Bin -1171365636"
+  ]
+  "64" [
+    label = <Filter>;
+    tooltip = "[64]&#010;Filter !(length(data(pts_store))) || (vlSelectionTest(pts_store, datum))"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[67]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\,\bin_maxbins_10_Rotten_Tomatoes_Rating\,\bin_maxbins_10_Rotten_Tomatoes_Rating_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "68" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[68]&#010;FilterInvalid {IMDB_Rating:{bin:{maxbins:10},field:IMDB_Rating,type:quantitative},Rotten_Tomatoes_Rating:{bin:{maxbins:10},field:Rotten_Tomatoes_Rating,type:quantitative}}"
+  ]
+  "69" [
+    label = <Output<br/><i>concat_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[69]&#010;Output 70"
+  ]
+  "71" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[71]&#010;Identifier"
+  ]
+  "72" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "74" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Major_Genre, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[74]&#010;Aggregate {dimensions:Set(\Major_Genre\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "75" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+  "77" [
+    label = <Filter>;
+    tooltip = "[77]&#010;Filter !(length(data(pts_store))) || (vlSelectionTest(pts_store, datum))"
+  ]
+  "78" [
+    label = <Output<br/><i>concat_1_lookup_pts</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "56" "56" -> "58" "58" -> "59" "59" -> "60" "52" -> "62" "62" -> "63" "63" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "68" -> "69" "47" -> "71" "71" -> "72" "72" -> "74" "74" -> "75" "75" -> "77" "77" -> "78"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "58" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[58]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\,\bin_maxbins_10_Rotten_Tomatoes_Rating\,\bin_maxbins_10_Rotten_Tomatoes_Rating_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "59" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[59]&#010;FilterInvalid {IMDB_Rating:{bin:{maxbins:10},field:IMDB_Rating,type:quantitative},Rotten_Tomatoes_Rating:{bin:{maxbins:10},field:Rotten_Tomatoes_Rating,type:quantitative}}"
+  ]
+  "60" [
+    label = <Output<br/><i>concat_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "63" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end>;
+    tooltip = "[63]&#010;Bin -1171365636"
+  ]
+  "64" [
+    label = <Filter>;
+    tooltip = "[64]&#010;Filter !(length(data(pts_store))) || (vlSelectionTest(pts_store, datum))"
+  ]
+  "67" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, bin_maxbins_10_Rotten_Tomatoes_Rating, bin_maxbins_10_Rotten_Tomatoes_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[67]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\,\bin_maxbins_10_Rotten_Tomatoes_Rating\,\bin_maxbins_10_Rotten_Tomatoes_Rating_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "68" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, Rotten_Tomatoes_Rating>;
+    tooltip = "[68]&#010;FilterInvalid {IMDB_Rating:{bin:{maxbins:10},field:IMDB_Rating,type:quantitative},Rotten_Tomatoes_Rating:{bin:{maxbins:10},field:Rotten_Tomatoes_Rating,type:quantitative}}"
+  ]
+  "69" [
+    label = <Output<br/><i>concat_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[69]&#010;Output 70"
+  ]
+  "74" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Major_Genre, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[74]&#010;Aggregate {dimensions:Set(\Major_Genre\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "75" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+
+  "43" -> "63" "63" -> "64" "64" -> "67" "67" -> "68" "68" -> "69" "63" -> "58" "58" -> "59" "59" -> "60" "43" -> "74" "74" -> "75"
+}
+{ data: 'concat_0_layer_0_main', field: '__count' }
+{ data: 'concat_0_layer_1_main', field: '__count' }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'concat_1_main', field: 'Major_Genre', sort: true }
+{ data: 'concat_1_main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A dashboard with cross-highlighting.",

@@ -1,3 +1,123 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[52]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> extent_Miles_per_Gallon, center_Miles_per_Gallon>;
+    tooltip = "[56]&#010;Aggregate {dimensions:Set(),measures:{Miles_per_Gallon:{mean:Set(\center_Miles_per_Gallon\),stdev:Set(\extent_Miles_per_Gallon\)}}}"
+  ]
+  "57" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_Miles_per_Gallon, extent_Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> upper_Miles_per_Gallon>;
+    tooltip = "[57]&#010;Calculate {as:upper_Miles_per_Gallon,calculate:datum[\center_Miles_per_Gallon\] + datum[\extent_Miles_per_Gallon\]}"
+  ]
+  "58" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_Miles_per_Gallon, extent_Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> lower_Miles_per_Gallon>;
+    tooltip = "[58]&#010;Calculate {as:lower_Miles_per_Gallon,calculate:datum[\center_Miles_per_Gallon\] - datum[\extent_Miles_per_Gallon\]}"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[63]&#010;Identifier"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_Miles_per_Gallon>;
+    tooltip = "[66]&#010;FilterInvalid {lower_Miles_per_Gallon:{field:lower_Miles_per_Gallon,title:Miles per Gallon,type:quantitative}}"
+  ]
+  "67" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[67]&#010;Output 68"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "53" "47" -> "55" "55" -> "56" "56" -> "57" "57" -> "58" "58" -> "59" "59" -> "61" "61" -> "63" "63" -> "64" "64" -> "66" "66" -> "67"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[52]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "56" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> extent_Miles_per_Gallon, center_Miles_per_Gallon>;
+    tooltip = "[56]&#010;Aggregate {dimensions:Set(),measures:{Miles_per_Gallon:{mean:Set(\center_Miles_per_Gallon\),stdev:Set(\extent_Miles_per_Gallon\)}}}"
+  ]
+  "57" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_Miles_per_Gallon, extent_Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> upper_Miles_per_Gallon>;
+    tooltip = "[57]&#010;Calculate {as:upper_Miles_per_Gallon,calculate:datum[\center_Miles_per_Gallon\] + datum[\extent_Miles_per_Gallon\]}"
+  ]
+  "58" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_Miles_per_Gallon, extent_Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> lower_Miles_per_Gallon>;
+    tooltip = "[58]&#010;Calculate {as:lower_Miles_per_Gallon,calculate:datum[\center_Miles_per_Gallon\] - datum[\extent_Miles_per_Gallon\]}"
+  ]
+  "66" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_Miles_per_Gallon>;
+    tooltip = "[66]&#010;FilterInvalid {lower_Miles_per_Gallon:{field:lower_Miles_per_Gallon,title:Miles per Gallon,type:quantitative}}"
+  ]
+  "67" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[67]&#010;Output 68"
+  ]
+
+  "43" -> "52" "52" -> "53" "43" -> "56" "56" -> "57" "57" -> "58" "58" -> "66" "66" -> "67"
+}
+{ data: 'layer_0_main', field: 'Horsepower' }
+{ data: 'layer_0_main', field: 'Miles_per_Gallon' }
+{ data: 'layer_1_layer_0_main', field: 'lower_Miles_per_Gallon' }
+{ data: 'layer_1_layer_0_main', field: 'upper_Miles_per_Gallon' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

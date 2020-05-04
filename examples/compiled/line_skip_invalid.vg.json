@@ -1,3 +1,49 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[45]&#010;Parse {x:number}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[45]&#010;Parse {x:number}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "45" "45" -> "48"
+}
+{ data: 'main', field: 'x' }
+{ data: 'main', field: 'y' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

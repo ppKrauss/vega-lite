@@ -1,3 +1,81 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/lookup_groups.csv</i>>;
+    tooltip = "[43]&#010;data/lookup_groups.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> person<br/><font color="grey" point-size="10">OUT:</font> age, height>;
+    tooltip = "[45]&#010;Lookup {secondary:lookup_0,transform:{from:{data:{url:data/lookup_people.csv},fields:[age,height],key:name},lookup:person}}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> group, age<br/><font color="grey" point-size="10">OUT:</font> mean_age>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\group\),measures:{age:{mean:Set(\mean_age\)}}}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> age>;
+    tooltip = "[49]&#010;FilterInvalid {age:{aggregate:mean,field:age,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Source<br/><i>data/lookup_people.csv</i>>;
+    tooltip = "[52]&#010;data/lookup_people.csv"
+  ]
+  "53" [
+    label = <Output<br/><i>lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49" "49" -> "50" "52" -> "53"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/lookup_groups.csv</i>>;
+    tooltip = "[43]&#010;data/lookup_groups.csv"
+  ]
+  "45" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> person<br/><font color="grey" point-size="10">OUT:</font> age, height>;
+    tooltip = "[45]&#010;Lookup {secondary:lookup_0,transform:{from:{data:{url:data/lookup_people.csv},fields:[age,height],key:name},lookup:person}}"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> group, age<br/><font color="grey" point-size="10">OUT:</font> mean_age>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\group\),measures:{age:{mean:Set(\mean_age\)}}}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> age>;
+    tooltip = "[49]&#010;FilterInvalid {age:{aggregate:mean,field:age,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Source<br/><i>data/lookup_people.csv</i>>;
+    tooltip = "[52]&#010;data/lookup_people.csv"
+  ]
+  "53" [
+    label = <Output<br/><i>lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "45" "45" -> "48" "48" -> "49" "49" -> "50" "52" -> "53"
+}
+{ data: 'main', field: 'group', sort: true }
+{ data: 'main', field: 'mean_age' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

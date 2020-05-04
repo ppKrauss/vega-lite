@@ -1,3 +1,74 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Sequence<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[44]&#010;Hash {as:x,start:0,step:0.1,stop:12.7}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> sin(x)>;
+    tooltip = "[46]&#010;Calculate {as:sin(x),calculate:sin(datum.x)}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> cos(x)>;
+    tooltip = "[47]&#010;Calculate {as:cos(x),calculate:cos(datum.x)}"
+  ]
+  "48" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> sin(x), cos(x)<br/><font color="grey" point-size="10">OUT:</font> key, value>;
+    tooltip = "[48]&#010;FoldTransform {as:[key,value],fold:[sin(x),cos(x)]}"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Sequence<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[44]&#010;Hash {as:x,start:0,step:0.1,stop:12.7}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> sin(x)>;
+    tooltip = "[46]&#010;Calculate {as:sin(x),calculate:sin(datum.x)}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> cos(x)>;
+    tooltip = "[47]&#010;Calculate {as:cos(x),calculate:cos(datum.x)}"
+  ]
+  "48" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> sin(x), cos(x)<br/><font color="grey" point-size="10">OUT:</font> key, value>;
+    tooltip = "[48]&#010;FoldTransform {as:[key,value],fold:[sin(x),cos(x)]}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "46" "46" -> "47" "47" -> "48" "48" -> "51"
+}
+{ data: 'main', field: 'x' }
+{ data: 'main', field: 'value' }
+{ data: 'main', field: 'key', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Plots two functions using a generated sequence.",

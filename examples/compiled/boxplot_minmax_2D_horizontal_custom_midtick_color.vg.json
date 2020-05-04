@@ -1,3 +1,118 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> lower_box_people, upper_box_people, mid_box_people, lower_whisker_people, upper_whisker_people>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{max:Set(\upper_whisker_people\),median:Set(\mid_box_people\),min:Set(\lower_whisker_people\),q1:Set(\lower_box_people\),q3:Set(\upper_box_people\)}}}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[65]&#010;Identifier"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "53" "48" -> "55" "55" -> "56" "56" -> "58" "48" -> "60" "60" -> "61" "61" -> "63" "48" -> "65" "65" -> "66" "66" -> "68"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> lower_box_people, upper_box_people, mid_box_people, lower_whisker_people, upper_whisker_people>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{max:Set(\upper_whisker_people\),median:Set(\mid_box_people\),min:Set(\lower_whisker_people\),q1:Set(\lower_box_people\),q3:Set(\upper_box_people\)}}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "45" "45" -> "58" "58" -> "63" "63" -> "68" "68" -> "53"
+}
+{ data: 'layer_0_main', field: 'lower_whisker_people' }
+{ data: 'layer_0_main', field: 'lower_box_people' }
+{ data: 'layer_1_main', field: 'upper_box_people' }
+{ data: 'layer_1_main', field: 'upper_whisker_people' }
+{ data: 'layer_2_main', field: 'lower_box_people' }
+{ data: 'layer_2_main', field: 'upper_box_people' }
+{ data: 'layer_3_main', field: 'mid_box_people' }
+{ data: 'layer_0_main', field: 'age', sort: true }
+{ data: 'layer_1_main', field: 'age', sort: true }
+{ data: 'layer_2_main', field: 'age', sort: true }
+{ data: 'layer_3_main', field: 'age', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A horizontal box plot showing median, min, and max in the US population distribution of age groups in 2000.",

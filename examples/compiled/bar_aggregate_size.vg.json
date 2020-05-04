@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[49]&#010;FilterInvalid {people:{aggregate:sum,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[49]&#010;FilterInvalid {people:{aggregate:sum,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "48" "48" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'age', sort: true }
+{ data: 'main', field: 'sum_people' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A bar chart showing the US population distribution of age groups in 2000.",

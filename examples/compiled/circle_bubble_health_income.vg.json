@@ -1,3 +1,58 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/gapminder-health-income.csv</i>>;
+    tooltip = "[43]&#010;data/gapminder-health-income.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> health, income, population>;
+    tooltip = "[47]&#010;FilterInvalid {health:{axis:{minExtent:30},field:health,scale:{zero:false},type:quantitative},income:{field:income,scale:{type:log},type:quantitative},population:{field:population,type:quantitative}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Filter>;
+    tooltip = "[50]&#010;Filter !(length(data(view_store))) || (vlSelectionTest(view_store, datum))"
+  ]
+  "51" [
+    label = <Output<br/><i>lookup_view</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "48" "48" -> "50" "50" -> "51"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/gapminder-health-income.csv</i>>;
+    tooltip = "[43]&#010;data/gapminder-health-income.csv"
+  ]
+  "47" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> health, income, population>;
+    tooltip = "[47]&#010;FilterInvalid {health:{axis:{minExtent:30},field:health,scale:{zero:false},type:quantitative},income:{field:income,scale:{type:log},type:quantitative},population:{field:population,type:quantitative}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "47" "47" -> "48"
+}
+{ data: 'main', field: 'income' }
+{ data: 'main', field: 'health' }
+{ data: 'main', field: 'population' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A bubble plot showing the correlation between health and income for 187 countries in the world (modified from an example in Lisa Charlotte Rost's blog post 'One Chart, Twelve Charting Libraries' --http://lisacharlotterost.github.io/2016/05/17/one-chart-code/).",

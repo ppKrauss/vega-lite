@@ -1,3 +1,151 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[49]&#010;data/us-10m.json"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Source<br/><i>data/airports.csv</i>>;
+    tooltip = "[55]&#010;data/airports.csv"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> longitude, latitude>;
+    tooltip = "[57]&#010;GeoJSON null layer_1_geojson_0 [longitude,latitude]"
+  ]
+  "58" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> longitude, latitude<br/><font color="grey" point-size="10">OUT:</font> layer_1_x, layer_1_y>;
+    tooltip = "[58]&#010;Geopoint projection [longitude,latitude] [layer_1_x,layer_1_y]"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_2_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Source>;
+    tooltip = "[65]&#010;undefined"
+  ]
+  "66" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[66]&#010;Identifier"
+  ]
+  "67" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> airport<br/><font color="grey" point-size="10">OUT:</font> latitude, longitude>;
+    tooltip = "[67]&#010;Lookup {secondary:layer_2_lookup_0,transform:{from:{data:{url:data/airports.csv},fields:[latitude,longitude],key:iata},lookup:airport}}"
+  ]
+  "68" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> longitude, latitude>;
+    tooltip = "[68]&#010;GeoJSON null layer_2_geojson_0 [longitude,latitude]"
+  ]
+  "69" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> longitude, latitude<br/><font color="grey" point-size="10">OUT:</font> layer_2_x, layer_2_y>;
+    tooltip = "[69]&#010;Geopoint projection [longitude,latitude] [layer_2_x,layer_2_y]"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "53" "55" -> "56" "56" -> "57" "57" -> "58" "58" -> "59" "59" -> "61" "55" -> "63" "65" -> "66" "66" -> "67" "67" -> "68" "68" -> "69" "69" -> "70" "70" -> "72"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[49]&#010;data/us-10m.json"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Source<br/><i>data/airports.csv</i>>;
+    tooltip = "[55]&#010;data/airports.csv"
+  ]
+  "57" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> longitude, latitude>;
+    tooltip = "[57]&#010;GeoJSON null layer_1_geojson_0 [longitude,latitude]"
+  ]
+  "58" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> longitude, latitude<br/><font color="grey" point-size="10">OUT:</font> layer_1_x, layer_1_y>;
+    tooltip = "[58]&#010;Geopoint projection [longitude,latitude] [layer_1_x,layer_1_y]"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_2_lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Source>;
+    tooltip = "[65]&#010;undefined"
+  ]
+  "67" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> airport<br/><font color="grey" point-size="10">OUT:</font> latitude, longitude>;
+    tooltip = "[67]&#010;Lookup {secondary:layer_2_lookup_0,transform:{from:{data:{url:data/airports.csv},fields:[latitude,longitude],key:iata},lookup:airport}}"
+  ]
+  "68" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> longitude, latitude>;
+    tooltip = "[68]&#010;GeoJSON null layer_2_geojson_0 [longitude,latitude]"
+  ]
+  "69" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> longitude, latitude<br/><font color="grey" point-size="10">OUT:</font> layer_2_x, layer_2_y>;
+    tooltip = "[69]&#010;Geopoint projection [longitude,latitude] [layer_2_x,layer_2_y]"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+
+  "49" -> "53" "55" -> "63" "63" -> "57" "57" -> "58" "58" -> "61" "65" -> "67" "67" -> "68" "68" -> "69" "69" -> "72"
+}
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Line drawn between airports in the U.S. simulating a flight itinerary",

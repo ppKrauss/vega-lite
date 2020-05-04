@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_date, temp_max<br/><font color="grey" point-size="10">OUT:</font> mean_temp_max>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\year_date\),measures:{temp_max:{mean:Set(\mean_temp_max\)}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_date, temp_max<br/><font color="grey" point-size="10">OUT:</font> mean_temp_max>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\year_date\),measures:{temp_max:{mean:Set(\mean_temp_max\)}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'year_date' }
+{ data: 'main', field: 'mean_temp_max' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

@@ -1,3 +1,93 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Origin>;
+    tooltip = "[49]&#010;Facet r:{fields:[Origin],name:row_domain}"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_15_Horsepower, bin_maxbins_15_Horsepower_end>;
+    tooltip = "[51]&#010;Bin {bin_maxbins_15_Horsepower:{as:[[bin_maxbins_15_Horsepower,bin_maxbins_15_Horsepower_end]],bin:{maxbins:15},extentSignal:child_bin_maxbins_15_Horsepower_extent,field:Horsepower,signal:child_bin_maxbins_15_Horsepower_bins}}"
+  ]
+  "52" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_15_Horsepower, bin_maxbins_15_Horsepower_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[54]&#010;Aggregate {dimensions:Set(\bin_maxbins_15_Horsepower\,\bin_maxbins_15_Horsepower_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[55]&#010;FilterInvalid {Horsepower:{bin:{maxbins:15},field:Horsepower,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55" "55" -> "56"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Origin>;
+    tooltip = "[49]&#010;Facet r:{fields:[Origin],name:row_domain}"
+  ]
+  "51" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_15_Horsepower, bin_maxbins_15_Horsepower_end>;
+    tooltip = "[51]&#010;Bin {bin_maxbins_15_Horsepower:{as:[[bin_maxbins_15_Horsepower,bin_maxbins_15_Horsepower_end]],bin:{maxbins:15},extentSignal:child_bin_maxbins_15_Horsepower_extent,field:Horsepower,signal:child_bin_maxbins_15_Horsepower_bins}}"
+  ]
+  "54" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_15_Horsepower, bin_maxbins_15_Horsepower_end, Origin, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[54]&#010;Aggregate {dimensions:Set(\bin_maxbins_15_Horsepower\,\bin_maxbins_15_Horsepower_end\,\Origin\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[55]&#010;FilterInvalid {Horsepower:{bin:{maxbins:15},field:Horsepower,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "59" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 58"
+  ]
+
+  "43" -> "51" "51" -> "54" "54" -> "55" "55" -> "47" "47" -> "59" "59" -> "49" "49" -> "56"
+}
+SignalRefWrapper { signal: [Getter] }
+{ data: 'scale_child_main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

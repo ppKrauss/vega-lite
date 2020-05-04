@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Major_Genre, US_Gross<br/><font color="grey" point-size="10">OUT:</font> argmax_US_Gross>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Major_Genre\),measures:{US_Gross:{argmax:Set(\argmax_US_Gross\)}}}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> argmax_US_Gross.Production_Budget<br/><font color="grey" point-size="10">OUT:</font> argmax_US_Gross.Production_Budget>;
+    tooltip = "[46]&#010;Parse {argmax_US_Gross.Production_Budget:flatten}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> argmax_US_Gross.Production_Budget>;
+    tooltip = "[49]&#010;FilterInvalid {argmax_US_Gross.Production_Budget:{field:argmax_US_Gross.Production_Budget,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Major_Genre, US_Gross<br/><font color="grey" point-size="10">OUT:</font> argmax_US_Gross>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Major_Genre\),measures:{US_Gross:{argmax:Set(\argmax_US_Gross\)}}}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> argmax_US_Gross.Production_Budget<br/><font color="grey" point-size="10">OUT:</font> argmax_US_Gross.Production_Budget>;
+    tooltip = "[46]&#010;Parse {argmax_US_Gross.Production_Budget:flatten}"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> argmax_US_Gross.Production_Budget>;
+    tooltip = "[49]&#010;FilterInvalid {argmax_US_Gross.Production_Budget:{field:argmax_US_Gross.Production_Budget,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'argmax_US_Gross\\.Production_Budget' }
+{ data: 'main', field: 'Major_Genre', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "The production budget of the movie that has the highest US Gross in each major genre.",

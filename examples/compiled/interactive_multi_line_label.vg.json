@@ -1,3 +1,243 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[55]&#010;Parse {date:date}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[61]&#010;Parse {date:date}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[64]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Filter>;
+    tooltip = "[67]&#010;Filter (vlSelectionTest(label_store, datum))"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_0_layer_1_lookup_label</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Filter>;
+    tooltip = "[71]&#010;Filter (vlSelectionTest(label_store, datum))"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[76]&#010;Identifier"
+  ]
+  "77" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[77]&#010;Parse {date:date}"
+  ]
+  "78" [
+    label = <Output<br/><i>layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+  "80" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> min_date>;
+    tooltip = "[80]&#010;Aggregate {dimensions:Set(),measures:{date:{min:Set(\min_date\)}}}"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[81]&#010;FilterInvalid {date:{aggregate:min,field:date,type:temporal}}"
+  ]
+  "82" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "84" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[84]&#010;Identifier"
+  ]
+  "85" [
+    label = <Output<br/><i>layer_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[85]&#010;Output 86"
+  ]
+  "87" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[87]&#010;Output 88"
+  ]
+  "89" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[89]&#010;Identifier"
+  ]
+  "90" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[90]&#010;Parse {date:date}"
+  ]
+  "91" [
+    label = <Output<br/><i>layer_1_layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[91]&#010;Output 92"
+  ]
+  "93" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[93]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "94" [
+    label = <Output<br/><i>layer_1_layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[94]&#010;Output 95"
+  ]
+  "96" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[96]&#010;Identifier"
+  ]
+  "97" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[97]&#010;Parse {date:date}"
+  ]
+  "98" [
+    label = <Output<br/><i>layer_1_layer_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[98]&#010;Output 99"
+  ]
+  "100" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[100]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "101" [
+    label = <Output<br/><i>layer_1_layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[101]&#010;Output 102"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "56" "56" -> "58" "52" -> "60" "60" -> "61" "61" -> "62" "62" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "47" -> "70" "70" -> "71" "71" -> "72" "72" -> "74" "74" -> "76" "76" -> "77" "77" -> "78" "78" -> "80" "80" -> "81" "81" -> "82" "74" -> "84" "84" -> "85" "85" -> "87" "87" -> "89" "89" -> "90" "90" -> "91" "91" -> "93" "93" -> "94" "87" -> "96" "96" -> "97" "97" -> "98" "98" -> "100" "100" -> "101"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[64]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "71" [
+    label = <Filter>;
+    tooltip = "[71]&#010;Filter (vlSelectionTest(label_store, datum))"
+  ]
+  "80" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> min_date>;
+    tooltip = "[80]&#010;Aggregate {dimensions:Set(),measures:{date:{min:Set(\min_date\)}}}"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[81]&#010;FilterInvalid {date:{aggregate:min,field:date,type:temporal}}"
+  ]
+  "82" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "93" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[93]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "94" [
+    label = <Output<br/><i>layer_1_layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[94]&#010;Output 95"
+  ]
+  "101" [
+    label = <Output<br/><i>layer_1_layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[101]&#010;Output 102"
+  ]
+  "103" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[103]&#010;Parse {date:date}"
+  ]
+  "104" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[104]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "103" "103" -> "58" "58" -> "104" "104" -> "64" "64" -> "65" "104" -> "71" "71" -> "80" "80" -> "81" "81" -> "82" "71" -> "93" "93" -> "101" "101" -> "94"
+}
+{ data: 'layer_0_layer_0_main', field: 'date' }
+{ data: 'layer_0_layer_1_main', field: 'date' }
+{ data: 'layer_1_layer_0_main', field: 'min_date' }
+{ data: 'layer_1_layer_1_layer_0_main', field: 'date' }
+{ data: 'layer_1_layer_1_layer_1_main', field: 'date' }
+{ data: 'layer_0_layer_0_main', field: 'price' }
+{ data: 'layer_0_layer_1_main', field: 'price' }
+{ data: 'layer_1_layer_1_layer_0_main', field: 'price' }
+{ data: 'layer_1_layer_1_layer_1_main', field: 'price' }
+{ data: 'layer_0_layer_0_main', field: 'symbol', sort: true }
+{ data: 'layer_0_layer_1_main', field: 'symbol', sort: true }
+{ data: 'layer_1_layer_1_layer_1_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",
@@ -16,6 +256,13 @@
       "name": "data_0",
       "source": "source_0",
       "transform": [
+        {"type": "formula", "expr": "toDate(datum[\"date\"])", "as": "date"}
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "data_0",
+      "transform": [
         {
           "type": "filter",
           "expr": "(isDate(datum[\"date\"]) || (isValid(datum[\"date\"]) && isFinite(+datum[\"date\"]))) && isValid(datum[\"price\"]) && isFinite(+datum[\"price\"])"
@@ -23,15 +270,15 @@
       ]
     },
     {
-      "name": "data_1",
-      "source": "source_0",
+      "name": "data_2",
+      "source": "data_0",
       "transform": [
         {"type": "filter", "expr": "(vlSelectionTest(\"label_store\", datum))"}
       ]
     },
     {
-      "name": "data_2",
-      "source": "data_1",
+      "name": "data_3",
+      "source": "data_2",
       "transform": [
         {
           "type": "aggregate",
@@ -47,8 +294,8 @@
       ]
     },
     {
-      "name": "data_3",
-      "source": "data_1",
+      "name": "data_4",
+      "source": "data_2",
       "transform": [
         {
           "type": "filter",
@@ -143,7 +390,7 @@
       "type": "symbol",
       "style": ["point"],
       "interactive": true,
-      "from": {"data": "data_0"},
+      "from": {"data": "data_1"},
       "encode": {
         "update": {
           "opacity": [
@@ -184,7 +431,7 @@
       "type": "rule",
       "style": ["rule"],
       "interactive": false,
-      "from": {"data": "data_2"},
+      "from": {"data": "data_3"},
       "encode": {
         "update": {
           "stroke": {"value": "gray"},
@@ -199,7 +446,7 @@
       "type": "text",
       "style": ["text"],
       "interactive": false,
-      "from": {"data": "data_3"},
+      "from": {"data": "data_4"},
       "encode": {
         "update": {
           "stroke": {"value": "white"},
@@ -220,7 +467,7 @@
       "type": "text",
       "style": ["text"],
       "interactive": false,
-      "from": {"data": "data_3"},
+      "from": {"data": "data_4"},
       "encode": {
         "update": {
           "align": {"value": "left"},
@@ -242,9 +489,9 @@
       "domain": {
         "fields": [
           {"data": "source_0", "field": "date"},
-          {"data": "data_0", "field": "date"},
-          {"data": "data_2", "field": "min_date"},
-          {"data": "data_3", "field": "date"}
+          {"data": "data_1", "field": "date"},
+          {"data": "data_3", "field": "min_date"},
+          {"data": "data_4", "field": "date"}
         ]
       },
       "range": [0, {"signal": "width"}]
@@ -255,8 +502,8 @@
       "domain": {
         "fields": [
           {"data": "source_0", "field": "price"},
-          {"data": "data_0", "field": "price"},
-          {"data": "data_3", "field": "price"}
+          {"data": "data_1", "field": "price"},
+          {"data": "data_4", "field": "price"}
         ]
       },
       "range": [{"signal": "height"}, 0],
@@ -269,8 +516,8 @@
       "domain": {
         "fields": [
           {"data": "source_0", "field": "symbol"},
-          {"data": "data_0", "field": "symbol"},
-          {"data": "data_3", "field": "symbol"}
+          {"data": "data_1", "field": "symbol"},
+          {"data": "data_4", "field": "symbol"}
         ],
         "sort": true
       },

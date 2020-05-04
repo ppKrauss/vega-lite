@@ -1,3 +1,269 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/iris.json</i>>;
+    tooltip = "[43]&#010;data/iris.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> index>;
+    tooltip = "[45]&#010;WindowTransform {window:[{as:index,op:count}]}"
+  ]
+  "46" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> petalLength, petalWidth, sepalLength, sepalWidth<br/><font color="grey" point-size="10">OUT:</font> key, value>;
+    tooltip = "[46]&#010;FoldTransform {as:[key,value],fold:[petalLength,petalWidth,sepalLength,sepalWidth]}"
+  ]
+  "47" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> key, value<br/><font color="grey" point-size="10">OUT:</font> min, max>;
+    tooltip = "[47]&#010;JoinAggregateTransform {groupby:[key],joinaggregate:[{as:min,field:value,op:min},{as:max,field:value,op:max}]}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> value, min, max<br/><font color="grey" point-size="10">OUT:</font> norm_val>;
+    tooltip = "[48]&#010;Calculate {as:norm_val,calculate:(datum.value - datum.min) / (datum.max-datum.min)}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> min, max<br/><font color="grey" point-size="10">OUT:</font> mid>;
+    tooltip = "[49]&#010;Calculate {as:mid,calculate:(datum.min + datum.max) / 2}"
+  ]
+  "50" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> key, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[57]&#010;Aggregate {dimensions:Set(\key\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[65]&#010;Identifier"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_2_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> key, max<br/><font color="grey" point-size="10">OUT:</font> max_max>;
+    tooltip = "[73]&#010;Aggregate {dimensions:Set(\key\),measures:{max:{max:Set(\max_max\)}}}"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_2_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[76]&#010;Identifier"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_2_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_2_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[81]&#010;Identifier"
+  ]
+  "82" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "84" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[84]&#010;Output 85"
+  ]
+  "86" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[86]&#010;Identifier"
+  ]
+  "87" [
+    label = <Output<br/><i>layer_3_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[87]&#010;Output 88"
+  ]
+  "89" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> key, mid<br/><font color="grey" point-size="10">OUT:</font> min_mid>;
+    tooltip = "[89]&#010;Aggregate {dimensions:Set(\key\),measures:{mid:{min:Set(\min_mid\)}}}"
+  ]
+  "90" [
+    label = <Output<br/><i>layer_3_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[90]&#010;Output 91"
+  ]
+  "92" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[92]&#010;Identifier"
+  ]
+  "93" [
+    label = <Output<br/><i>layer_3_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[93]&#010;Output 94"
+  ]
+  "95" [
+    label = <Output<br/><i>layer_3_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[95]&#010;Output 96"
+  ]
+  "97" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[97]&#010;Identifier"
+  ]
+  "98" [
+    label = <Output<br/><i>layer_4_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[98]&#010;Output 99"
+  ]
+  "100" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[100]&#010;Output 101"
+  ]
+  "102" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[102]&#010;Identifier"
+  ]
+  "103" [
+    label = <Output<br/><i>layer_4_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[103]&#010;Output 104"
+  ]
+  "105" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> key, min<br/><font color="grey" point-size="10">OUT:</font> min_min>;
+    tooltip = "[105]&#010;Aggregate {dimensions:Set(\key\),measures:{min:{min:Set(\min_min\)}}}"
+  ]
+  "106" [
+    label = <Output<br/><i>layer_4_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[106]&#010;Output 107"
+  ]
+  "108" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[108]&#010;Identifier"
+  ]
+  "109" [
+    label = <Output<br/><i>layer_4_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[109]&#010;Output 110"
+  ]
+  "111" [
+    label = <Output<br/><i>layer_4_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[111]&#010;Output 112"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "57" "57" -> "58" "52" -> "60" "60" -> "61" "61" -> "63" "52" -> "65" "65" -> "66" "66" -> "68" "68" -> "70" "70" -> "71" "71" -> "73" "73" -> "74" "68" -> "76" "76" -> "77" "77" -> "79" "52" -> "81" "81" -> "82" "82" -> "84" "84" -> "86" "86" -> "87" "87" -> "89" "89" -> "90" "84" -> "92" "92" -> "93" "93" -> "95" "52" -> "97" "97" -> "98" "98" -> "100" "100" -> "102" "102" -> "103" "103" -> "105" "105" -> "106" "100" -> "108" "108" -> "109" "109" -> "111"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/iris.json</i>>;
+    tooltip = "[43]&#010;data/iris.json"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> index>;
+    tooltip = "[45]&#010;WindowTransform {window:[{as:index,op:count}]}"
+  ]
+  "46" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> petalLength, petalWidth, sepalLength, sepalWidth<br/><font color="grey" point-size="10">OUT:</font> key, value>;
+    tooltip = "[46]&#010;FoldTransform {as:[key,value],fold:[petalLength,petalWidth,sepalLength,sepalWidth]}"
+  ]
+  "47" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> key, value<br/><font color="grey" point-size="10">OUT:</font> min, max>;
+    tooltip = "[47]&#010;JoinAggregateTransform {groupby:[key],joinaggregate:[{as:min,field:value,op:min},{as:max,field:value,op:max}]}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> value, min, max<br/><font color="grey" point-size="10">OUT:</font> norm_val>;
+    tooltip = "[48]&#010;Calculate {as:norm_val,calculate:(datum.value - datum.min) / (datum.max-datum.min)}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> min, max<br/><font color="grey" point-size="10">OUT:</font> mid>;
+    tooltip = "[49]&#010;Calculate {as:mid,calculate:(datum.min + datum.max) / 2}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_2_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_2_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "90" [
+    label = <Output<br/><i>layer_3_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[90]&#010;Output 91"
+  ]
+  "95" [
+    label = <Output<br/><i>layer_3_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[95]&#010;Output 96"
+  ]
+  "105" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> key, min, *, max, mid<br/><font color="grey" point-size="10">OUT:</font> min_min, __count, max_max, min_mid>;
+    tooltip = "[105]&#010;Aggregate {dimensions:Set(\key\),measures:{*:{count:Set(\__count\)},max:{max:Set(\max_max\)},mid:{min:Set(\min_mid\)},min:{min:Set(\min_min\)}}}"
+  ]
+  "106" [
+    label = <Output<br/><i>layer_4_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[106]&#010;Output 107"
+  ]
+  "111" [
+    label = <Output<br/><i>layer_4_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[111]&#010;Output 112"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "79" "79" -> "95" "95" -> "111" "111" -> "63" "63" -> "105" "105" -> "58" "58" -> "74" "74" -> "90" "90" -> "106"
+}
+{ data: 'layer_0_main', field: 'key', sort: true }
+{ data: 'layer_1_main', field: 'key', sort: true }
+{ data: 'layer_2_layer_0_main', field: 'key', sort: true }
+{ data: 'layer_2_layer_1_main', field: 'key', sort: true }
+{ data: 'layer_3_layer_0_main', field: 'key', sort: true }
+{ data: 'layer_3_layer_1_main', field: 'key', sort: true }
+{ data: 'layer_4_layer_0_main', field: 'key', sort: true }
+{ data: 'layer_4_layer_1_main', field: 'key', sort: true }
+{ data: 'layer_1_main', field: 'norm_val' }
+{ data: 'layer_1_main', field: 'species', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Though Vega-Lite supports only one scale per axes, one can create a parallel coordinate plot by folding variables, using `joinaggregate` to normalize their values and using ticks and rules to manually create axes.",

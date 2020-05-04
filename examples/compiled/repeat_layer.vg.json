@@ -1,3 +1,112 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end>;
+    tooltip = "[50]&#010;Bin 1330267969"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> IMDB_Rating>;
+    tooltip = "[51]&#010;Parse {IMDB_Rating:number}"
+  ]
+  "52" [
+    label = <Output<br/><i>child__layer_US_Gross_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, US_Gross<br/><font color="grey" point-size="10">OUT:</font> mean_US_Gross>;
+    tooltip = "[54]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\),measures:{US_Gross:{mean:Set(\mean_US_Gross\)}}}"
+  ]
+  "55" [
+    label = <Output<br/><i>child__layer_US_Gross_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[57]&#010;Identifier"
+  ]
+  "58" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end>;
+    tooltip = "[58]&#010;Bin -994967945"
+  ]
+  "59" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> IMDB_Rating>;
+    tooltip = "[59]&#010;Parse {IMDB_Rating:number}"
+  ]
+  "60" [
+    label = <Output<br/><i>child__layer_Worldwide_Gross_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, Worldwide_Gross<br/><font color="grey" point-size="10">OUT:</font> mean_Worldwide_Gross>;
+    tooltip = "[62]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\),measures:{Worldwide_Gross:{mean:Set(\mean_Worldwide_Gross\)}}}"
+  ]
+  "63" [
+    label = <Output<br/><i>child__layer_Worldwide_Gross_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55" "47" -> "57" "57" -> "58" "58" -> "59" "59" -> "60" "60" -> "62" "62" -> "63"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "54" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end, US_Gross, Worldwide_Gross<br/><font color="grey" point-size="10">OUT:</font> mean_US_Gross, mean_Worldwide_Gross>;
+    tooltip = "[54]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_IMDB_Rating\,\bin_maxbins_10_IMDB_Rating_end\),measures:{US_Gross:{mean:Set(\mean_US_Gross\)},Worldwide_Gross:{mean:Set(\mean_Worldwide_Gross\)}}}"
+  ]
+  "55" [
+    label = <Output<br/><i>child__layer_US_Gross_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "58" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_IMDB_Rating, bin_maxbins_10_IMDB_Rating_end>;
+    tooltip = "[58]&#010;Bin -994967945"
+  ]
+  "63" [
+    label = <Output<br/><i>child__layer_Worldwide_Gross_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> IMDB_Rating>;
+    tooltip = "[65]&#010;Parse {IMDB_Rating:number}"
+  ]
+
+  "43" -> "65" "65" -> "58" "58" -> "54" "54" -> "63" "63" -> "55"
+}
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'child__layer_US_Gross_main', field: 'mean_US_Gross' }
+{
+  data: 'child__layer_Worldwide_Gross_main',
+  field: 'mean_Worldwide_Gross'
+}
+[ 'US_Gross' ]
+[ 'Worldwide_Gross' ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

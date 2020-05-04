@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> b<br/><font color="grey" point-size="10">OUT:</font> b2>;
+    tooltip = "[45]&#010;Calculate {as:b2,calculate:2*datum.b}"
+  ]
+  "46" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> b2>;
+    tooltip = "[46]&#010;Filter datum.b2 > 60"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b2>;
+    tooltip = "[49]&#010;FilterInvalid {b2:{field:b2,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> b<br/><font color="grey" point-size="10">OUT:</font> b2>;
+    tooltip = "[45]&#010;Calculate {as:b2,calculate:2*datum.b}"
+  ]
+  "46" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> b2>;
+    tooltip = "[46]&#010;Filter datum.b2 > 60"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b2>;
+    tooltip = "[49]&#010;FilterInvalid {b2:{field:b2,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'a', sort: true }
+{ data: 'main', field: 'b2' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A simple bar chart with embedded data that uses a filter and calculate.",

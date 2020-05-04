@@ -1,3 +1,57 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Sequence<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[44]&#010;Hash {as:x,start:0,step:0.1,stop:12.7}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> sin(x)>;
+    tooltip = "[46]&#010;Calculate {as:sin(x),calculate:sin(datum.x)}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Sequence<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[44]&#010;Hash {as:x,start:0,step:0.1,stop:12.7}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> sin(x)>;
+    tooltip = "[46]&#010;Calculate {as:sin(x),calculate:sin(datum.x)}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "46" "46" -> "49"
+}
+{ data: 'main', field: 'x' }
+{ data: 'main', field: 'sin(x)' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Plots a function using a generated sequence.",

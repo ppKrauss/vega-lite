@@ -1,3 +1,268 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/wheat.json</i>>;
+    tooltip = "[43]&#010;data/wheat.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year_end>;
+    tooltip = "[45]&#010;Calculate {as:year_end,calculate:+datum.year + 5}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> year, wheat>;
+    tooltip = "[53]&#010;FilterInvalid {wheat:{axis:{zindex:1},field:wheat,type:quantitative},year:{axis:{format:d,tickCount:5},field:year,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[57]&#010;Parse {year:number}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[62]&#010;Identifier"
+  ]
+  "63" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[63]&#010;Parse {year:number}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[68]&#010;Identifier"
+  ]
+  "69" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[69]&#010;Parse {year:number}"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_4_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "74" [
+    label = <Source>;
+    tooltip = "[74]&#010;undefined"
+  ]
+  "75" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[75]&#010;Identifier"
+  ]
+  "76" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[78]&#010;FilterInvalid {year:{field:year,type:quantitative}}"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <Source<br/><i>data/monarchs.json</i>>;
+    tooltip = "[81]&#010;data/monarchs.json"
+  ]
+  "82" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[82]&#010;Identifier"
+  ]
+  "83" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> commonwealth, index<br/><font color="grey" point-size="10">OUT:</font> offset>;
+    tooltip = "[83]&#010;Calculate {as:offset,calculate:((!datum.commonwealth && datum.index % 2) ? -1: 1) * 2 + 95}"
+  ]
+  "84" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> y>;
+    tooltip = "[84]&#010;Calculate {as:y,calculate:95}"
+  ]
+  "85" [
+    label = <Output<br/><i>layer_5_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[85]&#010;Output 86"
+  ]
+  "87" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> start, y>;
+    tooltip = "[87]&#010;FilterInvalid {start:{field:start,type:quantitative},y:{field:y,type:quantitative}}"
+  ]
+  "88" [
+    label = <Output<br/><i>layer_5_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[88]&#010;Output 89"
+  ]
+  "90" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[90]&#010;Identifier"
+  ]
+  "91" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> commonwealth, index<br/><font color="grey" point-size="10">OUT:</font> off2>;
+    tooltip = "[91]&#010;Calculate {as:off2,calculate:((!datum.commonwealth && datum.index % 2) ? -1: 1) + 95}"
+  ]
+  "92" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> start, end<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[92]&#010;Calculate {as:x,calculate:+datum.start + (+datum.end - +datum.start)/2}"
+  ]
+  "93" [
+    label = <Output<br/><i>layer_6_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[93]&#010;Output 94"
+  ]
+  "95" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, off2>;
+    tooltip = "[95]&#010;FilterInvalid {off2:{field:off2,type:quantitative},x:{field:x,type:quantitative}}"
+  ]
+  "96" [
+    label = <Output<br/><i>layer_6_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[96]&#010;Output 97"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "48" -> "56" "56" -> "57" "57" -> "58" "58" -> "60" "48" -> "62" "62" -> "63" "63" -> "64" "64" -> "66" "48" -> "68" "68" -> "69" "69" -> "70" "70" -> "72" "74" -> "75" "75" -> "76" "76" -> "78" "78" -> "79" "81" -> "82" "82" -> "83" "83" -> "84" "84" -> "85" "85" -> "87" "87" -> "88" "81" -> "90" "90" -> "91" "91" -> "92" "92" -> "93" "93" -> "95" "95" -> "96"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/wheat.json</i>>;
+    tooltip = "[43]&#010;data/wheat.json"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year_end>;
+    tooltip = "[45]&#010;Calculate {as:year_end,calculate:+datum.year + 5}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> year, wheat>;
+    tooltip = "[53]&#010;FilterInvalid {wheat:{axis:{zindex:1},field:wheat,type:quantitative},year:{axis:{format:d,tickCount:5},field:year,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "74" [
+    label = <Source>;
+    tooltip = "[74]&#010;undefined"
+  ]
+  "78" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[78]&#010;FilterInvalid {year:{field:year,type:quantitative}}"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <Source<br/><i>data/monarchs.json</i>>;
+    tooltip = "[81]&#010;data/monarchs.json"
+  ]
+  "83" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> commonwealth, index<br/><font color="grey" point-size="10">OUT:</font> offset>;
+    tooltip = "[83]&#010;Calculate {as:offset,calculate:((!datum.commonwealth && datum.index % 2) ? -1: 1) * 2 + 95}"
+  ]
+  "84" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> y>;
+    tooltip = "[84]&#010;Calculate {as:y,calculate:95}"
+  ]
+  "87" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> start, y>;
+    tooltip = "[87]&#010;FilterInvalid {start:{field:start,type:quantitative},y:{field:y,type:quantitative}}"
+  ]
+  "88" [
+    label = <Output<br/><i>layer_5_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[88]&#010;Output 89"
+  ]
+  "91" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> commonwealth, index<br/><font color="grey" point-size="10">OUT:</font> off2>;
+    tooltip = "[91]&#010;Calculate {as:off2,calculate:((!datum.commonwealth && datum.index % 2) ? -1: 1) + 95}"
+  ]
+  "92" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> start, end<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[92]&#010;Calculate {as:x,calculate:+datum.start + (+datum.end - +datum.start)/2}"
+  ]
+  "95" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, off2>;
+    tooltip = "[95]&#010;FilterInvalid {off2:{field:off2,type:quantitative},x:{field:x,type:quantitative}}"
+  ]
+  "96" [
+    label = <Output<br/><i>layer_6_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[96]&#010;Output 97"
+  ]
+  "98" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[98]&#010;Parse {year:number}"
+  ]
+
+  "43" -> "98" "98" -> "45" "45" -> "66" "66" -> "72" "72" -> "60" "60" -> "53" "53" -> "54" "74" -> "78" "78" -> "79" "81" -> "83" "83" -> "84" "84" -> "87" "87" -> "88" "81" -> "91" "91" -> "92" "92" -> "95" "95" -> "96"
+}
+{ data: 'layer_0_main', field: 'year' }
+{ data: 'layer_0_main', field: 'year_end' }
+{ data: 'layer_1_main', field: 'year' }
+{ data: 'layer_2_main', field: 'year' }
+{ data: 'layer_3_main', field: 'year' }
+{ data: 'layer_4_main', field: 'year' }
+{ data: 'layer_5_main', field: 'start' }
+{ data: 'layer_5_main', field: 'end' }
+{ data: 'layer_6_main', field: 'x' }
+{ data: 'layer_0_main', field: 'wheat' }
+{ data: 'layer_2_main', field: 'wages' }
+{ data: 'layer_3_main', field: 'wages' }
+{ data: 'layer_4_main', field: 'wages' }
+{ data: 'layer_5_main', field: 'y' }
+{ data: 'layer_5_main', field: 'offset' }
+{ data: 'layer_6_main', field: 'off2' }
+{ data: 'layer_5_main', field: 'commonwealth', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

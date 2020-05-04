@@ -1,3 +1,73 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> temp_max, temp_min<br/><font color="grey" point-size="10">OUT:</font> temp_range>;
+    tooltip = "[45]&#010;Calculate {as:temp_range,calculate:datum.temp_max - datum.temp_min}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[46]&#010;Parse {date:date}"
+  ]
+  "47" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[47]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, temp_range<br/><font color="grey" point-size="10">OUT:</font> mean_temp_range>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\month_date\),measures:{temp_range:{mean:Set(\mean_temp_range\)}}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "51"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> temp_max, temp_min<br/><font color="grey" point-size="10">OUT:</font> temp_range>;
+    tooltip = "[45]&#010;Calculate {as:temp_range,calculate:datum.temp_max - datum.temp_min}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[46]&#010;Parse {date:date}"
+  ]
+  "47" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[47]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, temp_range<br/><font color="grey" point-size="10">OUT:</font> mean_temp_range>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\month_date\),measures:{temp_range:{mean:Set(\mean_temp_range\)}}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "47" "47" -> "50" "50" -> "51"
+}
+{ data: 'main', field: 'month_date' }
+{ data: 'main', field: 'mean_temp_range' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

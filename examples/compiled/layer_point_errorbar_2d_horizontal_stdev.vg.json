@@ -1,3 +1,116 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/barley.json</i>>;
+    tooltip = "[43]&#010;data/barley.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, yield<br/><font color="grey" point-size="10">OUT:</font> extent_yield, center_yield>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\variety\),measures:{yield:{mean:Set(\center_yield\),stdev:Set(\extent_yield\)}}}"
+  ]
+  "51" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_yield, extent_yield<br/><font color="grey" point-size="10">OUT:</font> upper_yield>;
+    tooltip = "[51]&#010;Calculate {as:upper_yield,calculate:datum[\center_yield\] + datum[\extent_yield\]}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_yield, extent_yield<br/><font color="grey" point-size="10">OUT:</font> lower_yield>;
+    tooltip = "[52]&#010;Calculate {as:lower_yield,calculate:datum[\center_yield\] - datum[\extent_yield\]}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_yield>;
+    tooltip = "[55]&#010;FilterInvalid {lower_yield:{field:lower_yield,scale:{zero:false},title:yield,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, yield<br/><font color="grey" point-size="10">OUT:</font> mean_yield>;
+    tooltip = "[61]&#010;Aggregate {dimensions:Set(\variety\),measures:{yield:{mean:Set(\mean_yield\)}}}"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> yield>;
+    tooltip = "[62]&#010;FilterInvalid {yield:{aggregate:mean,field:yield,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "47" -> "58" "58" -> "59" "59" -> "61" "61" -> "62" "62" -> "63"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/barley.json</i>>;
+    tooltip = "[43]&#010;data/barley.json"
+  ]
+  "51" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_yield, extent_yield<br/><font color="grey" point-size="10">OUT:</font> upper_yield>;
+    tooltip = "[51]&#010;Calculate {as:upper_yield,calculate:datum[\center_yield\] + datum[\extent_yield\]}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> center_yield, extent_yield<br/><font color="grey" point-size="10">OUT:</font> lower_yield>;
+    tooltip = "[52]&#010;Calculate {as:lower_yield,calculate:datum[\center_yield\] - datum[\extent_yield\]}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_yield>;
+    tooltip = "[55]&#010;FilterInvalid {lower_yield:{field:lower_yield,scale:{zero:false},title:yield,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "61" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, yield<br/><font color="grey" point-size="10">OUT:</font> mean_yield, center_yield, extent_yield>;
+    tooltip = "[61]&#010;Aggregate {dimensions:Set(\variety\),measures:{yield:{mean:Set(\mean_yield\,\center_yield\),stdev:Set(\extent_yield\)}}}"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> yield>;
+    tooltip = "[62]&#010;FilterInvalid {yield:{aggregate:mean,field:yield,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+
+  "43" -> "61" "61" -> "62" "62" -> "63" "61" -> "51" "51" -> "52" "52" -> "55" "55" -> "56"
+}
+{ data: 'layer_0_main', field: 'lower_yield' }
+{ data: 'layer_0_main', field: 'upper_yield' }
+{ data: 'layer_1_main', field: 'mean_yield' }
+{ data: 'layer_0_main', field: 'variety', sort: true }
+{ data: 'layer_1_main', field: 'variety', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

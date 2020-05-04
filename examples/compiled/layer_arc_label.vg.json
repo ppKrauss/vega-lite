@@ -1,3 +1,105 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> value, category<br/><font color="grey" point-size="10">OUT:</font> value_start, value_end>;
+    tooltip = "[52]&#010;Stack {as:[value_start,value_end],facetby:[],impute:false,offset:zero,sort:{field:[category],order:[ascending]},stackField:value,stackby:[category]}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[53]&#010;FilterInvalid {value:{field:value,stack:true,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> value, category<br/><font color="grey" point-size="10">OUT:</font> value_start, value_end>;
+    tooltip = "[59]&#010;Stack {as:[value_start,value_end],facetby:[],impute:false,offset:zero,sort:{field:[category,category],order:[ascending,ascending]},stackField:value,stackby:[category,category]}"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[60]&#010;FilterInvalid {value:{field:value,stack:true,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "53" "53" -> "54" "47" -> "56" "56" -> "57" "57" -> "59" "59" -> "60" "60" -> "61"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "52" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> value, category<br/><font color="grey" point-size="10">OUT:</font> value_start, value_end>;
+    tooltip = "[52]&#010;Stack {as:[value_start,value_end],facetby:[],impute:false,offset:zero,sort:{field:[category],order:[ascending]},stackField:value,stackby:[category]}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[53]&#010;FilterInvalid {value:{field:value,stack:true,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "59" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> value, category<br/><font color="grey" point-size="10">OUT:</font> value_start, value_end>;
+    tooltip = "[59]&#010;Stack {as:[value_start,value_end],facetby:[],impute:false,offset:zero,sort:{field:[category,category],order:[ascending,ascending]},stackField:value,stackby:[category,category]}"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> value>;
+    tooltip = "[60]&#010;FilterInvalid {value:{field:value,stack:true,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+
+  "43" -> "52" "52" -> "53" "53" -> "54" "43" -> "59" "59" -> "60" "60" -> "61"
+}
+{ data: 'layer_0_main', field: 'value_start' }
+{ data: 'layer_0_main', field: 'value_end' }
+{ data: 'layer_1_main', field: 'value_start' }
+{ data: 'layer_1_main', field: 'value_end' }
+{ data: 'layer_0_main', field: 'category', sort: true }
+{ data: 'layer_1_main', field: 'category', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A simple pie chart with labels.",

@@ -1,3 +1,57 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> symbol, price<br/><font color="grey" point-size="10">OUT:</font> mean_price>;
+    tooltip = "[47]&#010;Aggregate {dimensions:Set(\symbol\),measures:{price:{mean:Set(\mean_price\)}}}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> price>;
+    tooltip = "[48]&#010;FilterInvalid {price:{aggregate:mean,field:price,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "48" "48" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "47" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> symbol, price<br/><font color="grey" point-size="10">OUT:</font> mean_price>;
+    tooltip = "[47]&#010;Aggregate {dimensions:Set(\symbol\),measures:{price:{mean:Set(\mean_price\)}}}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> price>;
+    tooltip = "[48]&#010;FilterInvalid {price:{aggregate:mean,field:price,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "47" "47" -> "48" "48" -> "49"
+}
+{ data: 'main', field: 'mean_price' }
+{ data: 'main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Average Stock prices of 5 Tech Companies.",

@@ -1,3 +1,239 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> amount<br/><font color="grey" point-size="10">OUT:</font> sum>;
+    tooltip = "[45]&#010;WindowTransform {window:[{as:sum,field:amount,op:sum}]}"
+  ]
+  "46" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> label<br/><font color="grey" point-size="10">OUT:</font> lead>;
+    tooltip = "[46]&#010;WindowTransform {window:[{as:lead,field:label,op:lead}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> lead, label<br/><font color="grey" point-size="10">OUT:</font> lead>;
+    tooltip = "[47]&#010;Calculate {as:lead,calculate:datum.lead === null ? datum.label : datum.lead}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> label, sum, amount<br/><font color="grey" point-size="10">OUT:</font> previous_sum>;
+    tooltip = "[48]&#010;Calculate {as:previous_sum,calculate:datum.label === 'End' ? 0 : datum.sum - datum.amount}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> label, sum, amount<br/><font color="grey" point-size="10">OUT:</font> amount>;
+    tooltip = "[49]&#010;Calculate {as:amount,calculate:datum.label === 'End' ? datum.sum : datum.amount}"
+  ]
+  "50" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> label, amount<br/><font color="grey" point-size="10">OUT:</font> text_amount>;
+    tooltip = "[50]&#010;Calculate {as:text_amount,calculate:(datum.label !== 'Begin' && datum.label !== 'End' && datum.amount > 0 ? '+' : '') + datum.amount}"
+  ]
+  "51" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sum, previous_sum<br/><font color="grey" point-size="10">OUT:</font> center>;
+    tooltip = "[51]&#010;Calculate {as:center,calculate:(datum.sum + datum.previous_sum) / 2}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sum, previous_sum<br/><font color="grey" point-size="10">OUT:</font> sum_dec>;
+    tooltip = "[52]&#010;Calculate {as:sum_dec,calculate:datum.sum < datum.previous_sum ? datum.sum : ''}"
+  ]
+  "53" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sum, previous_sum<br/><font color="grey" point-size="10">OUT:</font> sum_inc>;
+    tooltip = "[53]&#010;Calculate {as:sum_inc,calculate:datum.sum > datum.previous_sum ? datum.sum : ''}"
+  ]
+  "54" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> previous_sum>;
+    tooltip = "[61]&#010;FilterInvalid {previous_sum:{field:previous_sum,title:Amount,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[64]&#010;Identifier"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> sum>;
+    tooltip = "[67]&#010;FilterInvalid {sum:{field:sum,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> sum_inc>;
+    tooltip = "[73]&#010;FilterInvalid {sum_inc:{field:sum_inc,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[76]&#010;Identifier"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> sum_dec>;
+    tooltip = "[79]&#010;FilterInvalid {sum_dec:{field:sum_dec,type:quantitative}}"
+  ]
+  "80" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "82" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[82]&#010;Identifier"
+  ]
+  "83" [
+    label = <Output<br/><i>layer_4_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+  "85" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> center>;
+    tooltip = "[85]&#010;FilterInvalid {center:{field:center,type:quantitative}}"
+  ]
+  "86" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "54" "54" -> "56" "56" -> "58" "58" -> "59" "59" -> "61" "61" -> "62" "56" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "56" -> "70" "70" -> "71" "71" -> "73" "73" -> "74" "56" -> "76" "76" -> "77" "77" -> "79" "79" -> "80" "56" -> "82" "82" -> "83" "83" -> "85" "85" -> "86"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> amount<br/><font color="grey" point-size="10">OUT:</font> sum>;
+    tooltip = "[45]&#010;WindowTransform {window:[{as:sum,field:amount,op:sum}]}"
+  ]
+  "46" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> label<br/><font color="grey" point-size="10">OUT:</font> lead>;
+    tooltip = "[46]&#010;WindowTransform {window:[{as:lead,field:label,op:lead}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> lead, label<br/><font color="grey" point-size="10">OUT:</font> lead>;
+    tooltip = "[47]&#010;Calculate {as:lead,calculate:datum.lead === null ? datum.label : datum.lead}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> label, sum, amount<br/><font color="grey" point-size="10">OUT:</font> previous_sum>;
+    tooltip = "[48]&#010;Calculate {as:previous_sum,calculate:datum.label === 'End' ? 0 : datum.sum - datum.amount}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> label, sum, amount<br/><font color="grey" point-size="10">OUT:</font> amount>;
+    tooltip = "[49]&#010;Calculate {as:amount,calculate:datum.label === 'End' ? datum.sum : datum.amount}"
+  ]
+  "50" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> label, amount<br/><font color="grey" point-size="10">OUT:</font> text_amount>;
+    tooltip = "[50]&#010;Calculate {as:text_amount,calculate:(datum.label !== 'Begin' && datum.label !== 'End' && datum.amount > 0 ? '+' : '') + datum.amount}"
+  ]
+  "51" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sum, previous_sum<br/><font color="grey" point-size="10">OUT:</font> center>;
+    tooltip = "[51]&#010;Calculate {as:center,calculate:(datum.sum + datum.previous_sum) / 2}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sum, previous_sum<br/><font color="grey" point-size="10">OUT:</font> sum_dec>;
+    tooltip = "[52]&#010;Calculate {as:sum_dec,calculate:datum.sum < datum.previous_sum ? datum.sum : ''}"
+  ]
+  "53" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sum, previous_sum<br/><font color="grey" point-size="10">OUT:</font> sum_inc>;
+    tooltip = "[53]&#010;Calculate {as:sum_inc,calculate:datum.sum > datum.previous_sum ? datum.sum : ''}"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> previous_sum>;
+    tooltip = "[61]&#010;FilterInvalid {previous_sum:{field:previous_sum,title:Amount,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> sum>;
+    tooltip = "[67]&#010;FilterInvalid {sum:{field:sum,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> sum_inc>;
+    tooltip = "[73]&#010;FilterInvalid {sum_inc:{field:sum_inc,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "79" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> sum_dec>;
+    tooltip = "[79]&#010;FilterInvalid {sum_dec:{field:sum_dec,type:quantitative}}"
+  ]
+  "80" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "85" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> center>;
+    tooltip = "[85]&#010;FilterInvalid {center:{field:center,type:quantitative}}"
+  ]
+  "86" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "61" "61" -> "62" "53" -> "67" "67" -> "68" "53" -> "73" "73" -> "74" "53" -> "79" "79" -> "80" "53" -> "85" "85" -> "86"
+}
+{ data: 'layer_0_main', field: 'label' }
+{ data: 'layer_1_main', field: 'label' }
+{ data: 'layer_1_main', field: 'lead' }
+{ data: 'layer_2_main', field: 'label' }
+{ data: 'layer_3_main', field: 'label' }
+{ data: 'layer_4_main', field: 'label' }
+{ data: 'layer_0_main', field: 'previous_sum' }
+{ data: 'layer_0_main', field: 'sum' }
+{ data: 'layer_1_main', field: 'sum' }
+{ data: 'layer_2_main', field: 'sum_inc' }
+{ data: 'layer_3_main', field: 'sum_dec' }
+{ data: 'layer_4_main', field: 'center' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

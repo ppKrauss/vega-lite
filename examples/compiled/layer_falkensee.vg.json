@@ -1,3 +1,150 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[44]&#010;Parse {year:date:'%Y'}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year_year>;
+    tooltip = "[51]&#010;TimeUnit {{\as\:\year_year\,\field\:\year\,\timeUnit\:{\unit\:\year\}}:{as:year_year,field:year,timeUnit:{unit:year}}}"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year_year>;
+    tooltip = "[57]&#010;TimeUnit {{\as\:\year_year\,\field\:\year\,\timeUnit\:{\unit\:\year\}}:{as:year_year,field:year,timeUnit:{unit:year}}}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> year, population>;
+    tooltip = "[60]&#010;FilterInvalid {population:{field:population,type:quantitative},year:{field:year,timeUnit:{unit:year},type:temporal}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Source>;
+    tooltip = "[63]&#010;undefined"
+  ]
+  "64" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> start, end<br/><font color="grey" point-size="10">OUT:</font> start, end>;
+    tooltip = "[64]&#010;Parse {end:date:'%Y',start:date:'%Y'}"
+  ]
+  "65" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[65]&#010;Identifier"
+  ]
+  "66" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> start, end<br/><font color="grey" point-size="10">OUT:</font> year_start, year_end>;
+    tooltip = "[66]&#010;TimeUnit -801557408"
+  ]
+  "67" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[67]&#010;Output 68"
+  ]
+  "69" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> start>;
+    tooltip = "[69]&#010;FilterInvalid {start:{field:start,timeUnit:{unit:year},type:temporal}}"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "48" -> "56" "56" -> "57" "57" -> "58" "58" -> "60" "60" -> "61" "63" -> "64" "64" -> "65" "65" -> "66" "66" -> "67" "67" -> "69" "69" -> "70"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[44]&#010;Parse {year:date:'%Y'}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "57" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> year_year>;
+    tooltip = "[57]&#010;TimeUnit {{\as\:\year_year\,\field\:\year\,\timeUnit\:{\unit\:\year\}}:{as:year_year,field:year,timeUnit:{unit:year}}}"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> year, population>;
+    tooltip = "[60]&#010;FilterInvalid {population:{field:population,type:quantitative},year:{field:year,timeUnit:{unit:year},type:temporal}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Source>;
+    tooltip = "[63]&#010;undefined"
+  ]
+  "64" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> start, end<br/><font color="grey" point-size="10">OUT:</font> start, end>;
+    tooltip = "[64]&#010;Parse {end:date:'%Y',start:date:'%Y'}"
+  ]
+  "66" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> start, end<br/><font color="grey" point-size="10">OUT:</font> year_start, year_end>;
+    tooltip = "[66]&#010;TimeUnit -801557408"
+  ]
+  "69" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> start>;
+    tooltip = "[69]&#010;FilterInvalid {start:{field:start,timeUnit:{unit:year},type:temporal}}"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+
+  "43" -> "44" "44" -> "57" "57" -> "54" "54" -> "60" "60" -> "61" "63" -> "64" "64" -> "66" "66" -> "69" "69" -> "70"
+}
+{ data: 'layer_0_main', field: 'year_start' }
+{ data: 'layer_0_main', field: 'year_end' }
+{ data: 'layer_1_main', field: 'year_year' }
+{ data: 'layer_2_main', field: 'year_year' }
+{ data: 'layer_0_main', field: 'event', sort: true }
+{ data: 'layer_1_main', field: 'population' }
+{ data: 'layer_2_main', field: 'population' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "The population of the German city of Falkensee over time",

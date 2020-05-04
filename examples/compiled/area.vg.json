@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/unemployment-across-industries.json</i>>;
+    tooltip = "[43]&#010;data/unemployment-across-industries.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> yearmonth_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\yearmonth_date\,\field\:\date\,\timeUnit\:{\unit\:\yearmonth\}}:{as:yearmonth_date,field:date,timeUnit:{unit:yearmonth}}}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> yearmonth_date, count<br/><font color="grey" point-size="10">OUT:</font> sum_count>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\yearmonth_date\),measures:{count:{sum:Set(\sum_count\)}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/unemployment-across-industries.json</i>>;
+    tooltip = "[43]&#010;data/unemployment-across-industries.json"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> yearmonth_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\yearmonth_date\,\field\:\date\,\timeUnit\:{\unit\:\yearmonth\}}:{as:yearmonth_date,field:date,timeUnit:{unit:yearmonth}}}"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> yearmonth_date, count<br/><font color="grey" point-size="10">OUT:</font> sum_count>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\yearmonth_date\),measures:{count:{sum:Set(\sum_count\)}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'yearmonth_date' }
+{ data: 'main', field: 'sum_count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

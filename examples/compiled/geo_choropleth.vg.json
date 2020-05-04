@@ -1,3 +1,72 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[43]&#010;data/us-10m.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> rate>;
+    tooltip = "[45]&#010;Lookup {secondary:lookup_0,transform:{from:{data:{url:data/unemployment.tsv},fields:[rate],key:id},lookup:id}}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> rate>;
+    tooltip = "[48]&#010;FilterInvalid {rate:{field:rate,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Source<br/><i>data/unemployment.tsv</i>>;
+    tooltip = "[51]&#010;data/unemployment.tsv"
+  ]
+  "52" [
+    label = <Output<br/><i>lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49" "51" -> "52"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[43]&#010;data/us-10m.json"
+  ]
+  "45" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> rate>;
+    tooltip = "[45]&#010;Lookup {secondary:lookup_0,transform:{from:{data:{url:data/unemployment.tsv},fields:[rate],key:id},lookup:id}}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> rate>;
+    tooltip = "[48]&#010;FilterInvalid {rate:{field:rate,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Source<br/><i>data/unemployment.tsv</i>>;
+    tooltip = "[51]&#010;data/unemployment.tsv"
+  ]
+  "52" [
+    label = <Output<br/><i>lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "45" "45" -> "48" "48" -> "49" "51" -> "52"
+}
+{ data: 'main', field: 'rate' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

@@ -1,3 +1,99 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> temp_max<br/><font color="grey" point-size="10">OUT:</font> rolling_mean>;
+    tooltip = "[45]&#010;WindowTransform {frame:[-15,15],window:[{as:rolling_mean,field:temp_max,op:mean}]}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[51]&#010;Parse {date:date}"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, temp_max>;
+    tooltip = "[54]&#010;FilterInvalid {date:{field:date,title:Date,type:temporal},temp_max:{field:temp_max,title:Max Temperature,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[57]&#010;Identifier"
+  ]
+  "58" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[58]&#010;Parse {date:date}"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55" "48" -> "57" "57" -> "58" "58" -> "59" "59" -> "61"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> temp_max<br/><font color="grey" point-size="10">OUT:</font> rolling_mean>;
+    tooltip = "[45]&#010;WindowTransform {frame:[-15,15],window:[{as:rolling_mean,field:temp_max,op:mean}]}"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, temp_max>;
+    tooltip = "[54]&#010;FilterInvalid {date:{field:date,title:Date,type:temporal},temp_max:{field:temp_max,title:Max Temperature,type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[63]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "63" "63" -> "45" "45" -> "61" "61" -> "54" "54" -> "55"
+}
+{ data: 'layer_0_main', field: 'date' }
+{ data: 'layer_1_main', field: 'date' }
+{ data: 'layer_0_main', field: 'temp_max' }
+{ data: 'layer_1_main', field: 'rolling_mean' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Plot showing a 30 day rolling average with raw values in the background.",

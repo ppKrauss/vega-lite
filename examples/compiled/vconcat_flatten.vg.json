@@ -1,3 +1,119 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <FlattenTransform<br/><font color="grey" point-size="10">IN:</font> lc<br/><font color="grey" point-size="10">OUT:</font> lc>;
+    tooltip = "[45]&#010;FlattenTransform {as:[lc],flatten:[lc]}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> ra, dec, id>;
+    tooltip = "[51]&#010;Aggregate {dimensions:Set(\ra\,\dec\,\id\),measures:{}}"
+  ]
+  "52" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> ra, dec>;
+    tooltip = "[54]&#010;FilterInvalid {dec:{field:dec,type:quantitative},ra:{field:ra,scale:{zero:false},type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Filter>;
+    tooltip = "[57]&#010;Filter !(length(data(pts_store))) || (vlSelectionTest(pts_store, datum))"
+  ]
+  "58" [
+    label = <Output<br/><i>concat_0_lookup_pts</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Filter>;
+    tooltip = "[61]&#010;Filter !(length(data(pts_store))) || (vlSelectionTest(pts_store, datum))"
+  ]
+  "62" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> lc.time, lc.mag<br/><font color="grey" point-size="10">OUT:</font> lc.time, lc.mag>;
+    tooltip = "[62]&#010;Parse {lc.mag:flatten,lc.time:flatten}"
+  ]
+  "63" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55" "55" -> "57" "57" -> "58" "48" -> "60" "60" -> "61" "61" -> "62" "62" -> "63" "63" -> "65"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <FlattenTransform<br/><font color="grey" point-size="10">IN:</font> lc<br/><font color="grey" point-size="10">OUT:</font> lc>;
+    tooltip = "[45]&#010;FlattenTransform {as:[lc],flatten:[lc]}"
+  ]
+  "51" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> ra, dec, id>;
+    tooltip = "[51]&#010;Aggregate {dimensions:Set(\ra\,\dec\,\id\),measures:{}}"
+  ]
+  "54" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> ra, dec>;
+    tooltip = "[54]&#010;FilterInvalid {dec:{field:dec,type:quantitative},ra:{field:ra,scale:{zero:false},type:quantitative}}"
+  ]
+  "55" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "61" [
+    label = <Filter>;
+    tooltip = "[61]&#010;Filter !(length(data(pts_store))) || (vlSelectionTest(pts_store, datum))"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> lc.time, lc.mag<br/><font color="grey" point-size="10">OUT:</font> lc.time, lc.mag>;
+    tooltip = "[67]&#010;Parse {lc.mag:flatten,lc.time:flatten}"
+  ]
+
+  "43" -> "45" "45" -> "67" "67" -> "51" "51" -> "54" "54" -> "55" "67" -> "61" "61" -> "65"
+}
+{ data: 'concat_0_main', field: 'ra' }
+{ data: 'concat_0_main', field: 'dec' }
+{ data: 'concat_1_main', field: 'lc\\.time' }
+{ data: 'concat_1_main', field: 'lc\\.mag' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Show a line chart corresponding to selected points.",

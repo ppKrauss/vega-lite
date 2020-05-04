@@ -1,3 +1,162 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[55]&#010;Parse {date:date}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Filter>;
+    tooltip = "[61]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "62" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[62]&#010;Parse {date:date}"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[65]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[68]&#010;Identifier"
+  ]
+  "69" [
+    label = <PivotTransform<br/><font color="grey" point-size="10">IN:</font> symbol, price, date>;
+    tooltip = "[69]&#010;PivotTransform {groupby:[date],pivot:symbol,value:price}"
+  ]
+  "70" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[70]&#010;Parse {date:date}"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[73]&#010;FilterInvalid {date:{field:date,type:temporal}}"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Filter>;
+    tooltip = "[76]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_1_lookup_hover</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "56" "56" -> "58" "52" -> "60" "60" -> "61" "61" -> "62" "62" -> "63" "63" -> "65" "65" -> "66" "47" -> "68" "68" -> "69" "69" -> "70" "70" -> "71" "71" -> "73" "73" -> "74" "74" -> "76" "76" -> "77"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "61" [
+    label = <Filter>;
+    tooltip = "[61]&#010;Filter (vlSelectionTest(hover_store, datum))"
+  ]
+  "65" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[65]&#010;FilterInvalid {date:{field:date,type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "69" [
+    label = <PivotTransform<br/><font color="grey" point-size="10">IN:</font> symbol, price, date>;
+    tooltip = "[69]&#010;PivotTransform {groupby:[date],pivot:symbol,value:price}"
+  ]
+  "70" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[70]&#010;Parse {date:date}"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[73]&#010;FilterInvalid {date:{field:date,type:temporal}}"
+  ]
+  "74" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "79" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[79]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "79" "79" -> "58" "58" -> "69" "69" -> "70" "70" -> "73" "73" -> "74" "58" -> "61" "61" -> "65" "65" -> "66"
+}
+{ data: 'layer_0_layer_0_main', field: 'date' }
+{ data: 'layer_0_layer_1_main', field: 'date' }
+{ data: 'layer_1_main', field: 'date' }
+{ data: 'layer_0_layer_0_main', field: 'price' }
+{ data: 'layer_0_layer_1_main', field: 'price' }
+{ data: 'layer_0_layer_0_main', field: 'symbol', sort: true }
+{ data: 'layer_0_layer_1_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

@@ -1,3 +1,91 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[49]&#010;data/stocks.csv"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[51]&#010;Parse {date:date}"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Source>;
+    tooltip = "[56]&#010;undefined"
+  ]
+  "57" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[57]&#010;Identifier"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "56" -> "57" "57" -> "58" "58" -> "60"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[49]&#010;data/stocks.csv"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[51]&#010;Parse {date:date}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Source>;
+    tooltip = "[56]&#010;undefined"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+
+  "49" -> "51" "51" -> "54" "56" -> "60"
+}
+{ data: 'layer_0_main', field: 'date' }
+{ data: 'layer_0_main', field: 'price' }
+[ 300 ]
+{ data: 'layer_0_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

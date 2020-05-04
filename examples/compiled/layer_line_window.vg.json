@@ -1,3 +1,133 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source>;
+    tooltip = "[49]&#010;undefined"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> row>;
+    tooltip = "[51]&#010;WindowTransform {window:[{as:row,op:row_number}]}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> data<br/><font color="grey" point-size="10">OUT:</font> fps>;
+    tooltip = "[52]&#010;Calculate {as:fps,calculate:1000/datum.data}"
+  ]
+  "53" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> system>;
+    tooltip = "[53]&#010;Calculate {as:system,calculate:'Falcon'}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Source>;
+    tooltip = "[58]&#010;undefined"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> row>;
+    tooltip = "[60]&#010;WindowTransform {window:[{as:row,op:row_number}]}"
+  ]
+  "61" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> data<br/><font color="grey" point-size="10">OUT:</font> fps>;
+    tooltip = "[61]&#010;Calculate {as:fps,calculate:1000/datum.data}"
+  ]
+  "62" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> system>;
+    tooltip = "[62]&#010;Calculate {as:system,calculate:'Square Crossfilter (3M)'}"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "54" "54" -> "56" "58" -> "59" "59" -> "60" "60" -> "61" "61" -> "62" "62" -> "63" "63" -> "65"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source>;
+    tooltip = "[49]&#010;undefined"
+  ]
+  "51" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> row>;
+    tooltip = "[51]&#010;WindowTransform {window:[{as:row,op:row_number}]}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> data<br/><font color="grey" point-size="10">OUT:</font> fps>;
+    tooltip = "[52]&#010;Calculate {as:fps,calculate:1000/datum.data}"
+  ]
+  "53" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> system>;
+    tooltip = "[53]&#010;Calculate {as:system,calculate:'Falcon'}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Source>;
+    tooltip = "[58]&#010;undefined"
+  ]
+  "60" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> row>;
+    tooltip = "[60]&#010;WindowTransform {window:[{as:row,op:row_number}]}"
+  ]
+  "61" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> data<br/><font color="grey" point-size="10">OUT:</font> fps>;
+    tooltip = "[61]&#010;Calculate {as:fps,calculate:1000/datum.data}"
+  ]
+  "62" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> system>;
+    tooltip = "[62]&#010;Calculate {as:system,calculate:'Square Crossfilter (3M)'}"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+
+  "49" -> "51" "51" -> "52" "52" -> "53" "53" -> "56" "58" -> "60" "60" -> "61" "61" -> "62" "62" -> "65"
+}
+{ data: 'layer_0_main', field: 'row' }
+{ data: 'layer_1_main', field: 'row' }
+{ data: 'layer_0_main', field: 'fps' }
+{ data: 'layer_1_main', field: 'fps' }
+{ data: 'layer_0_main', field: 'system', sort: true }
+{ data: 'layer_1_main', field: 'system', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

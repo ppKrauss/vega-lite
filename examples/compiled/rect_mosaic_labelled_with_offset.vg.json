@@ -1,3 +1,225 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, *<br/><font color="grey" point-size="10">OUT:</font> count_*>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Origin\,\Cylinders\),measures:{*:{count:Set(\count_*\)}}}"
+  ]
+  "46" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin<br/><font color="grey" point-size="10">OUT:</font> stack_count_Origin1, stack_count_Origin2>;
+    tooltip = "[46]&#010;Stack {as:[stack_count_Origin1,stack_count_Origin2],facetby:[],groupby:[],offset:normalize,sort:{field:[Origin],order:[ascending]},stackField:count_*}"
+  ]
+  "47" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, stack_count_Origin1, stack_count_Origin2<br/><font color="grey" point-size="10">OUT:</font> x, x2, rank_Cylinders, distinct_Cylinders>;
+    tooltip = "[47]&#010;WindowTransform -580263452"
+  ]
+  "48" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> Origin<br/><font color="grey" point-size="10">OUT:</font> rank_Origin>;
+    tooltip = "[48]&#010;WindowTransform {frame:[null,null],sort:[{field:Origin,order:ascending}],window:[{as:rank_Origin,op:dense_rank}]}"
+  ]
+  "49" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin, Cylinders<br/><font color="grey" point-size="10">OUT:</font> y, y2>;
+    tooltip = "[49]&#010;Stack {as:[y,y2],facetby:[],groupby:[Origin],offset:normalize,sort:{field:[Cylinders],order:[ascending]},stackField:count_*}"
+  ]
+  "50" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> y, rank_Cylinders, distinct_Cylinders<br/><font color="grey" point-size="10">OUT:</font> ny>;
+    tooltip = "[50]&#010;Calculate {as:ny,calculate:datum.y + (datum.rank_Cylinders - 1) * datum.distinct_Cylinders * 0.01 / 3}"
+  ]
+  "51" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> y2, rank_Cylinders, distinct_Cylinders<br/><font color="grey" point-size="10">OUT:</font> ny2>;
+    tooltip = "[51]&#010;Calculate {as:ny2,calculate:datum.y2 + (datum.rank_Cylinders - 1) * datum.distinct_Cylinders * 0.01 / 3}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x, rank_Origin<br/><font color="grey" point-size="10">OUT:</font> nx>;
+    tooltip = "[52]&#010;Calculate {as:nx,calculate:datum.x + (datum.rank_Origin - 1) * 0.01}"
+  ]
+  "53" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x2, rank_Origin<br/><font color="grey" point-size="10">OUT:</font> nx2>;
+    tooltip = "[53]&#010;Calculate {as:nx2,calculate:datum.x2 + (datum.rank_Origin - 1) * 0.01}"
+  ]
+  "54" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> nx, nx2<br/><font color="grey" point-size="10">OUT:</font> xc>;
+    tooltip = "[54]&#010;Calculate {as:xc,calculate:(datum.nx+datum.nx2)/2}"
+  ]
+  "55" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> ny, ny2<br/><font color="grey" point-size="10">OUT:</font> yc>;
+    tooltip = "[55]&#010;Calculate {as:yc,calculate:(datum.ny+datum.ny2)/2}"
+  ]
+  "56" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, xc<br/><font color="grey" point-size="10">OUT:</font> min_xc>;
+    tooltip = "[63]&#010;Aggregate {dimensions:Set(\Origin\),measures:{xc:{min:Set(\min_xc\)}}}"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> xc>;
+    tooltip = "[64]&#010;FilterInvalid {xc:{aggregate:min,axis:{orient:top},field:xc,title:Origin,type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[72]&#010;Identifier"
+  ]
+  "73" [
+    label = <Output<br/><i>concat_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> nx, ny, Cylinders>;
+    tooltip = "[75]&#010;FilterInvalid {Cylinders:{field:Cylinders,legend:null,type:quantitative},nx:{axis:null,field:nx,type:quantitative},ny:{field:ny,type:quantitative}}"
+  ]
+  "76" [
+    label = <Output<br/><i>concat_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[78]&#010;Identifier"
+  ]
+  "79" [
+    label = <Output<br/><i>concat_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> xc, yc>;
+    tooltip = "[81]&#010;FilterInvalid {xc:{axis:null,field:xc,type:quantitative},yc:{axis:{title:Cylinders},field:yc,type:quantitative}}"
+  ]
+  "82" [
+    label = <Output<br/><i>concat_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "54" "54" -> "55" "55" -> "56" "56" -> "58" "58" -> "60" "60" -> "61" "61" -> "63" "63" -> "64" "64" -> "65" "58" -> "67" "67" -> "68" "68" -> "70" "70" -> "72" "72" -> "73" "73" -> "75" "75" -> "76" "70" -> "78" "78" -> "79" "79" -> "81" "81" -> "82"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, *<br/><font color="grey" point-size="10">OUT:</font> count_*>;
+    tooltip = "[45]&#010;Aggregate {dimensions:Set(\Origin\,\Cylinders\),measures:{*:{count:Set(\count_*\)}}}"
+  ]
+  "46" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin<br/><font color="grey" point-size="10">OUT:</font> stack_count_Origin1, stack_count_Origin2>;
+    tooltip = "[46]&#010;Stack {as:[stack_count_Origin1,stack_count_Origin2],facetby:[],groupby:[],offset:normalize,sort:{field:[Origin],order:[ascending]},stackField:count_*}"
+  ]
+  "47" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> Origin, Cylinders, stack_count_Origin1, stack_count_Origin2<br/><font color="grey" point-size="10">OUT:</font> x, x2, rank_Cylinders, distinct_Cylinders>;
+    tooltip = "[47]&#010;WindowTransform -580263452"
+  ]
+  "48" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> Origin<br/><font color="grey" point-size="10">OUT:</font> rank_Origin>;
+    tooltip = "[48]&#010;WindowTransform {frame:[null,null],sort:[{field:Origin,order:ascending}],window:[{as:rank_Origin,op:dense_rank}]}"
+  ]
+  "49" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> count_*, Origin, Cylinders<br/><font color="grey" point-size="10">OUT:</font> y, y2>;
+    tooltip = "[49]&#010;Stack {as:[y,y2],facetby:[],groupby:[Origin],offset:normalize,sort:{field:[Cylinders],order:[ascending]},stackField:count_*}"
+  ]
+  "50" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> y, rank_Cylinders, distinct_Cylinders<br/><font color="grey" point-size="10">OUT:</font> ny>;
+    tooltip = "[50]&#010;Calculate {as:ny,calculate:datum.y + (datum.rank_Cylinders - 1) * datum.distinct_Cylinders * 0.01 / 3}"
+  ]
+  "51" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> y2, rank_Cylinders, distinct_Cylinders<br/><font color="grey" point-size="10">OUT:</font> ny2>;
+    tooltip = "[51]&#010;Calculate {as:ny2,calculate:datum.y2 + (datum.rank_Cylinders - 1) * datum.distinct_Cylinders * 0.01 / 3}"
+  ]
+  "52" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x, rank_Origin<br/><font color="grey" point-size="10">OUT:</font> nx>;
+    tooltip = "[52]&#010;Calculate {as:nx,calculate:datum.x + (datum.rank_Origin - 1) * 0.01}"
+  ]
+  "53" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> x2, rank_Origin<br/><font color="grey" point-size="10">OUT:</font> nx2>;
+    tooltip = "[53]&#010;Calculate {as:nx2,calculate:datum.x2 + (datum.rank_Origin - 1) * 0.01}"
+  ]
+  "54" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> nx, nx2<br/><font color="grey" point-size="10">OUT:</font> xc>;
+    tooltip = "[54]&#010;Calculate {as:xc,calculate:(datum.nx+datum.nx2)/2}"
+  ]
+  "55" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> ny, ny2<br/><font color="grey" point-size="10">OUT:</font> yc>;
+    tooltip = "[55]&#010;Calculate {as:yc,calculate:(datum.ny+datum.ny2)/2}"
+  ]
+  "63" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Origin, xc<br/><font color="grey" point-size="10">OUT:</font> min_xc>;
+    tooltip = "[63]&#010;Aggregate {dimensions:Set(\Origin\),measures:{xc:{min:Set(\min_xc\)}}}"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> xc>;
+    tooltip = "[64]&#010;FilterInvalid {xc:{aggregate:min,axis:{orient:top},field:xc,title:Origin,type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "75" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> nx, ny, Cylinders>;
+    tooltip = "[75]&#010;FilterInvalid {Cylinders:{field:Cylinders,legend:null,type:quantitative},nx:{axis:null,field:nx,type:quantitative},ny:{field:ny,type:quantitative}}"
+  ]
+  "76" [
+    label = <Output<br/><i>concat_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> xc, yc>;
+    tooltip = "[81]&#010;FilterInvalid {xc:{axis:null,field:xc,type:quantitative},yc:{axis:{title:Cylinders},field:yc,type:quantitative}}"
+  ]
+  "82" [
+    label = <Output<br/><i>concat_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "54" "54" -> "55" "55" -> "63" "63" -> "64" "64" -> "65" "55" -> "75" "75" -> "76" "55" -> "81" "81" -> "82"
+}
+{ data: 'concat_0_main', field: 'min_xc' }
+{ data: 'concat_1_layer_0_main', field: 'nx' }
+{ data: 'concat_1_layer_0_main', field: 'nx2' }
+{ data: 'concat_1_layer_1_main', field: 'xc' }
+{ data: 'concat_0_main', field: 'Origin', sort: true }
+{ data: 'concat_1_layer_0_main', field: 'Origin', sort: true }
+{ data: 'concat_1_layer_0_main', field: 'Cylinders' }
+{ data: 'concat_1_layer_0_main', field: 'ny' }
+{ data: 'concat_1_layer_0_main', field: 'ny2' }
+{ data: 'concat_1_layer_1_main', field: 'yc' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

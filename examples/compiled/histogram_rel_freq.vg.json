@@ -1,3 +1,82 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_Horsepwoer, bin_Horsepwoer_end>;
+    tooltip = "[45]&#010;Bin {bin_maxbins_10_Horsepower:{as:[[bin_Horsepwoer,bin_Horsepwoer_end]],bin:{maxbins:10},extentSignal:bin_maxbins_10_Horsepower_extent,field:Horsepower,signal:bin_maxbins_10_Horsepower_bins}}"
+  ]
+  "46" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_Horsepwoer, bin_Horsepwoer_end, *<br/><font color="grey" point-size="10">OUT:</font> Count>;
+    tooltip = "[46]&#010;Aggregate {dimensions:Set(\bin_Horsepwoer\,\bin_Horsepwoer_end\),measures:{*:{count:Set(\Count\)}}}"
+  ]
+  "47" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> Count<br/><font color="grey" point-size="10">OUT:</font> TotalCount>;
+    tooltip = "[47]&#010;JoinAggregateTransform {joinaggregate:[{as:TotalCount,field:Count,op:sum}]}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> Count, TotalCount<br/><font color="grey" point-size="10">OUT:</font> PercentOfTotal>;
+    tooltip = "[48]&#010;Calculate {as:PercentOfTotal,calculate:datum.Count/datum.TotalCount}"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> bin_Horsepwoer, PercentOfTotal>;
+    tooltip = "[51]&#010;FilterInvalid {PercentOfTotal:{axis:{format:.1~%},field:PercentOfTotal,title:Relative Frequency,type:quantitative},bin_Horsepwoer:{bin:{binned:true},field:bin_Horsepwoer,title:Horsepower,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51" "51" -> "52"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> bin_Horsepwoer, bin_Horsepwoer_end>;
+    tooltip = "[45]&#010;Bin {bin_maxbins_10_Horsepower:{as:[[bin_Horsepwoer,bin_Horsepwoer_end]],bin:{maxbins:10},extentSignal:bin_maxbins_10_Horsepower_extent,field:Horsepower,signal:bin_maxbins_10_Horsepower_bins}}"
+  ]
+  "46" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_Horsepwoer, bin_Horsepwoer_end, *<br/><font color="grey" point-size="10">OUT:</font> Count>;
+    tooltip = "[46]&#010;Aggregate {dimensions:Set(\bin_Horsepwoer\,\bin_Horsepwoer_end\),measures:{*:{count:Set(\Count\)}}}"
+  ]
+  "47" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> Count<br/><font color="grey" point-size="10">OUT:</font> TotalCount>;
+    tooltip = "[47]&#010;JoinAggregateTransform {joinaggregate:[{as:TotalCount,field:Count,op:sum}]}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> Count, TotalCount<br/><font color="grey" point-size="10">OUT:</font> PercentOfTotal>;
+    tooltip = "[48]&#010;Calculate {as:PercentOfTotal,calculate:datum.Count/datum.TotalCount}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> bin_Horsepwoer, PercentOfTotal>;
+    tooltip = "[51]&#010;FilterInvalid {PercentOfTotal:{axis:{format:.1~%},field:PercentOfTotal,title:Relative Frequency,type:quantitative},bin_Horsepwoer:{bin:{binned:true},field:bin_Horsepwoer,title:Horsepower,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "51" "51" -> "52"
+}
+{ data: 'main', field: 'bin_Horsepwoer' }
+{ data: 'main', field: 'bin_Horsepwoer_end' }
+{ data: 'main', field: 'PercentOfTotal' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Relative frequency histogram. The data is binned with first transform. The number of values per bin and the total number are calculated in the second and third transform to calculate the relative frequency in the last transformation step.",

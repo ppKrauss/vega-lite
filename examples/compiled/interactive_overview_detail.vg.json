@@ -1,3 +1,91 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/sp500.csv</i>>;
+    tooltip = "[43]&#010;data/sp500.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[50]&#010;Parse {date:date}"
+  ]
+  "51" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[56]&#010;Parse {date:date}"
+  ]
+  "57" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Filter>;
+    tooltip = "[61]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "62" [
+    label = <Output<br/><i>concat_1_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "47" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "61" "61" -> "62"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/sp500.csv</i>>;
+    tooltip = "[43]&#010;data/sp500.csv"
+  ]
+  "53" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "59" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "64" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[64]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "64" "64" -> "59" "59" -> "53"
+}
+{ data: 'concat_0_main', field: 'date' }
+{ data: 'concat_0_main', field: 'price' }
+{ data: 'concat_1_main', field: 'date' }
+{ data: 'concat_1_main', field: 'price' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

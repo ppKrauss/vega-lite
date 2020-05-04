@@ -1,3 +1,191 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[49]&#010;data/cars.json"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[56]&#010;Parse {Horsepower:number}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Cylinders, Horsepower<br/><font color="grey" point-size="10">OUT:</font> max_Horsepower>;
+    tooltip = "[59]&#010;Aggregate {dimensions:Set(\Cylinders\),measures:{Horsepower:{max:Set(\max_Horsepower\)}}}"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[62]&#010;Identifier"
+  ]
+  "63" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[63]&#010;Parse {Horsepower:number}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Cylinders, Horsepower<br/><font color="grey" point-size="10">OUT:</font> max_Horsepower>;
+    tooltip = "[66]&#010;Aggregate {dimensions:Set(\Cylinders\),measures:{Horsepower:{max:Set(\max_Horsepower\)}}}"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[67]&#010;FilterInvalid {Horsepower:{aggregate:max,bin:false,field:Horsepower,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[75]&#010;Identifier"
+  ]
+  "76" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[76]&#010;Parse {Horsepower:number}"
+  ]
+  "77" [
+    label = <Output<br/><i>layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Cylinders, Horsepower<br/><font color="grey" point-size="10">OUT:</font> min_Horsepower>;
+    tooltip = "[79]&#010;Aggregate {dimensions:Set(\Cylinders\),measures:{Horsepower:{min:Set(\min_Horsepower\)}}}"
+  ]
+  "80" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "82" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[82]&#010;Identifier"
+  ]
+  "83" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[83]&#010;Parse {Horsepower:number}"
+  ]
+  "84" [
+    label = <Output<br/><i>layer_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[84]&#010;Output 85"
+  ]
+  "86" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Cylinders, Horsepower<br/><font color="grey" point-size="10">OUT:</font> min_Horsepower>;
+    tooltip = "[86]&#010;Aggregate {dimensions:Set(\Cylinders\),measures:{Horsepower:{min:Set(\min_Horsepower\)}}}"
+  ]
+  "87" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[87]&#010;FilterInvalid {Horsepower:{aggregate:min,bin:false,field:Horsepower,type:quantitative}}"
+  ]
+  "88" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[88]&#010;Output 89"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "60" "53" -> "62" "62" -> "63" "63" -> "64" "64" -> "66" "66" -> "67" "67" -> "68" "49" -> "70" "70" -> "71" "71" -> "73" "73" -> "75" "75" -> "76" "76" -> "77" "77" -> "79" "79" -> "80" "73" -> "82" "82" -> "83" "83" -> "84" "84" -> "86" "86" -> "87" "87" -> "88"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[49]&#010;data/cars.json"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[67]&#010;FilterInvalid {Horsepower:{aggregate:max,bin:false,field:Horsepower,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "80" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "86" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Cylinders, Horsepower<br/><font color="grey" point-size="10">OUT:</font> min_Horsepower, max_Horsepower>;
+    tooltip = "[86]&#010;Aggregate {dimensions:Set(\Cylinders\),measures:{Horsepower:{max:Set(\max_Horsepower\),min:Set(\min_Horsepower\)}}}"
+  ]
+  "87" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[87]&#010;FilterInvalid {Horsepower:{aggregate:min,bin:false,field:Horsepower,type:quantitative}}"
+  ]
+  "88" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[88]&#010;Output 89"
+  ]
+  "90" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Horsepower<br/><font color="grey" point-size="10">OUT:</font> Horsepower>;
+    tooltip = "[90]&#010;Parse {Horsepower:number}"
+  ]
+
+  "49" -> "90" "90" -> "86" "86" -> "80" "80" -> "60" "60" -> "87" "87" -> "88" "60" -> "67" "67" -> "68"
+}
+{ data: 'layer_0_layer_0_main', field: 'Cylinders', sort: true }
+{ data: 'layer_0_layer_1_main', field: 'Cylinders', sort: true }
+{ data: 'layer_1_layer_0_main', field: 'Cylinders', sort: true }
+{ data: 'layer_1_layer_1_main', field: 'Cylinders', sort: true }
+{ data: 'layer_0_layer_0_main', field: 'max_Horsepower' }
+{ data: 'layer_0_layer_1_main', field: 'max_Horsepower' }
+{ data: 'layer_1_layer_0_main', field: 'min_Horsepower' }
+{ data: 'layer_1_layer_1_main', field: 'min_Horsepower' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

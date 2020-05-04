@@ -1,3 +1,105 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> type<br/><font color="grey" point-size="10">OUT:</font> q_order>;
+    tooltip = "[45]&#010;Calculate {as:q_order,calculate:if(datum.type === 'Strongly disagree',-2,0) + if(datum.type==='Disagree',-1,0) + if(datum.type =='Neither agree nor disagree',0,0) + if(datum.type ==='Agree',1,0) + if(datum.type ==='Strongly agree',2,0)}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> type, percentage<br/><font color="grey" point-size="10">OUT:</font> signed_percentage>;
+    tooltip = "[46]&#010;Calculate {as:signed_percentage,calculate:if(datum.type === 'Disagree' || datum.type === 'Strongly disagree', datum.percentage,0) + if(datum.type === 'Neither agree nor disagree', datum.percentage / 2,0)}"
+  ]
+  "47" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> percentage, question<br/><font color="grey" point-size="10">OUT:</font> v1, v2>;
+    tooltip = "[47]&#010;Stack {as:[v1,v2],facetby:[],groupby:[question],offset:zero,sort:{field:[],order:[]},stackField:percentage}"
+  ]
+  "48" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> question, signed_percentage<br/><font color="grey" point-size="10">OUT:</font> offset>;
+    tooltip = "[48]&#010;JoinAggregateTransform {groupby:[question],joinaggregate:[{as:offset,field:signed_percentage,op:sum}]}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> v1, offset<br/><font color="grey" point-size="10">OUT:</font> nx>;
+    tooltip = "[49]&#010;Calculate {as:nx,calculate:datum.v1 - datum.offset}"
+  ]
+  "50" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> v2, offset<br/><font color="grey" point-size="10">OUT:</font> nx2>;
+    tooltip = "[50]&#010;Calculate {as:nx2,calculate:datum.v2 - datum.offset}"
+  ]
+  "51" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> nx>;
+    tooltip = "[53]&#010;FilterInvalid {nx:{axis:{title:Percentage},field:nx,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "54"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> type<br/><font color="grey" point-size="10">OUT:</font> q_order>;
+    tooltip = "[45]&#010;Calculate {as:q_order,calculate:if(datum.type === 'Strongly disagree',-2,0) + if(datum.type==='Disagree',-1,0) + if(datum.type =='Neither agree nor disagree',0,0) + if(datum.type ==='Agree',1,0) + if(datum.type ==='Strongly agree',2,0)}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> type, percentage<br/><font color="grey" point-size="10">OUT:</font> signed_percentage>;
+    tooltip = "[46]&#010;Calculate {as:signed_percentage,calculate:if(datum.type === 'Disagree' || datum.type === 'Strongly disagree', datum.percentage,0) + if(datum.type === 'Neither agree nor disagree', datum.percentage / 2,0)}"
+  ]
+  "47" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> percentage, question<br/><font color="grey" point-size="10">OUT:</font> v1, v2>;
+    tooltip = "[47]&#010;Stack {as:[v1,v2],facetby:[],groupby:[question],offset:zero,sort:{field:[],order:[]},stackField:percentage}"
+  ]
+  "48" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> question, signed_percentage<br/><font color="grey" point-size="10">OUT:</font> offset>;
+    tooltip = "[48]&#010;JoinAggregateTransform {groupby:[question],joinaggregate:[{as:offset,field:signed_percentage,op:sum}]}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> v1, offset<br/><font color="grey" point-size="10">OUT:</font> nx>;
+    tooltip = "[49]&#010;Calculate {as:nx,calculate:datum.v1 - datum.offset}"
+  ]
+  "50" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> v2, offset<br/><font color="grey" point-size="10">OUT:</font> nx2>;
+    tooltip = "[50]&#010;Calculate {as:nx2,calculate:datum.v2 - datum.offset}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> nx>;
+    tooltip = "[53]&#010;FilterInvalid {nx:{axis:{title:Percentage},field:nx,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "53" "53" -> "54"
+}
+{ data: 'main', field: 'nx' }
+{ data: 'main', field: 'nx2' }
+{ data: 'main', field: 'question', sort: true }
+[
+  'Strongly disagree',
+  'Disagree',
+  'Neither agree nor disagree',
+  'Agree',
+  'Strongly agree'
+]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark",

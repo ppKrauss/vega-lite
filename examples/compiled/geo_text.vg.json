@@ -1,3 +1,139 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[49]&#010;data/us-10m.json"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Source<br/><i>data/us-state-capitals.json</i>>;
+    tooltip = "[55]&#010;data/us-state-capitals.json"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[61]&#010;Identifier"
+  ]
+  "62" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> lon, lat>;
+    tooltip = "[62]&#010;GeoJSON null layer_1_layer_0_geojson_0 [lon,lat]"
+  ]
+  "63" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> lon, lat<br/><font color="grey" point-size="10">OUT:</font> layer_1_layer_0_x, layer_1_layer_0_y>;
+    tooltip = "[63]&#010;Geopoint projection [lon,lat] [layer_1_layer_0_x,layer_1_layer_0_y]"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[68]&#010;Identifier"
+  ]
+  "69" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> lon, lat>;
+    tooltip = "[69]&#010;GeoJSON null layer_1_layer_1_geojson_0 [lon,lat]"
+  ]
+  "70" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> lon, lat<br/><font color="grey" point-size="10">OUT:</font> layer_1_layer_1_x, layer_1_layer_1_y>;
+    tooltip = "[70]&#010;Geopoint projection [lon,lat] [layer_1_layer_1_x,layer_1_layer_1_y]"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "53" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "61" "61" -> "62" "62" -> "63" "63" -> "64" "64" -> "66" "59" -> "68" "68" -> "69" "69" -> "70" "70" -> "71" "71" -> "73"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[49]&#010;data/us-10m.json"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Source<br/><i>data/us-state-capitals.json</i>>;
+    tooltip = "[55]&#010;data/us-state-capitals.json"
+  ]
+  "62" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> lon, lat>;
+    tooltip = "[62]&#010;GeoJSON null layer_1_layer_0_geojson_0 [lon,lat]"
+  ]
+  "63" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> lon, lat<br/><font color="grey" point-size="10">OUT:</font> layer_1_layer_0_x, layer_1_layer_0_y>;
+    tooltip = "[63]&#010;Geopoint projection [lon,lat] [layer_1_layer_0_x,layer_1_layer_0_y]"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "69" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> lon, lat>;
+    tooltip = "[69]&#010;GeoJSON null layer_1_layer_1_geojson_0 [lon,lat]"
+  ]
+  "70" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> lon, lat<br/><font color="grey" point-size="10">OUT:</font> layer_1_layer_1_x, layer_1_layer_1_y>;
+    tooltip = "[70]&#010;Geopoint projection [lon,lat] [layer_1_layer_1_x,layer_1_layer_1_y]"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+
+  "49" -> "53" "55" -> "62" "62" -> "63" "63" -> "66" "55" -> "69" "69" -> "70" "70" -> "73"
+}
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

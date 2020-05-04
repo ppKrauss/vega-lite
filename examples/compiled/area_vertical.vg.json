@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> Year>;
+    tooltip = "[45]&#010;Parse {Year:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> year_Year>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_Year\,\field\:\Year\,\timeUnit\:{\unit\:\year\}}:{as:year_Year,field:Year,timeUnit:{unit:year}}}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_Year, Weight_in_lbs<br/><font color="grey" point-size="10">OUT:</font> sum_Weight_in_lbs>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\year_Year\),measures:{Weight_in_lbs:{sum:Set(\sum_Weight_in_lbs\)}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> Year>;
+    tooltip = "[45]&#010;Parse {Year:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> year_Year>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_Year\,\field\:\Year\,\timeUnit\:{\unit\:\year\}}:{as:year_Year,field:Year,timeUnit:{unit:year}}}"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_Year, Weight_in_lbs<br/><font color="grey" point-size="10">OUT:</font> sum_Weight_in_lbs>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\year_Year\),measures:{Weight_in_lbs:{sum:Set(\sum_Weight_in_lbs\)}}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'sum_Weight_in_lbs' }
+{ data: 'main', field: 'year_Year' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Area chart showing weight of cars over time (vertical).",

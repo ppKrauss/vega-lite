@@ -1,3 +1,231 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/weather.json</i>>;
+    tooltip = "[43]&#010;data/weather.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> record.low, record.high<br/><font color="grey" point-size="10">OUT:</font> record.low, record.high>;
+    tooltip = "[50]&#010;Parse {record.high:flatten,record.low:flatten}"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> record.low>;
+    tooltip = "[53]&#010;FilterInvalid {record.low:{axis:{title:Temperature (F)},field:record.low,scale:{domain:[10,70]},type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> normal.low, normal.high<br/><font color="grey" point-size="10">OUT:</font> normal.low, normal.high>;
+    tooltip = "[57]&#010;Parse {normal.high:flatten,normal.low:flatten}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> normal.low>;
+    tooltip = "[60]&#010;FilterInvalid {normal.low:{field:normal.low,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[63]&#010;Identifier"
+  ]
+  "64" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> actual.low, actual.high<br/><font color="grey" point-size="10">OUT:</font> actual.low, actual.high>;
+    tooltip = "[64]&#010;Parse {actual.high:flatten,actual.low:flatten}"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> actual.low>;
+    tooltip = "[67]&#010;FilterInvalid {actual.low:{field:actual.low,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> forecast.low.low, forecast.low.high<br/><font color="grey" point-size="10">OUT:</font> forecast.low.low, forecast.low.high>;
+    tooltip = "[71]&#010;Parse {forecast.low.high:flatten,forecast.low.low:flatten}"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "74" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> forecast.low.low>;
+    tooltip = "[74]&#010;FilterInvalid {forecast.low.low:{field:forecast.low.low,type:quantitative}}"
+  ]
+  "75" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+  "77" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[77]&#010;Identifier"
+  ]
+  "78" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> forecast.low.high, forecast.high.low<br/><font color="grey" point-size="10">OUT:</font> forecast.low.high, forecast.high.low>;
+    tooltip = "[78]&#010;Parse {forecast.high.low:flatten,forecast.low.high:flatten}"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_4_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> forecast.low.high>;
+    tooltip = "[81]&#010;FilterInvalid {forecast.low.high:{field:forecast.low.high,type:quantitative}}"
+  ]
+  "82" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "84" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[84]&#010;Identifier"
+  ]
+  "85" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> forecast.high.low, forecast.high.high<br/><font color="grey" point-size="10">OUT:</font> forecast.high.low, forecast.high.high>;
+    tooltip = "[85]&#010;Parse {forecast.high.high:flatten,forecast.high.low:flatten}"
+  ]
+  "86" [
+    label = <Output<br/><i>layer_5_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> forecast.high.low>;
+    tooltip = "[88]&#010;FilterInvalid {forecast.high.low:{field:forecast.high.low,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>layer_5_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "91" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[91]&#010;Identifier"
+  ]
+  "92" [
+    label = <Output<br/><i>layer_6_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[92]&#010;Output 93"
+  ]
+  "94" [
+    label = <Output<br/><i>layer_6_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[94]&#010;Output 95"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "47" -> "56" "56" -> "57" "57" -> "58" "58" -> "60" "60" -> "61" "47" -> "63" "63" -> "64" "64" -> "65" "65" -> "67" "67" -> "68" "47" -> "70" "70" -> "71" "71" -> "72" "72" -> "74" "74" -> "75" "47" -> "77" "77" -> "78" "78" -> "79" "79" -> "81" "81" -> "82" "47" -> "84" "84" -> "85" "85" -> "86" "86" -> "88" "88" -> "89" "47" -> "91" "91" -> "92" "92" -> "94"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/weather.json</i>>;
+    tooltip = "[43]&#010;data/weather.json"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> record.low>;
+    tooltip = "[53]&#010;FilterInvalid {record.low:{axis:{title:Temperature (F)},field:record.low,scale:{domain:[10,70]},type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "60" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> normal.low>;
+    tooltip = "[60]&#010;FilterInvalid {normal.low:{field:normal.low,type:quantitative}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> actual.low>;
+    tooltip = "[67]&#010;FilterInvalid {actual.low:{field:actual.low,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "74" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> forecast.low.low>;
+    tooltip = "[74]&#010;FilterInvalid {forecast.low.low:{field:forecast.low.low,type:quantitative}}"
+  ]
+  "75" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> forecast.low.high>;
+    tooltip = "[81]&#010;FilterInvalid {forecast.low.high:{field:forecast.low.high,type:quantitative}}"
+  ]
+  "82" [
+    label = <Output<br/><i>layer_4_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> forecast.high.low>;
+    tooltip = "[88]&#010;FilterInvalid {forecast.high.low:{field:forecast.high.low,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>layer_5_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "94" [
+    label = <Output<br/><i>layer_6_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[94]&#010;Output 95"
+  ]
+  "96" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> record.low, record.high, normal.low, normal.high, actual.low, actual.high, forecast.low.low, forecast.low.high, forecast.high.low, forecast.high.high<br/><font color="grey" point-size="10">OUT:</font> record.low, record.high, normal.low, normal.high, actual.low, actual.high, forecast.low.low, forecast.low.high, forecast.high.low, forecast.high.high>;
+    tooltip = "[96]&#010;Parse -99181378"
+  ]
+
+  "43" -> "96" "96" -> "94" "94" -> "53" "53" -> "54" "94" -> "60" "60" -> "61" "94" -> "67" "67" -> "68" "94" -> "74" "74" -> "75" "94" -> "81" "81" -> "82" "94" -> "88" "88" -> "89"
+}
+{ data: 'layer_0_main', field: 'id', sort: true }
+{ data: 'layer_1_main', field: 'id', sort: true }
+{ data: 'layer_2_main', field: 'id', sort: true }
+{ data: 'layer_3_main', field: 'id', sort: true }
+{ data: 'layer_4_main', field: 'id', sort: true }
+{ data: 'layer_5_main', field: 'id', sort: true }
+{ data: 'layer_6_main', field: 'id', sort: true }
+[ 10, 70 ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A layered bar chart with floating bars representing weekly weather data",

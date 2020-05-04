@@ -1,3 +1,174 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/weather.csv</i>>;
+    tooltip = "[43]&#010;data/weather.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> location>;
+    tooltip = "[45]&#010;Filter datum.location === 'Seattle'"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[51]&#010;Parse {date:date}"
+  ]
+  "52" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[52]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "53" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[55]&#010;Aggregate {dimensions:Set(\month_date\),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[56]&#010;FilterInvalid {precipitation:{aggregate:mean,field:precipitation,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[60]&#010;Parse {date:date}"
+  ]
+  "61" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[61]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "62" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, precipitation<br/><font color="grey" point-size="10">OUT:</font> median_precipitation>;
+    tooltip = "[64]&#010;Aggregate {dimensions:Set(\month_date\),measures:{precipitation:{median:Set(\median_precipitation\)}}}"
+  ]
+  "65" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[65]&#010;FilterInvalid {precipitation:{aggregate:median,field:precipitation,type:quantitative}}"
+  ]
+  "66" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[68]&#010;Identifier"
+  ]
+  "69" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> temp_min, temp_max<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_temp_min, bin_maxbins_10_temp_min_end, bin_maxbins_10_temp_max, bin_maxbins_10_temp_max_end>;
+    tooltip = "[69]&#010;Bin 1676023020"
+  ]
+  "70" [
+    label = <Output<br/><i>concat_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_temp_min, bin_maxbins_10_temp_min_end, bin_maxbins_10_temp_max, bin_maxbins_10_temp_max_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[72]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_temp_min\,\bin_maxbins_10_temp_min_end\,\bin_maxbins_10_temp_max\,\bin_maxbins_10_temp_max_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> temp_min, temp_max>;
+    tooltip = "[73]&#010;FilterInvalid {temp_max:{bin:{maxbins:10},field:temp_max,type:quantitative},temp_min:{bin:{maxbins:10},field:temp_min,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>concat_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "48" -> "59" "59" -> "60" "60" -> "61" "61" -> "62" "62" -> "64" "64" -> "65" "65" -> "66" "48" -> "68" "68" -> "69" "69" -> "70" "70" -> "72" "72" -> "73" "73" -> "74"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/weather.csv</i>>;
+    tooltip = "[43]&#010;data/weather.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> location>;
+    tooltip = "[45]&#010;Filter datum.location === 'Seattle'"
+  ]
+  "55" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation, median_precipitation>;
+    tooltip = "[55]&#010;Aggregate {dimensions:Set(\month_date\),measures:{precipitation:{mean:Set(\mean_precipitation\),median:Set(\median_precipitation\)}}}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[56]&#010;FilterInvalid {precipitation:{aggregate:mean,field:precipitation,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "61" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[61]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "65" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[65]&#010;FilterInvalid {precipitation:{aggregate:median,field:precipitation,type:quantitative}}"
+  ]
+  "66" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "69" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> temp_min, temp_max<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_10_temp_min, bin_maxbins_10_temp_min_end, bin_maxbins_10_temp_max, bin_maxbins_10_temp_max_end>;
+    tooltip = "[69]&#010;Bin 1676023020"
+  ]
+  "72" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_10_temp_min, bin_maxbins_10_temp_min_end, bin_maxbins_10_temp_max, bin_maxbins_10_temp_max_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[72]&#010;Aggregate {dimensions:Set(\bin_maxbins_10_temp_min\,\bin_maxbins_10_temp_min_end\,\bin_maxbins_10_temp_max\,\bin_maxbins_10_temp_max_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "73" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> temp_min, temp_max>;
+    tooltip = "[73]&#010;FilterInvalid {temp_max:{bin:{maxbins:10},field:temp_max,type:quantitative},temp_min:{bin:{maxbins:10},field:temp_min,type:quantitative}}"
+  ]
+  "74" [
+    label = <Output<br/><i>concat_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[76]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "76" "76" -> "45" "45" -> "61" "61" -> "55" "55" -> "56" "56" -> "57" "55" -> "65" "65" -> "66" "45" -> "69" "69" -> "72" "72" -> "73" "73" -> "74"
+}
+{ data: 'concat_2_main', field: '__count' }
+{ data: 'concat_0_main', field: 'month_date', sort: true }
+{ data: 'concat_0_main', field: 'mean_precipitation' }
+{ data: 'concat_1_main', field: 'month_date', sort: true }
+{ data: 'concat_1_main', field: 'median_precipitation' }
+SignalRefWrapper { signal: [Getter] }
+SignalRefWrapper { signal: [Getter] }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Two horizonally concatenated charts that show a histogram of precipitation in Seattle and the relationship between min and max temperature.",

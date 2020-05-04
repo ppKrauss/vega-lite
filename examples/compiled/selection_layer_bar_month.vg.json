@@ -1,3 +1,146 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[50]&#010;Parse {date:date}"
+  ]
+  "51" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[51]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "52" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[52]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[55]&#010;Aggregate {dimensions:Set(\month_date\),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[56]&#010;FilterInvalid {precipitation:{aggregate:mean,field:precipitation,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[59]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "60" [
+    label = <Filter>;
+    tooltip = "[60]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_0_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[63]&#010;Identifier"
+  ]
+  "64" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[64]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "65" [
+    label = <Filter>;
+    tooltip = "[65]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[68]&#010;Aggregate {dimensions:Set(),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "69" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[69]&#010;FilterInvalid {precipitation:{aggregate:mean,field:precipitation,type:quantitative}}"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "60" "60" -> "61" "47" -> "63" "63" -> "64" "64" -> "65" "65" -> "66" "66" -> "68" "68" -> "69" "69" -> "70"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-weather.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-weather.csv"
+  ]
+  "55" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> month_date, precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[55]&#010;Aggregate {dimensions:Set(\month_date\),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[56]&#010;FilterInvalid {precipitation:{aggregate:mean,field:precipitation,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "64" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> month_date>;
+    tooltip = "[64]&#010;TimeUnit {{\as\:\month_date\,\field\:\date\,\timeUnit\:{\unit\:\month\}}:{as:month_date,field:date,timeUnit:{unit:month}}}"
+  ]
+  "65" [
+    label = <Filter>;
+    tooltip = "[65]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "68" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> precipitation<br/><font color="grey" point-size="10">OUT:</font> mean_precipitation>;
+    tooltip = "[68]&#010;Aggregate {dimensions:Set(),measures:{precipitation:{mean:Set(\mean_precipitation\)}}}"
+  ]
+  "69" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> precipitation>;
+    tooltip = "[69]&#010;FilterInvalid {precipitation:{aggregate:mean,field:precipitation,type:quantitative}}"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[72]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "72" "72" -> "64" "64" -> "65" "65" -> "68" "68" -> "69" "69" -> "70" "64" -> "55" "55" -> "56" "56" -> "57"
+}
+{ data: 'layer_0_main', field: 'month_date', sort: true }
+{ data: 'layer_0_main', field: 'mean_precipitation' }
+{ data: 'layer_1_main', field: 'mean_precipitation' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

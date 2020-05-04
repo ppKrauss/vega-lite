@@ -1,3 +1,139 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/flights-5k.json</i>>;
+    tooltip = "[43]&#010;data/flights-5k.json"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[44]&#010;Parse {date:date}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> time>;
+    tooltip = "[46]&#010;Calculate {as:time,calculate:hours(datum.date) + minutes(datum.date) / 60}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[51]&#010;Identifier"
+  ]
+  "52" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_30_time, bin_maxbins_30_time_end>;
+    tooltip = "[52]&#010;Bin {bin_maxbins_30_time:{as:[[bin_maxbins_30_time,bin_maxbins_30_time_end]],bin:{maxbins:30},extentSignal:concat_0_bin_maxbins_30_time_extent,field:time,signal:concat_0_bin_maxbins_30_time_bins}}"
+  ]
+  "53" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_30_time, bin_maxbins_30_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[55]&#010;Aggregate {dimensions:Set(\bin_maxbins_30_time\,\bin_maxbins_30_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[56]&#010;FilterInvalid {time:{bin:{maxbins:30},field:time,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Filter>;
+    tooltip = "[59]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "60" [
+    label = <Output<br/><i>concat_0_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[62]&#010;Identifier"
+  ]
+  "63" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_30_extent_selection_brush_time, bin_maxbins_30_extent_selection_brush_time_end>;
+    tooltip = "[63]&#010;Bin 728403501"
+  ]
+  "64" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_30_extent_selection_brush_time, bin_maxbins_30_extent_selection_brush_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[66]&#010;Aggregate {dimensions:Set(\bin_maxbins_30_extent_selection_brush_time\,\bin_maxbins_30_extent_selection_brush_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[67]&#010;FilterInvalid {time:{bin:{extent:{selection:brush},maxbins:30},field:time,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "60" "49" -> "62" "62" -> "63" "63" -> "64" "64" -> "66" "66" -> "67" "67" -> "68"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/flights-5k.json</i>>;
+    tooltip = "[43]&#010;data/flights-5k.json"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[44]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> time>;
+    tooltip = "[46]&#010;Calculate {as:time,calculate:hours(datum.date) + minutes(datum.date) / 60}"
+  ]
+  "55" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_30_time, bin_maxbins_30_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[55]&#010;Aggregate {dimensions:Set(\bin_maxbins_30_time\,\bin_maxbins_30_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[56]&#010;FilterInvalid {time:{bin:{maxbins:30},field:time,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "63" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> bin_maxbins_30_extent_selection_brush_time, bin_maxbins_30_extent_selection_brush_time_end, bin_maxbins_30_time, bin_maxbins_30_time_end>;
+    tooltip = "[63]&#010;Bin 1357731432"
+  ]
+  "66" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_maxbins_30_extent_selection_brush_time, bin_maxbins_30_extent_selection_brush_time_end, *<br/><font color="grey" point-size="10">OUT:</font> __count>;
+    tooltip = "[66]&#010;Aggregate {dimensions:Set(\bin_maxbins_30_extent_selection_brush_time\,\bin_maxbins_30_extent_selection_brush_time_end\),measures:{*:{count:Set(\__count\)}}}"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> time>;
+    tooltip = "[67]&#010;FilterInvalid {time:{bin:{extent:{selection:brush},maxbins:30},field:time,type:quantitative}}"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "44" "44" -> "46" "46" -> "63" "63" -> "66" "66" -> "67" "67" -> "68" "63" -> "55" "55" -> "56" "56" -> "57"
+}
+SignalRefWrapper { signal: [Getter] }
+{ data: 'concat_0_main', field: '__count' }
+SignalRefWrapper { signal: [Getter] }
+{ data: 'concat_1_main', field: '__count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

@@ -1,3 +1,180 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> people<br/><font color="grey" point-size="10">OUT:</font> people>;
+    tooltip = "[51]&#010;Parse {people:number}"
+  ]
+  "52" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> min_people, max_people>;
+    tooltip = "[54]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{max:Set(\max_people\),min:Set(\min_people\)}}}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[55]&#010;FilterInvalid {people:{aggregate:min,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> people<br/><font color="grey" point-size="10">OUT:</font> people>;
+    tooltip = "[59]&#010;Parse {people:number}"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> min_people>;
+    tooltip = "[62]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{min:Set(\min_people\)}}}"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[63]&#010;FilterInvalid {people:{aggregate:min,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[66]&#010;Identifier"
+  ]
+  "67" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> people<br/><font color="grey" point-size="10">OUT:</font> people>;
+    tooltip = "[67]&#010;Parse {people:number}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> max_people>;
+    tooltip = "[70]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{max:Set(\max_people\)}}}"
+  ]
+  "71" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[71]&#010;FilterInvalid {people:{aggregate:max,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "74" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[74]&#010;Identifier"
+  ]
+  "75" [
+    label = <Output<br/><i>layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+  "77" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> mean_people>;
+    tooltip = "[77]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{mean:Set(\mean_people\)}}}"
+  ]
+  "78" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[78]&#010;FilterInvalid {people:{aggregate:mean,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "54" "54" -> "55" "55" -> "56" "48" -> "58" "58" -> "59" "59" -> "60" "60" -> "62" "62" -> "63" "63" -> "64" "48" -> "66" "66" -> "67" "67" -> "68" "68" -> "70" "70" -> "71" "71" -> "72" "48" -> "74" "74" -> "75" "75" -> "77" "77" -> "78" "78" -> "79"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[55]&#010;FilterInvalid {people:{aggregate:min,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "71" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[71]&#010;FilterInvalid {people:{aggregate:max,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "72" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[72]&#010;Output 73"
+  ]
+  "77" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> mean_people, min_people, max_people>;
+    tooltip = "[77]&#010;Aggregate {dimensions:Set(\age\),measures:{people:{max:Set(\max_people\),mean:Set(\mean_people\),min:Set(\min_people\)}}}"
+  ]
+  "78" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[78]&#010;FilterInvalid {people:{aggregate:mean,axis:{title:population},field:people,type:quantitative}}"
+  ]
+  "79" [
+    label = <Output<br/><i>layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> people<br/><font color="grey" point-size="10">OUT:</font> people>;
+    tooltip = "[81]&#010;Parse {people:number}"
+  ]
+
+  "43" -> "81" "81" -> "45" "45" -> "77" "77" -> "78" "78" -> "79" "77" -> "55" "55" -> "64" "64" -> "56" "77" -> "71" "71" -> "72"
+}
+{ data: 'layer_0_main', field: 'min_people' }
+{ data: 'layer_0_main', field: 'max_people' }
+{ data: 'layer_1_main', field: 'min_people' }
+{ data: 'layer_2_main', field: 'max_people' }
+{ data: 'layer_3_main', field: 'mean_people' }
+{ data: 'layer_0_main', field: 'age', sort: true }
+{ data: 'layer_1_main', field: 'age', sort: true }
+{ data: 'layer_2_main', field: 'age', sort: true }
+{ data: 'layer_3_main', field: 'age', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A bar chart showing the US population distribution of age groups in 2000.",

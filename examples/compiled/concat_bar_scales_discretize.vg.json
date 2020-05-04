@@ -1,3 +1,116 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[52]&#010;FilterInvalid {b:{field:b,legend:{title:Quantize},scale:{type:quantize,zero:true},type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[58]&#010;FilterInvalid {b:{field:b,legend:{format:d,title:Quantile},scale:{scheme:magma,type:quantile},type:quantitative}}"
+  ]
+  "59" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[61]&#010;Identifier"
+  ]
+  "62" [
+    label = <Output<br/><i>concat_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[64]&#010;FilterInvalid {b:{field:b,legend:{title:Threshold},scale:{domain:[30,70],scheme:viridis,type:threshold},type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "53" "47" -> "55" "55" -> "56" "56" -> "58" "58" -> "59" "47" -> "61" "61" -> "62" "62" -> "64" "64" -> "65"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[52]&#010;FilterInvalid {b:{field:b,legend:{title:Quantize},scale:{type:quantize,zero:true},type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "58" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[58]&#010;FilterInvalid {b:{field:b,legend:{format:d,title:Quantile},scale:{scheme:magma,type:quantile},type:quantitative}}"
+  ]
+  "59" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[64]&#010;FilterInvalid {b:{field:b,legend:{title:Threshold},scale:{domain:[30,70],scheme:viridis,type:threshold},type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+
+  "43" -> "52" "52" -> "53" "43" -> "58" "58" -> "59" "43" -> "64" "64" -> "65"
+}
+{ data: 'concat_0_main', field: 'b' }
+{ data: 'concat_0_main', field: 'b' }
+{ data: 'concat_0_main', field: 'b' }
+{ data: 'concat_1_main', field: 'b' }
+{ data: 'concat_1_main', field: 'b' }
+{ data: 'concat_1_main', field: 'b' }
+{ data: 'concat_2_main', field: 'b' }
+[ 30, 70 ]
+[ 30, 70 ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Horizontally concatenated charts that show different types of discretizing scales.",

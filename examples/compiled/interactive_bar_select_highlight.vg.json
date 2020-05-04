@@ -1,3 +1,69 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[47]&#010;FilterInvalid {b:{field:b,type:quantitative}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Filter>;
+    tooltip = "[50]&#010;Filter (vlSelectionTest(highlight_store, datum))"
+  ]
+  "51" [
+    label = <Output<br/><i>lookup_highlight</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Filter>;
+    tooltip = "[53]&#010;Filter !(length(data(select_store))) || (vlSelectionTest(select_store, datum))"
+  ]
+  "54" [
+    label = <Output<br/><i>lookup_select</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "48" "48" -> "50" "50" -> "51" "48" -> "53" "53" -> "54"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "47" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[47]&#010;FilterInvalid {b:{field:b,type:quantitative}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "44" "44" -> "47" "47" -> "48"
+}
+{ data: 'main', field: 'a', sort: true }
+{ data: 'main', field: 'b' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A bar chart with highlighting on hover and selecting on click. (Inspired by Tableau's interaction style.)",

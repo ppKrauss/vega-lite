@@ -1,3 +1,121 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_IMDB_Rating, bin_IMDB_Rating_end>;
+    tooltip = "[45]&#010;Bin {bin_maxbins_10_IMDB_Rating:{as:[[bin_IMDB_Rating,bin_IMDB_Rating_end]],bin:{maxbins:10},extentSignal:bin_maxbins_10_IMDB_Rating_extent,field:IMDB_Rating,signal:bin_maxbins_10_IMDB_Rating_bins}}"
+  ]
+  "46" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, bin_IMDB_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> count>;
+    tooltip = "[46]&#010;Aggregate {dimensions:Set(\bin_IMDB_Rating\,\bin_IMDB_Rating_end\),measures:{*:{count:Set(\count\)}}}"
+  ]
+  "47" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating>;
+    tooltip = "[47]&#010;Filter datum.bin_IMDB_Rating !== null"
+  ]
+  "48" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, count<br/><font color="grey" point-size="10">OUT:</font> cumulative_count>;
+    tooltip = "[48]&#010;WindowTransform {frame:[null,0],sort:[{field:bin_IMDB_Rating}],window:[{as:cumulative_count,field:count,op:sum}]}"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[53]&#010;Identifier"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, cumulative_count>;
+    tooltip = "[56]&#010;FilterInvalid {bin_IMDB_Rating:{field:bin_IMDB_Rating,scale:{zero:false},title:IMDB Rating,type:quantitative},cumulative_count:{field:cumulative_count,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, count>;
+    tooltip = "[62]&#010;FilterInvalid {bin_IMDB_Rating:{field:bin_IMDB_Rating,scale:{zero:false},title:IMDB Rating,type:quantitative},count:{field:count,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51" "51" -> "53" "53" -> "54" "54" -> "56" "56" -> "57" "51" -> "59" "59" -> "60" "60" -> "62" "62" -> "63"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Bin<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> bin_IMDB_Rating, bin_IMDB_Rating_end>;
+    tooltip = "[45]&#010;Bin {bin_maxbins_10_IMDB_Rating:{as:[[bin_IMDB_Rating,bin_IMDB_Rating_end]],bin:{maxbins:10},extentSignal:bin_maxbins_10_IMDB_Rating_extent,field:IMDB_Rating,signal:bin_maxbins_10_IMDB_Rating_bins}}"
+  ]
+  "46" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, bin_IMDB_Rating_end, *<br/><font color="grey" point-size="10">OUT:</font> count>;
+    tooltip = "[46]&#010;Aggregate {dimensions:Set(\bin_IMDB_Rating\,\bin_IMDB_Rating_end\),measures:{*:{count:Set(\count\)}}}"
+  ]
+  "47" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating>;
+    tooltip = "[47]&#010;Filter datum.bin_IMDB_Rating !== null"
+  ]
+  "48" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, count<br/><font color="grey" point-size="10">OUT:</font> cumulative_count>;
+    tooltip = "[48]&#010;WindowTransform {frame:[null,0],sort:[{field:bin_IMDB_Rating}],window:[{as:cumulative_count,field:count,op:sum}]}"
+  ]
+  "56" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, cumulative_count>;
+    tooltip = "[56]&#010;FilterInvalid {bin_IMDB_Rating:{field:bin_IMDB_Rating,scale:{zero:false},title:IMDB Rating,type:quantitative},cumulative_count:{field:cumulative_count,type:quantitative}}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> bin_IMDB_Rating, count>;
+    tooltip = "[62]&#010;FilterInvalid {bin_IMDB_Rating:{field:bin_IMDB_Rating,scale:{zero:false},title:IMDB Rating,type:quantitative},count:{field:count,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "56" "56" -> "57" "48" -> "62" "62" -> "63"
+}
+{ data: 'layer_0_main', field: 'bin_IMDB_Rating' }
+{ data: 'layer_0_main', field: 'bin_IMDB_Rating_end' }
+{ data: 'layer_1_main', field: 'bin_IMDB_Rating' }
+{ data: 'layer_1_main', field: 'bin_IMDB_Rating_end' }
+{ data: 'layer_0_main', field: 'cumulative_count' }
+{ data: 'layer_1_main', field: 'count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

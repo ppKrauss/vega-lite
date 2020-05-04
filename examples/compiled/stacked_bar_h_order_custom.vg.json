@@ -1,3 +1,75 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/barley.json</i>>;
+    tooltip = "[43]&#010;data/barley.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> site<br/><font color="grey" point-size="10">OUT:</font> siteOrder>;
+    tooltip = "[45]&#010;Calculate {as:siteOrder,calculate:if(datum.site === 'University Farm', 0, if(datum.site === 'Grand Rapids', 1, 2))}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, site, siteOrder, yield<br/><font color="grey" point-size="10">OUT:</font> sum_yield>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\variety\,\site\,\siteOrder\),measures:{yield:{sum:Set(\sum_yield\)}}}"
+  ]
+  "49" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> sum_yield, variety, siteOrder<br/><font color="grey" point-size="10">OUT:</font> sum_yield_start, sum_yield_end>;
+    tooltip = "[49]&#010;Stack 1041472369"
+  ]
+  "50" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> yield>;
+    tooltip = "[50]&#010;FilterInvalid {yield:{aggregate:sum,field:yield,type:quantitative}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49" "49" -> "50" "50" -> "51"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/barley.json</i>>;
+    tooltip = "[43]&#010;data/barley.json"
+  ]
+  "45" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> site<br/><font color="grey" point-size="10">OUT:</font> siteOrder>;
+    tooltip = "[45]&#010;Calculate {as:siteOrder,calculate:if(datum.site === 'University Farm', 0, if(datum.site === 'Grand Rapids', 1, 2))}"
+  ]
+  "48" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, site, siteOrder, yield<br/><font color="grey" point-size="10">OUT:</font> sum_yield>;
+    tooltip = "[48]&#010;Aggregate {dimensions:Set(\variety\,\site\,\siteOrder\),measures:{yield:{sum:Set(\sum_yield\)}}}"
+  ]
+  "49" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> sum_yield, variety, siteOrder<br/><font color="grey" point-size="10">OUT:</font> sum_yield_start, sum_yield_end>;
+    tooltip = "[49]&#010;Stack 1041472369"
+  ]
+  "50" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> yield>;
+    tooltip = "[50]&#010;FilterInvalid {yield:{aggregate:sum,field:yield,type:quantitative}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "45" "45" -> "48" "48" -> "49" "49" -> "50" "50" -> "51"
+}
+{ data: 'main', field: 'sum_yield_start' }
+{ data: 'main', field: 'sum_yield_end' }
+{ data: 'main', field: 'variety', sort: true }
+{ data: 'main', field: 'site', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

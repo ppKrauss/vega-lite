@@ -1,3 +1,197 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[44]&#010;Parse {date:date}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[53]&#010;FilterInvalid {date:{axis:null,field:date,type:temporal}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Filter>;
+    tooltip = "[56]&#010;Filter !(length(data(index_store))) || (vlSelectionTest(index_store, datum))"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_lookup_index</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> symbol<br/><font color="grey" point-size="10">OUT:</font> index>;
+    tooltip = "[60]&#010;Lookup {secondary:layer_0_lookup_index,transform:{as:index,from:{key:symbol,selection:index},lookup:symbol}}"
+  ]
+  "61" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> index, index.price, price<br/><font color="grey" point-size="10">OUT:</font> indexed_price>;
+    tooltip = "[61]&#010;Calculate {as:indexed_price,calculate:datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[66]&#010;Identifier"
+  ]
+  "67" [
+    label = <Filter>;
+    tooltip = "[67]&#010;Filter !(length(data(index_store))) || (vlSelectionTest(index_store, datum))"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[72]&#010;Identifier"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_2_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[75]&#010;FilterInvalid {date:{axis:null,field:date,type:temporal}}"
+  ]
+  "76" [
+    label = <Output<br/><i>layer_2_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[78]&#010;Identifier"
+  ]
+  "79" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> yearmonth_date>;
+    tooltip = "[79]&#010;TimeUnit {{\as\:\yearmonth_date\,\field\:\date\,\timeUnit\:{\unit\:\yearmonth\}}:{as:yearmonth_date,field:date,timeUnit:{unit:yearmonth}}}"
+  ]
+  "80" [
+    label = <Output<br/><i>layer_2_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "82" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[82]&#010;FilterInvalid {date:{axis:null,field:date,type:temporal}}"
+  ]
+  "83" [
+    label = <Output<br/><i>layer_2_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "54" -> "56" "56" -> "57" "48" -> "59" "59" -> "60" "60" -> "61" "61" -> "62" "62" -> "64" "48" -> "66" "66" -> "67" "67" -> "68" "68" -> "70" "70" -> "72" "72" -> "73" "73" -> "75" "75" -> "76" "70" -> "78" "78" -> "79" "79" -> "80" "80" -> "82" "82" -> "83"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[44]&#010;Parse {date:date}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[53]&#010;FilterInvalid {date:{axis:null,field:date,type:temporal}}"
+  ]
+  "54" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Filter>;
+    tooltip = "[56]&#010;Filter !(length(data(index_store))) || (vlSelectionTest(index_store, datum))"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_lookup_index</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "60" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> symbol<br/><font color="grey" point-size="10">OUT:</font> index>;
+    tooltip = "[60]&#010;Lookup {secondary:layer_0_lookup_index,transform:{as:index,from:{key:symbol,selection:index},lookup:symbol}}"
+  ]
+  "61" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> index, index.price, price<br/><font color="grey" point-size="10">OUT:</font> indexed_price>;
+    tooltip = "[61]&#010;Calculate {as:indexed_price,calculate:datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "67" [
+    label = <Filter>;
+    tooltip = "[67]&#010;Filter !(length(data(index_store))) || (vlSelectionTest(index_store, datum))"
+  ]
+  "75" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[75]&#010;FilterInvalid {date:{axis:null,field:date,type:temporal}}"
+  ]
+  "76" [
+    label = <Output<br/><i>layer_2_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "79" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> yearmonth_date>;
+    tooltip = "[79]&#010;TimeUnit {{\as\:\yearmonth_date\,\field\:\date\,\timeUnit\:{\unit\:\yearmonth\}}:{as:yearmonth_date,field:date,timeUnit:{unit:yearmonth}}}"
+  ]
+  "82" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[82]&#010;FilterInvalid {date:{axis:null,field:date,type:temporal}}"
+  ]
+  "83" [
+    label = <Output<br/><i>layer_2_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+
+  "43" -> "44" "44" -> "53" "53" -> "54" "54" -> "56" "56" -> "57" "44" -> "60" "60" -> "61" "61" -> "64" "44" -> "67" "67" -> "75" "75" -> "76" "67" -> "79" "79" -> "82" "82" -> "83"
+}
+{ data: 'layer_0_main', field: 'date' }
+{ data: 'layer_1_main', field: 'date' }
+{ data: 'layer_2_layer_0_main', field: 'date' }
+{ data: 'layer_2_layer_1_main', field: 'date' }
+{ data: 'layer_1_main', field: 'indexed_price' }
+{ data: 'layer_1_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

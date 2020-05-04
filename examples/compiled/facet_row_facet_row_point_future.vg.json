@@ -1,3 +1,109 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Origin>;
+    tooltip = "[49]&#010;Facet r:{fields:[Origin],name:row_domain}"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Cylinders>;
+    tooltip = "[55]&#010;Facet r:{fields:[Cylinders],name:child_row_domain}"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Output<br/><i>child_child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[59]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "60" [
+    label = <Output<br/><i>child_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "59" -> "60"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Origin>;
+    tooltip = "[49]&#010;Facet r:{fields:[Origin],name:row_domain}"
+  ]
+  "53" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Cylinders>;
+    tooltip = "[55]&#010;Facet r:{fields:[Cylinders],name:child_row_domain}"
+  ]
+  "59" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[59]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "60" [
+    label = <Output<br/><i>child_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "64" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 62"
+  ]
+  "65" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[65]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "66" [
+    label = <Output<br/><i>clone_child_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 63"
+  ]
+
+  "43" -> "47" "47" -> "64" "64" -> "49" "49" -> "53" "53" -> "55" "55" -> "59" "59" -> "60" "64" -> "65" "65" -> "66"
+}
+{ data: 'scale_child_child_main', field: 'Horsepower' }
+{ data: 'scale_child_child_main', field: 'Acceleration' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

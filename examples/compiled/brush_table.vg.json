@@ -1,3 +1,165 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> row_number>;
+    tooltip = "[45]&#010;WindowTransform {window:[{as:row_number,op:row_number}]}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[53]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Filter>;
+    tooltip = "[56]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "57" [
+    label = <Output<br/><i>concat_0_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <Filter>;
+    tooltip = "[60]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "61" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[61]&#010;WindowTransform {window:[{as:rank,op:rank}]}"
+  ]
+  "62" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> rank>;
+    tooltip = "[62]&#010;Filter datum[rank]<20"
+  ]
+  "63" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_1_concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Output<br/><i>concat_1_concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[72]&#010;Identifier"
+  ]
+  "73" [
+    label = <Output<br/><i>concat_1_concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Output<br/><i>concat_1_concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+  "77" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[77]&#010;Identifier"
+  ]
+  "78" [
+    label = <Output<br/><i>concat_1_concat_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+  "80" [
+    label = <Output<br/><i>concat_1_concat_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "54" -> "56" "56" -> "57" "48" -> "59" "59" -> "60" "60" -> "61" "61" -> "62" "62" -> "63" "63" -> "65" "65" -> "67" "67" -> "68" "68" -> "70" "65" -> "72" "72" -> "73" "73" -> "75" "65" -> "77" "77" -> "78" "78" -> "80"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> row_number>;
+    tooltip = "[45]&#010;WindowTransform {window:[{as:row_number,op:row_number}]}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[53]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "60" [
+    label = <Filter>;
+    tooltip = "[60]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum))"
+  ]
+  "61" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[61]&#010;WindowTransform {window:[{as:rank,op:rank}]}"
+  ]
+  "62" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> rank>;
+    tooltip = "[62]&#010;Filter datum[rank]<20"
+  ]
+  "70" [
+    label = <Output<br/><i>concat_1_concat_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "75" [
+    label = <Output<br/><i>concat_1_concat_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[75]&#010;Output 76"
+  ]
+  "80" [
+    label = <Output<br/><i>concat_1_concat_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+
+  "43" -> "45" "45" -> "53" "53" -> "54" "45" -> "60" "60" -> "61" "61" -> "62" "62" -> "75" "75" -> "80" "80" -> "70"
+}
+{ data: 'concat_0_main', field: 'Cylinders', sort: true }
+{ data: 'concat_0_main', field: 'Horsepower' }
+{ data: 'concat_0_main', field: 'Miles_per_Gallon' }
+{ data: 'concat_1_concat_0_main', field: 'row_number', sort: true }
+{ data: 'concat_1_concat_1_main', field: 'row_number', sort: true }
+{ data: 'concat_1_concat_2_main', field: 'row_number', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Drag a rectangular brush to show (first 20) selected points in a table.",

@@ -1,3 +1,59 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/disasters.csv</i>>;
+    tooltip = "[43]&#010;data/disasters.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Entity>;
+    tooltip = "[45]&#010;Filter datum.Entity !== 'All natural disasters'"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Deaths>;
+    tooltip = "[48]&#010;FilterInvalid {Deaths:{field:Deaths,legend:{clipHeight:30,title:Annual Global Deaths},scale:{range:[0,5000]},type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/disasters.csv</i>>;
+    tooltip = "[43]&#010;data/disasters.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Entity>;
+    tooltip = "[45]&#010;Filter datum.Entity !== 'All natural disasters'"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Deaths>;
+    tooltip = "[48]&#010;FilterInvalid {Deaths:{field:Deaths,legend:{clipHeight:30,title:Annual Global Deaths},scale:{range:[0,5000]},type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "45" "45" -> "48" "48" -> "49"
+}
+{ data: 'main', field: 'Year', sort: true }
+{ data: 'main', field: 'Entity', sort: true }
+{ data: 'main', field: 'Entity', sort: true }
+{ data: 'main', field: 'Deaths' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

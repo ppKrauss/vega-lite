@@ -1,3 +1,236 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>concat_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>concat_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Output<br/><i>concat_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lo>;
+    tooltip = "[57]&#010;FilterInvalid {lo:{axis:{gridColor:{condition:{test:datum.value === 0,value:#666},value:#CCC},gridDash:[3,3],title:},field:lo,scale:{domain:[-3,3]},type:quantitative}}"
+  ]
+  "58" [
+    label = <Output<br/><i>concat_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Output<br/><i>concat_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> mean>;
+    tooltip = "[63]&#010;FilterInvalid {mean:{field:mean,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>concat_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Source>;
+    tooltip = "[66]&#010;undefined"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Output<br/><i>concat_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Output<br/><i>concat_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[72]&#010;Identifier"
+  ]
+  "73" [
+    label = <Output<br/><i>concat_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> from>;
+    tooltip = "[75]&#010;FilterInvalid {from:{axis:null,field:from,scale:{zero:false},type:quantitative}}"
+  ]
+  "76" [
+    label = <Output<br/><i>concat_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[78]&#010;Identifier"
+  ]
+  "79" [
+    label = <Output<br/><i>concat_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[79]&#010;Output 80"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> to>;
+    tooltip = "[81]&#010;FilterInvalid {to:{axis:null,field:to,type:quantitative}}"
+  ]
+  "82" [
+    label = <Output<br/><i>concat_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "84" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[84]&#010;Identifier"
+  ]
+  "85" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> label>;
+    tooltip = "[85]&#010;Filter datum.label === 'PoleStar'"
+  ]
+  "86" [
+    label = <Output<br/><i>concat_1_layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> from>;
+    tooltip = "[88]&#010;FilterInvalid {from:{axis:null,field:from,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>concat_1_layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "91" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[91]&#010;Identifier"
+  ]
+  "92" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> label>;
+    tooltip = "[92]&#010;Filter datum.label !== 'PoleStar'"
+  ]
+  "93" [
+    label = <Output<br/><i>concat_1_layer_3_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[93]&#010;Output 94"
+  ]
+  "95" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> from>;
+    tooltip = "[95]&#010;FilterInvalid {from:{axis:null,field:from,type:quantitative}}"
+  ]
+  "96" [
+    label = <Output<br/><i>concat_1_layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[96]&#010;Output 97"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "57" "57" -> "58" "52" -> "60" "60" -> "61" "61" -> "63" "63" -> "64" "66" -> "67" "67" -> "68" "68" -> "70" "70" -> "72" "72" -> "73" "73" -> "75" "75" -> "76" "70" -> "78" "78" -> "79" "79" -> "81" "81" -> "82" "70" -> "84" "84" -> "85" "85" -> "86" "86" -> "88" "88" -> "89" "70" -> "91" "91" -> "92" "92" -> "93" "93" -> "95" "95" -> "96"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "57" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lo>;
+    tooltip = "[57]&#010;FilterInvalid {lo:{axis:{gridColor:{condition:{test:datum.value === 0,value:#666},value:#CCC},gridDash:[3,3],title:},field:lo,scale:{domain:[-3,3]},type:quantitative}}"
+  ]
+  "58" [
+    label = <Output<br/><i>concat_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> mean>;
+    tooltip = "[63]&#010;FilterInvalid {mean:{field:mean,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>concat_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Source>;
+    tooltip = "[66]&#010;undefined"
+  ]
+  "75" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> from>;
+    tooltip = "[75]&#010;FilterInvalid {from:{axis:null,field:from,scale:{zero:false},type:quantitative}}"
+  ]
+  "76" [
+    label = <Output<br/><i>concat_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "81" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> to>;
+    tooltip = "[81]&#010;FilterInvalid {to:{axis:null,field:to,type:quantitative}}"
+  ]
+  "82" [
+    label = <Output<br/><i>concat_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "85" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> label>;
+    tooltip = "[85]&#010;Filter datum.label === 'PoleStar'"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> from>;
+    tooltip = "[88]&#010;FilterInvalid {from:{axis:null,field:from,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>concat_1_layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "92" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> label>;
+    tooltip = "[92]&#010;Filter datum.label !== 'PoleStar'"
+  ]
+  "95" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> from>;
+    tooltip = "[95]&#010;FilterInvalid {from:{axis:null,field:from,type:quantitative}}"
+  ]
+  "96" [
+    label = <Output<br/><i>concat_1_layer_3_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[96]&#010;Output 97"
+  ]
+
+  "43" -> "57" "57" -> "58" "43" -> "63" "63" -> "64" "66" -> "75" "75" -> "76" "66" -> "81" "81" -> "82" "66" -> "85" "85" -> "88" "88" -> "89" "66" -> "92" "92" -> "95" "95" -> "96"
+}
+{ data: 'concat_0_layer_1_main', field: 'measure', sort: true }
+[ -3, 3 ]
+{ data: 'concat_0_layer_0_main', field: 'study', sort: true }
+{ data: 'concat_0_layer_1_main', field: 'study', sort: true }
+{ data: 'concat_1_layer_0_main', field: 'from' }
+{ data: 'concat_1_layer_0_main', field: 'to' }
+{ data: 'concat_1_layer_1_main', field: 'to' }
+{ data: 'concat_1_layer_2_main', field: 'from' }
+{ data: 'concat_1_layer_3_main', field: 'from' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

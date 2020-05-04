@@ -1,3 +1,108 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/income.json</i>>;
+    tooltip = "[43]&#010;data/income.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[45]&#010;Lookup {secondary:lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> group>;
+    tooltip = "[50]&#010;Facet r:{fields:[group],name:row_domain}"
+  ]
+  "51" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[51]&#010;Identifier"
+  ]
+  "52" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[52]&#010;GeoJSON geo child_geojson_0 null"
+  ]
+  "53" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> pct>;
+    tooltip = "[55]&#010;FilterInvalid {pct:{field:pct,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[58]&#010;data/us-10m.json"
+  ]
+  "59" [
+    label = <Output<br/><i>lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "58" -> "59"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/income.json</i>>;
+    tooltip = "[43]&#010;data/income.json"
+  ]
+  "45" [
+    label = <Lookup<br/><font color="grey" point-size="10">IN:</font> id<br/><font color="grey" point-size="10">OUT:</font> geo>;
+    tooltip = "[45]&#010;Lookup {secondary:lookup_0,transform:{as:geo,from:{data:{format:{feature:states,type:topojson},url:data/us-10m.json},key:id},lookup:id}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> group>;
+    tooltip = "[50]&#010;Facet r:{fields:[group],name:row_domain}"
+  ]
+  "52" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> geo>;
+    tooltip = "[52]&#010;GeoJSON geo child_geojson_0 null"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> pct>;
+    tooltip = "[55]&#010;FilterInvalid {pct:{field:pct,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Source<br/><i>data/us-10m.json</i>>;
+    tooltip = "[58]&#010;data/us-10m.json"
+  ]
+  "59" [
+    label = <Output<br/><i>lookup_0</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "62" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 61"
+  ]
+
+  "43" -> "45" "45" -> "52" "52" -> "55" "55" -> "48" "48" -> "62" "62" -> "50" "50" -> "56" "58" -> "59"
+}
+{ data: 'scale_child_main', field: 'pct' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

@@ -1,3 +1,127 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating>;
+    tooltip = "[45]&#010;Filter datum.IMDB_Rating != null"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Release_Date<br/><font color="grey" point-size="10">OUT:</font> Release_Date>;
+    tooltip = "[46]&#010;Parse {Release_Date:date}"
+  ]
+  "47" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> Release_Date<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[47]&#010;TimeUnit {{\as\:\year\,\field\:\Release_Date\,\timeUnit\:{\unit\:\year\}}:{as:year,field:Release_Date,timeUnit:{unit:year}}}"
+  ]
+  "48" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> year, IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> AverageYearRating>;
+    tooltip = "[48]&#010;JoinAggregateTransform {groupby:[year],joinaggregate:[{as:AverageYearRating,field:IMDB_Rating,op:mean}]}"
+  ]
+  "49" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, AverageYearRating>;
+    tooltip = "[49]&#010;Filter (datum.IMDB_Rating - datum.AverageYearRating) > 2.5"
+  ]
+  "50" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating>;
+    tooltip = "[57]&#010;FilterInvalid {IMDB_Rating:{axis:{title:IMDB Rating},field:IMDB_Rating,type:quantitative}}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[60]&#010;Identifier"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> AverageYearRating>;
+    tooltip = "[63]&#010;FilterInvalid {AverageYearRating:{field:AverageYearRating,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "57" "57" -> "58" "52" -> "60" "60" -> "61" "61" -> "63" "63" -> "64"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating>;
+    tooltip = "[45]&#010;Filter datum.IMDB_Rating != null"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Release_Date<br/><font color="grey" point-size="10">OUT:</font> Release_Date>;
+    tooltip = "[46]&#010;Parse {Release_Date:date}"
+  ]
+  "47" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> Release_Date<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[47]&#010;TimeUnit {{\as\:\year\,\field\:\Release_Date\,\timeUnit\:{\unit\:\year\}}:{as:year,field:Release_Date,timeUnit:{unit:year}}}"
+  ]
+  "48" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> year, IMDB_Rating<br/><font color="grey" point-size="10">OUT:</font> AverageYearRating>;
+    tooltip = "[48]&#010;JoinAggregateTransform {groupby:[year],joinaggregate:[{as:AverageYearRating,field:IMDB_Rating,op:mean}]}"
+  ]
+  "49" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating, AverageYearRating>;
+    tooltip = "[49]&#010;Filter (datum.IMDB_Rating - datum.AverageYearRating) > 2.5"
+  ]
+  "57" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> IMDB_Rating>;
+    tooltip = "[57]&#010;FilterInvalid {IMDB_Rating:{axis:{title:IMDB Rating},field:IMDB_Rating,type:quantitative}}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> AverageYearRating>;
+    tooltip = "[63]&#010;FilterInvalid {AverageYearRating:{field:AverageYearRating,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "47" "47" -> "48" "48" -> "49" "49" -> "57" "57" -> "58" "49" -> "63" "63" -> "64"
+}
+{ data: 'layer_0_main', field: 'IMDB_Rating' }
+{ data: 'layer_1_main', field: 'AverageYearRating' }
+{ data: 'layer_0_main', field: 'Title', sort: true }
+{ data: 'layer_1_main', field: 'Title', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Bar graph showing the best films for the year they were produced, where best is defined by at least 2.5 points above average for that year. The red point shows the average rating for a film in that year, and the bar is the rating that the film recieved.",

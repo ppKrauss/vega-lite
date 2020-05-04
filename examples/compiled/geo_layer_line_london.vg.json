@@ -1,3 +1,141 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source<br/><i>data/londonBoroughs.json</i>>;
+    tooltip = "[49]&#010;data/londonBoroughs.json"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Source<br/><i>data/londonCentroids.json</i>>;
+    tooltip = "[55]&#010;data/londonCentroids.json"
+  ]
+  "56" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[56]&#010;Identifier"
+  ]
+  "57" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> name<br/><font color="grey" point-size="10">OUT:</font> bLabel>;
+    tooltip = "[57]&#010;Calculate {as:bLabel,calculate:indexof (datum.name,' ') > 0  ? substring(datum.name,0,indexof(datum.name, ' ')) : datum.name}"
+  ]
+  "58" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> cx, cy>;
+    tooltip = "[58]&#010;GeoJSON null layer_1_geojson_0 [cx,cy]"
+  ]
+  "59" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> cx, cy<br/><font color="grey" point-size="10">OUT:</font> layer_1_x, layer_1_y>;
+    tooltip = "[59]&#010;Geopoint projection [cx,cy] [layer_1_x,layer_1_y]"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Source<br/><i>data/londonTubeLines.json</i>>;
+    tooltip = "[64]&#010;data/londonTubeLines.json"
+  ]
+  "65" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[65]&#010;Identifier"
+  ]
+  "66" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "53" "55" -> "56" "56" -> "57" "57" -> "58" "58" -> "59" "59" -> "60" "60" -> "62" "64" -> "65" "65" -> "66" "66" -> "68"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source<br/><i>data/londonBoroughs.json</i>>;
+    tooltip = "[49]&#010;data/londonBoroughs.json"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Source<br/><i>data/londonCentroids.json</i>>;
+    tooltip = "[55]&#010;data/londonCentroids.json"
+  ]
+  "57" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> name<br/><font color="grey" point-size="10">OUT:</font> bLabel>;
+    tooltip = "[57]&#010;Calculate {as:bLabel,calculate:indexof (datum.name,' ') > 0  ? substring(datum.name,0,indexof(datum.name, ' ')) : datum.name}"
+  ]
+  "58" [
+    label = <GeoJSON<br/><font color="grey" point-size="10">IN:</font> cx, cy>;
+    tooltip = "[58]&#010;GeoJSON null layer_1_geojson_0 [cx,cy]"
+  ]
+  "59" [
+    label = <GeoPoint<br/><font color="grey" point-size="10">IN:</font> cx, cy<br/><font color="grey" point-size="10">OUT:</font> layer_1_x, layer_1_y>;
+    tooltip = "[59]&#010;Geopoint projection [cx,cy] [layer_1_x,layer_1_y]"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Source<br/><i>data/londonTubeLines.json</i>>;
+    tooltip = "[64]&#010;data/londonTubeLines.json"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "49" -> "53" "55" -> "57" "57" -> "58" "58" -> "59" "59" -> "62" "64" -> "68"
+}
+[
+  'Bakerloo',
+  'Central',
+  'Circle',
+  'District',
+  'DLR',
+  'Hammersmith & City',
+  'Jubilee',
+  'Metropolitan',
+  'Northern',
+  'Piccadilly',
+  'Victoria',
+  'Waterloo & City'
+]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

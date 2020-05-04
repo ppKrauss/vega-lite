@@ -1,3 +1,160 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/co2-concentration.csv</i>>;
+    tooltip = "[43]&#010;data/co2-concentration.csv"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Date<br/><font color="grey" point-size="10">OUT:</font> Date>;
+    tooltip = "[44]&#010;Parse {Date:utc:'%Y-%m-%d'}"
+  ]
+  "45" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[45]&#010;Identifier"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> Date<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[46]&#010;Calculate {as:year,calculate:year(datum.Date)}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> decade>;
+    tooltip = "[47]&#010;Calculate {as:decade,calculate:floor(datum.year / 10)}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> year, Date<br/><font color="grey" point-size="10">OUT:</font> scaled_date>;
+    tooltip = "[48]&#010;Calculate {as:scaled_date,calculate:(datum.year % 10) + (month(datum.Date)/12)}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> first_date, scaled_date, last_date<br/><font color="grey" point-size="10">OUT:</font> end>;
+    tooltip = "[49]&#010;Calculate {as:end,calculate:datum.first_date === datum.scaled_date ? 'first' : datum.last_date === datum.scaled_date ? 'last' : null}"
+  ]
+  "50" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> decade, scaled_date<br/><font color="grey" point-size="10">OUT:</font> min_scaled_date, argmin_scaled_date>;
+    tooltip = "[62]&#010;Aggregate {dimensions:Set(\decade\),measures:{scaled_date:{argmin:Set(\argmin_scaled_date\),min:Set(\min_scaled_date\)}}}"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> scaled_date, CO2>;
+    tooltip = "[63]&#010;FilterInvalid {CO2:{aggregate:{argmin:scaled_date},field:CO2,type:quantitative},scaled_date:{aggregate:min,field:scaled_date,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[66]&#010;Identifier"
+  ]
+  "67" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[67]&#010;Output 68"
+  ]
+  "69" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> decade, scaled_date<br/><font color="grey" point-size="10">OUT:</font> max_scaled_date, argmax_scaled_date>;
+    tooltip = "[69]&#010;Aggregate {dimensions:Set(\decade\),measures:{scaled_date:{argmax:Set(\argmax_scaled_date\),max:Set(\max_scaled_date\)}}}"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> scaled_date, CO2>;
+    tooltip = "[70]&#010;FilterInvalid {CO2:{aggregate:{argmax:scaled_date},field:CO2,type:quantitative},scaled_date:{aggregate:max,field:scaled_date,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "50" "50" -> "52" "52" -> "54" "54" -> "55" "55" -> "57" "52" -> "59" "59" -> "60" "60" -> "62" "62" -> "63" "63" -> "64" "52" -> "66" "66" -> "67" "67" -> "69" "69" -> "70" "70" -> "71"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/co2-concentration.csv</i>>;
+    tooltip = "[43]&#010;data/co2-concentration.csv"
+  ]
+  "44" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Date<br/><font color="grey" point-size="10">OUT:</font> Date>;
+    tooltip = "[44]&#010;Parse {Date:utc:'%Y-%m-%d'}"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> Date<br/><font color="grey" point-size="10">OUT:</font> year>;
+    tooltip = "[46]&#010;Calculate {as:year,calculate:year(datum.Date)}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> year<br/><font color="grey" point-size="10">OUT:</font> decade>;
+    tooltip = "[47]&#010;Calculate {as:decade,calculate:floor(datum.year / 10)}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> year, Date<br/><font color="grey" point-size="10">OUT:</font> scaled_date>;
+    tooltip = "[48]&#010;Calculate {as:scaled_date,calculate:(datum.year % 10) + (month(datum.Date)/12)}"
+  ]
+  "49" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> first_date, scaled_date, last_date<br/><font color="grey" point-size="10">OUT:</font> end>;
+    tooltip = "[49]&#010;Calculate {as:end,calculate:datum.first_date === datum.scaled_date ? 'first' : datum.last_date === datum.scaled_date ? 'last' : null}"
+  ]
+  "57" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "63" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> scaled_date, CO2>;
+    tooltip = "[63]&#010;FilterInvalid {CO2:{aggregate:{argmin:scaled_date},field:CO2,type:quantitative},scaled_date:{aggregate:min,field:scaled_date,type:quantitative}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "69" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> decade, scaled_date<br/><font color="grey" point-size="10">OUT:</font> max_scaled_date, argmax_scaled_date, min_scaled_date, argmin_scaled_date>;
+    tooltip = "[69]&#010;Aggregate {dimensions:Set(\decade\),measures:{scaled_date:{argmax:Set(\argmax_scaled_date\),argmin:Set(\argmin_scaled_date\),max:Set(\max_scaled_date\),min:Set(\min_scaled_date\)}}}"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> scaled_date, CO2>;
+    tooltip = "[70]&#010;FilterInvalid {CO2:{aggregate:{argmax:scaled_date},field:CO2,type:quantitative},scaled_date:{aggregate:max,field:scaled_date,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+
+  "43" -> "44" "44" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "57" "57" -> "69" "69" -> "70" "70" -> "71" "69" -> "63" "63" -> "64"
+}
+{ data: 'layer_0_main', field: 'scaled_date' }
+{ data: 'layer_1_main', field: 'min_scaled_date' }
+{ data: 'layer_2_main', field: 'max_scaled_date' }
+{ data: 'layer_0_main', field: 'CO2' }
+{ data: 'layer_1_main', field: 'argmin_scaled_date.CO2' }
+{ data: 'layer_2_main', field: 'argmax_scaled_date.CO2' }
+{ data: 'layer_0_main', field: 'decade', sort: true }
+{ data: 'layer_1_main', field: 'decade', sort: true }
+{ data: 'layer_2_main', field: 'decade', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

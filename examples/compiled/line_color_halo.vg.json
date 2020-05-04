@@ -1,3 +1,332 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <PivotTransform<br/><font color="grey" point-size="10">IN:</font> symbol, price, date>;
+    tooltip = "[45]&#010;PivotTransform {groupby:[date],pivot:symbol,value:price}"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>child__layer_AAPL_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>child__layer_AAPL_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[56]&#010;Parse {date:date}"
+  ]
+  "57" [
+    label = <Output<br/><i>child__layer_AAPL_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Output<br/><i>child__layer_AAPL_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[61]&#010;Identifier"
+  ]
+  "62" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[62]&#010;Parse {date:date}"
+  ]
+  "63" [
+    label = <Output<br/><i>child__layer_AAPL_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Output<br/><i>child__layer_AAPL_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Output<br/><i>child__layer_AMZN_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <Output<br/><i>child__layer_AMZN_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[72]&#010;Identifier"
+  ]
+  "73" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[73]&#010;Parse {date:date}"
+  ]
+  "74" [
+    label = <Output<br/><i>child__layer_AMZN_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Output<br/><i>child__layer_AMZN_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[78]&#010;Identifier"
+  ]
+  "79" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[79]&#010;Parse {date:date}"
+  ]
+  "80" [
+    label = <Output<br/><i>child__layer_AMZN_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "82" [
+    label = <Output<br/><i>child__layer_AMZN_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "84" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[84]&#010;Identifier"
+  ]
+  "85" [
+    label = <Output<br/><i>child__layer_GOOG_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[85]&#010;Output 86"
+  ]
+  "87" [
+    label = <Output<br/><i>child__layer_GOOG_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[87]&#010;Output 88"
+  ]
+  "89" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[89]&#010;Identifier"
+  ]
+  "90" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[90]&#010;Parse {date:date}"
+  ]
+  "91" [
+    label = <Output<br/><i>child__layer_GOOG_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[91]&#010;Output 92"
+  ]
+  "93" [
+    label = <Output<br/><i>child__layer_GOOG_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[93]&#010;Output 94"
+  ]
+  "95" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[95]&#010;Identifier"
+  ]
+  "96" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[96]&#010;Parse {date:date}"
+  ]
+  "97" [
+    label = <Output<br/><i>child__layer_GOOG_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[97]&#010;Output 98"
+  ]
+  "99" [
+    label = <Output<br/><i>child__layer_GOOG_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[99]&#010;Output 100"
+  ]
+  "101" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[101]&#010;Identifier"
+  ]
+  "102" [
+    label = <Output<br/><i>child__layer_IBM_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[102]&#010;Output 103"
+  ]
+  "104" [
+    label = <Output<br/><i>child__layer_IBM_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[104]&#010;Output 105"
+  ]
+  "106" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[106]&#010;Identifier"
+  ]
+  "107" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[107]&#010;Parse {date:date}"
+  ]
+  "108" [
+    label = <Output<br/><i>child__layer_IBM_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[108]&#010;Output 109"
+  ]
+  "110" [
+    label = <Output<br/><i>child__layer_IBM_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[110]&#010;Output 111"
+  ]
+  "112" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[112]&#010;Identifier"
+  ]
+  "113" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[113]&#010;Parse {date:date}"
+  ]
+  "114" [
+    label = <Output<br/><i>child__layer_IBM_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[114]&#010;Output 115"
+  ]
+  "116" [
+    label = <Output<br/><i>child__layer_IBM_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[116]&#010;Output 117"
+  ]
+  "118" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[118]&#010;Identifier"
+  ]
+  "119" [
+    label = <Output<br/><i>child__layer_MSFT_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[119]&#010;Output 120"
+  ]
+  "121" [
+    label = <Output<br/><i>child__layer_MSFT_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[121]&#010;Output 122"
+  ]
+  "123" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[123]&#010;Identifier"
+  ]
+  "124" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[124]&#010;Parse {date:date}"
+  ]
+  "125" [
+    label = <Output<br/><i>child__layer_MSFT_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[125]&#010;Output 126"
+  ]
+  "127" [
+    label = <Output<br/><i>child__layer_MSFT_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[127]&#010;Output 128"
+  ]
+  "129" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[129]&#010;Identifier"
+  ]
+  "130" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[130]&#010;Parse {date:date}"
+  ]
+  "131" [
+    label = <Output<br/><i>child__layer_MSFT_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[131]&#010;Output 132"
+  ]
+  "133" [
+    label = <Output<br/><i>child__layer_MSFT_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[133]&#010;Output 134"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "53" "53" -> "55" "55" -> "56" "56" -> "57" "57" -> "59" "53" -> "61" "61" -> "62" "62" -> "63" "63" -> "65" "48" -> "67" "67" -> "68" "68" -> "70" "70" -> "72" "72" -> "73" "73" -> "74" "74" -> "76" "70" -> "78" "78" -> "79" "79" -> "80" "80" -> "82" "48" -> "84" "84" -> "85" "85" -> "87" "87" -> "89" "89" -> "90" "90" -> "91" "91" -> "93" "87" -> "95" "95" -> "96" "96" -> "97" "97" -> "99" "48" -> "101" "101" -> "102" "102" -> "104" "104" -> "106" "106" -> "107" "107" -> "108" "108" -> "110" "104" -> "112" "112" -> "113" "113" -> "114" "114" -> "116" "48" -> "118" "118" -> "119" "119" -> "121" "121" -> "123" "123" -> "124" "124" -> "125" "125" -> "127" "121" -> "129" "129" -> "130" "130" -> "131" "131" -> "133"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <PivotTransform<br/><font color="grey" point-size="10">IN:</font> symbol, price, date>;
+    tooltip = "[45]&#010;PivotTransform {groupby:[date],pivot:symbol,value:price}"
+  ]
+  "59" [
+    label = <Output<br/><i>child__layer_AAPL_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "65" [
+    label = <Output<br/><i>child__layer_AAPL_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "76" [
+    label = <Output<br/><i>child__layer_AMZN_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "82" [
+    label = <Output<br/><i>child__layer_AMZN_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[82]&#010;Output 83"
+  ]
+  "93" [
+    label = <Output<br/><i>child__layer_GOOG_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[93]&#010;Output 94"
+  ]
+  "99" [
+    label = <Output<br/><i>child__layer_GOOG_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[99]&#010;Output 100"
+  ]
+  "110" [
+    label = <Output<br/><i>child__layer_IBM_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[110]&#010;Output 111"
+  ]
+  "116" [
+    label = <Output<br/><i>child__layer_IBM_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[116]&#010;Output 117"
+  ]
+  "127" [
+    label = <Output<br/><i>child__layer_MSFT_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[127]&#010;Output 128"
+  ]
+  "133" [
+    label = <Output<br/><i>child__layer_MSFT_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[133]&#010;Output 134"
+  ]
+  "135" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[135]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "45" "45" -> "135" "135" -> "65" "65" -> "76" "76" -> "82" "82" -> "93" "93" -> "99" "99" -> "110" "110" -> "116" "116" -> "127" "127" -> "133" "133" -> "59"
+}
+{ data: 'child__layer_AAPL_layer_0_main', field: 'date' }
+{ data: 'child__layer_AAPL_layer_1_main', field: 'date' }
+{ data: 'child__layer_AMZN_layer_0_main', field: 'date' }
+{ data: 'child__layer_AMZN_layer_1_main', field: 'date' }
+{ data: 'child__layer_GOOG_layer_0_main', field: 'date' }
+{ data: 'child__layer_GOOG_layer_1_main', field: 'date' }
+{ data: 'child__layer_IBM_layer_0_main', field: 'date' }
+{ data: 'child__layer_IBM_layer_1_main', field: 'date' }
+{ data: 'child__layer_MSFT_layer_0_main', field: 'date' }
+{ data: 'child__layer_MSFT_layer_1_main', field: 'date' }
+{ data: 'child__layer_AAPL_layer_0_main', field: 'AAPL' }
+{ data: 'child__layer_AAPL_layer_1_main', field: 'AAPL' }
+{ data: 'child__layer_AMZN_layer_0_main', field: 'AMZN' }
+{ data: 'child__layer_AMZN_layer_1_main', field: 'AMZN' }
+{ data: 'child__layer_GOOG_layer_0_main', field: 'GOOG' }
+{ data: 'child__layer_GOOG_layer_1_main', field: 'GOOG' }
+{ data: 'child__layer_IBM_layer_0_main', field: 'IBM' }
+{ data: 'child__layer_IBM_layer_1_main', field: 'IBM' }
+{ data: 'child__layer_MSFT_layer_0_main', field: 'MSFT' }
+{ data: 'child__layer_MSFT_layer_1_main', field: 'MSFT' }
+[ 'AAPL' ]
+[ 'AMZN' ]
+[ 'GOOG' ]
+[ 'IBM' ]
+[ 'MSFT' ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Multi-series Line Chart with Halo. Use pivot and repeat-layer as a workaround to facet groups of lines and their halo strokes. See https://github.com/vega/vega-lite/issues/6192 for more discussion.",

@@ -1,3 +1,65 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol==='GOOG'"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[46]&#010;Parse {date:date}"
+  ]
+  "47" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[47]&#010;Filter inrange(time(datetime(year(datum[date]), 0, 1, 0, 0, 0, 0)), [time(datetime(2006, 0, 1, 0, 0, 0, 0)), time(datetime(2007, 0, 1, 0, 0, 0, 0))])"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol==='GOOG'"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[46]&#010;Parse {date:date}"
+  ]
+  "47" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> date>;
+    tooltip = "[47]&#010;Filter inrange(time(datetime(year(datum[date]), 0, 1, 0, 0, 0, 0)), [time(datetime(2006, 0, 1, 0, 0, 0, 0)), time(datetime(2007, 0, 1, 0, 0, 0, 0))])"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "47" "47" -> "50"
+}
+{ data: 'main', field: 'date' }
+{ data: 'main', field: 'price' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Line chart with conditional axis ticks, labels, and grid.",

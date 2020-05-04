@@ -1,3 +1,173 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Source>;
+    tooltip = "[49]&#010;undefined"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Value>;
+    tooltip = "[58]&#010;FilterInvalid {Value:{field:Value,type:quantitative}}"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[61]&#010;Identifier"
+  ]
+  "62" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Value>;
+    tooltip = "[62]&#010;Filter datum.Value >= 300"
+  ]
+  "63" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> baseline>;
+    tooltip = "[63]&#010;Calculate {as:baseline,calculate:300}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_0_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> baseline>;
+    tooltip = "[66]&#010;FilterInvalid {baseline:{field:baseline,title:PM2.5 Value,type:quantitative}}"
+  ]
+  "67" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[67]&#010;Output 68"
+  ]
+  "69" [
+    label = <Source>;
+    tooltip = "[69]&#010;undefined"
+  ]
+  "70" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[70]&#010;Identifier"
+  ]
+  "71" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[75]&#010;Identifier"
+  ]
+  "76" [
+    label = <Output<br/><i>layer_1_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[76]&#010;Output 77"
+  ]
+  "78" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+  "80" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[80]&#010;Identifier"
+  ]
+  "81" [
+    label = <Output<br/><i>layer_1_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[81]&#010;Output 82"
+  ]
+  "83" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "55" "55" -> "56" "56" -> "58" "58" -> "59" "53" -> "61" "61" -> "62" "62" -> "63" "63" -> "64" "64" -> "66" "66" -> "67" "69" -> "70" "70" -> "71" "71" -> "73" "73" -> "75" "75" -> "76" "76" -> "78" "73" -> "80" "80" -> "81" "81" -> "83"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "49" [
+    label = <Source>;
+    tooltip = "[49]&#010;undefined"
+  ]
+  "58" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Value>;
+    tooltip = "[58]&#010;FilterInvalid {Value:{field:Value,type:quantitative}}"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_0_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "62" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> Value>;
+    tooltip = "[62]&#010;Filter datum.Value >= 300"
+  ]
+  "63" [
+    label = <Calculate<br/><font color="grey" point-size="10">OUT:</font> baseline>;
+    tooltip = "[63]&#010;Calculate {as:baseline,calculate:300}"
+  ]
+  "66" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> baseline>;
+    tooltip = "[66]&#010;FilterInvalid {baseline:{field:baseline,title:PM2.5 Value,type:quantitative}}"
+  ]
+  "67" [
+    label = <Output<br/><i>layer_0_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[67]&#010;Output 68"
+  ]
+  "69" [
+    label = <Source>;
+    tooltip = "[69]&#010;undefined"
+  ]
+  "78" [
+    label = <Output<br/><i>layer_1_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[78]&#010;Output 79"
+  ]
+  "83" [
+    label = <Output<br/><i>layer_1_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+
+  "49" -> "58" "58" -> "59" "49" -> "62" "62" -> "63" "63" -> "66" "66" -> "67" "69" -> "83" "83" -> "78"
+}
+{ data: 'layer_0_layer_0_main', field: 'Day', sort: true }
+{ data: 'layer_0_layer_1_main', field: 'Day', sort: true }
+{ data: 'layer_0_layer_0_main', field: 'Value' }
+{ data: 'layer_0_layer_1_main', field: 'baseline' }
+{ data: 'layer_0_layer_1_main', field: 'Value' }
+[ 300 ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "The PM2.5 value of Beijing observed 15 days, highlighting the days when PM2.5 level is hazardous to human health. Data source https://chartaccent.github.io/chartaccent.html",

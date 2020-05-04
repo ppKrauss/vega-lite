@@ -1,3 +1,67 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/iris.json</i>>;
+    tooltip = "[43]&#010;data/iris.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> petalWidth, petalLength, sepalWidth, sepalLength<br/><font color="grey" point-size="10">OUT:</font> organ, value>;
+    tooltip = "[45]&#010;FoldTransform {as:[organ,value],fold:[petalWidth,petalLength,sepalWidth,sepalLength]}"
+  ]
+  "46" [
+    label = <DensityTransform<br/><font color="grey" point-size="10">IN:</font> value, organ<br/><font color="grey" point-size="10">OUT:</font> value, density>;
+    tooltip = "[46]&#010;DensityTransform {as:[value,density],bandwidth:0.3,counts:true,density:value,extent:[0,8],groupby:[organ],steps:200}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> density, value, organ<br/><font color="grey" point-size="10">OUT:</font> density_start, density_end>;
+    tooltip = "[49]&#010;Stack {as:[density_start,density_end],dimensionFieldDef:{field:value,type:quantitative},facetby:[],impute:true,offset:zero,sort:{field:[organ],order:[descending]},stackField:density,stackby:[organ]}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/iris.json</i>>;
+    tooltip = "[43]&#010;data/iris.json"
+  ]
+  "45" [
+    label = <FoldTransform<br/><font color="grey" point-size="10">IN:</font> petalWidth, petalLength, sepalWidth, sepalLength<br/><font color="grey" point-size="10">OUT:</font> organ, value>;
+    tooltip = "[45]&#010;FoldTransform {as:[organ,value],fold:[petalWidth,petalLength,sepalWidth,sepalLength]}"
+  ]
+  "46" [
+    label = <DensityTransform<br/><font color="grey" point-size="10">IN:</font> value, organ<br/><font color="grey" point-size="10">OUT:</font> value, density>;
+    tooltip = "[46]&#010;DensityTransform {as:[value,density],bandwidth:0.3,counts:true,density:value,extent:[0,8],groupby:[organ],steps:200}"
+  ]
+  "49" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> density, value, organ<br/><font color="grey" point-size="10">OUT:</font> density_start, density_end>;
+    tooltip = "[49]&#010;Stack {as:[density_start,density_end],dimensionFieldDef:{field:value,type:quantitative},facetby:[],impute:true,offset:zero,sort:{field:[organ],order:[descending]},stackField:density,stackby:[organ]}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'value' }
+{ data: 'main', field: 'density_start' }
+{ data: 'main', field: 'density_end' }
+{ data: 'main', field: 'organ', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

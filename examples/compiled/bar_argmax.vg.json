@@ -1,3 +1,57 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Major_Genre, US_Gross<br/><font color="grey" point-size="10">OUT:</font> argmax_US_Gross>;
+    tooltip = "[47]&#010;Aggregate {dimensions:Set(\Major_Genre\),measures:{US_Gross:{argmax:Set(\argmax_US_Gross\)}}}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Production_Budget>;
+    tooltip = "[48]&#010;FilterInvalid {Production_Budget:{aggregate:{argmax:US_Gross},field:Production_Budget,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "48" "48" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/movies.json</i>>;
+    tooltip = "[43]&#010;data/movies.json"
+  ]
+  "47" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> Major_Genre, US_Gross<br/><font color="grey" point-size="10">OUT:</font> argmax_US_Gross>;
+    tooltip = "[47]&#010;Aggregate {dimensions:Set(\Major_Genre\),measures:{US_Gross:{argmax:Set(\argmax_US_Gross\)}}}"
+  ]
+  "48" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Production_Budget>;
+    tooltip = "[48]&#010;FilterInvalid {Production_Budget:{aggregate:{argmax:US_Gross},field:Production_Budget,type:quantitative}}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "47" "47" -> "48" "48" -> "49"
+}
+{ data: 'main', field: 'argmax_US_Gross.Production_Budget' }
+{ data: 'main', field: 'Major_Genre', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "The production budget of the movie that has the highest US Gross in each major genre.",

@@ -1,3 +1,95 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/barley.json</i>>;
+    tooltip = "[43]&#010;data/barley.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[49]&#010;Facet c:{fields:[year],name:column_domain}"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, site, yield<br/><font color="grey" point-size="10">OUT:</font> sum_yield>;
+    tooltip = "[53]&#010;Aggregate {dimensions:Set(\variety\,\site\),measures:{yield:{sum:Set(\sum_yield\)}}}"
+  ]
+  "54" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> sum_yield, variety, site<br/><font color="grey" point-size="10">OUT:</font> sum_yield_start, sum_yield_end>;
+    tooltip = "[54]&#010;Stack {as:[sum_yield_start,sum_yield_end],dimensionFieldDef:{field:variety,type:nominal},facetby:[],impute:false,offset:zero,sort:{field:[site],order:[ascending]},stackField:sum_yield,stackby:[site]}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> yield>;
+    tooltip = "[55]&#010;FilterInvalid {yield:{aggregate:sum,field:yield,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "54" -> "55" "55" -> "56"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/barley.json</i>>;
+    tooltip = "[43]&#010;data/barley.json"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[49]&#010;Facet c:{fields:[year],name:column_domain}"
+  ]
+  "53" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> variety, site, year, yield<br/><font color="grey" point-size="10">OUT:</font> sum_yield>;
+    tooltip = "[53]&#010;Aggregate {dimensions:Set(\variety\,\site\,\year\),measures:{yield:{sum:Set(\sum_yield\)}}}"
+  ]
+  "54" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> sum_yield, variety, year, site<br/><font color="grey" point-size="10">OUT:</font> sum_yield_start, sum_yield_end>;
+    tooltip = "[54]&#010;Stack {as:[sum_yield_start,sum_yield_end],dimensionFieldDef:{field:variety,type:nominal},facetby:[year],impute:false,offset:zero,sort:{field:[site],order:[ascending]},stackField:sum_yield,stackby:[site]}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> yield>;
+    tooltip = "[55]&#010;FilterInvalid {yield:{aggregate:sum,field:yield,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "59" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 58"
+  ]
+
+  "43" -> "53" "53" -> "54" "54" -> "55" "55" -> "47" "47" -> "59" "59" -> "49" "49" -> "56"
+}
+{ data: 'scale_child_main', field: 'sum_yield_start' }
+{ data: 'scale_child_main', field: 'sum_yield_end' }
+{ data: 'scale_child_main', field: 'variety', sort: true }
+{ data: 'scale_child_main', field: 'site', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

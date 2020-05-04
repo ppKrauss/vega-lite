@@ -1,3 +1,207 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> a, x<br/><font color="grey" point-size="10">OUT:</font> median_x_by_a>;
+    tooltip = "[45]&#010;JoinAggregateTransform {groupby:[a],joinaggregate:[{as:median_x_by_a,field:x,op:median}]}"
+  ]
+  "46" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> b, y<br/><font color="grey" point-size="10">OUT:</font> median_y_by_b>;
+    tooltip = "[46]&#010;JoinAggregateTransform {groupby:[b],joinaggregate:[{as:median_y_by_b,field:y,op:median}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> a<br/><font color="grey" point-size="10">OUT:</font> column_a_sort_index>;
+    tooltip = "[47]&#010;Calculate {as:column_a_sort_index,calculate:datum[\a\]===\B\ ? 0 : datum[\a\]===\C\ ? 1 : datum[\a\]===\A\ ? 2 : 3}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> b<br/><font color="grey" point-size="10">OUT:</font> row_b_sort_index>;
+    tooltip = "[48]&#010;Calculate {as:row_b_sort_index,calculate:datum[\b\]===\Y\ ? 0 : datum[\b\]===\X\ ? 1 : datum[\b\]===\Z\ ? 2 : 3}"
+  ]
+  "49" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> b, a, row_b_sort_index, column_a_sort_index>;
+    tooltip = "[53]&#010;Facet r:{fields:[b],name:row_domain,sortIndexField:row_b_sort_index} c:{fields:[a],name:column_domain,sortIndexField:column_a_sort_index}"
+  ]
+  "54" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[54]&#010;Identifier"
+  ]
+  "55" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[55]&#010;Output 56"
+  ]
+  "57" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[59]&#010;Identifier"
+  ]
+  "60" [
+    label = <Output<br/><i>child_layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, y>;
+    tooltip = "[62]&#010;FilterInvalid {x:{field:x,title:x,type:quantitative},y:{field:y,title:y,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>child_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "65" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[65]&#010;Identifier"
+  ]
+  "66" [
+    label = <Output<br/><i>child_layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[66]&#010;Output 67"
+  ]
+  "68" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> median_x_by_a<br/><font color="grey" point-size="10">OUT:</font> median_median_x_by_a>;
+    tooltip = "[68]&#010;Aggregate {dimensions:Set(),measures:{median_x_by_a:{median:Set(\median_median_x_by_a\)}}}"
+  ]
+  "69" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> median_x_by_a>;
+    tooltip = "[69]&#010;FilterInvalid {median_x_by_a:{aggregate:median,field:median_x_by_a,type:quantitative}}"
+  ]
+  "70" [
+    label = <Output<br/><i>child_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "72" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[72]&#010;Identifier"
+  ]
+  "73" [
+    label = <Output<br/><i>child_layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[73]&#010;Output 74"
+  ]
+  "75" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> median_y_by_b<br/><font color="grey" point-size="10">OUT:</font> median_median_y_by_b>;
+    tooltip = "[75]&#010;Aggregate {dimensions:Set(),measures:{median_y_by_b:{median:Set(\median_median_y_by_b\)}}}"
+  ]
+  "76" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> median_y_by_b>;
+    tooltip = "[76]&#010;FilterInvalid {median_y_by_b:{aggregate:median,field:median_y_by_b,type:quantitative}}"
+  ]
+  "77" [
+    label = <Output<br/><i>child_layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "49" "49" -> "51" "51" -> "53" "53" -> "54" "54" -> "55" "55" -> "57" "57" -> "59" "59" -> "60" "60" -> "62" "62" -> "63" "57" -> "65" "65" -> "66" "66" -> "68" "68" -> "69" "69" -> "70" "57" -> "72" "72" -> "73" "73" -> "75" "75" -> "76" "76" -> "77"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> a, x<br/><font color="grey" point-size="10">OUT:</font> median_x_by_a>;
+    tooltip = "[45]&#010;JoinAggregateTransform {groupby:[a],joinaggregate:[{as:median_x_by_a,field:x,op:median}]}"
+  ]
+  "46" [
+    label = <JoinAggregateTransform<br/><font color="grey" point-size="10">IN:</font> b, y<br/><font color="grey" point-size="10">OUT:</font> median_y_by_b>;
+    tooltip = "[46]&#010;JoinAggregateTransform {groupby:[b],joinaggregate:[{as:median_y_by_b,field:y,op:median}]}"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> a<br/><font color="grey" point-size="10">OUT:</font> column_a_sort_index>;
+    tooltip = "[47]&#010;Calculate {as:column_a_sort_index,calculate:datum[\a\]===\B\ ? 0 : datum[\a\]===\C\ ? 1 : datum[\a\]===\A\ ? 2 : 3}"
+  ]
+  "48" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> b<br/><font color="grey" point-size="10">OUT:</font> row_b_sort_index>;
+    tooltip = "[48]&#010;Calculate {as:row_b_sort_index,calculate:datum[\b\]===\Y\ ? 0 : datum[\b\]===\X\ ? 1 : datum[\b\]===\Z\ ? 2 : 3}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> b, a, row_b_sort_index, column_a_sort_index>;
+    tooltip = "[53]&#010;Facet r:{fields:[b],name:row_domain,sortIndexField:row_b_sort_index} c:{fields:[a],name:column_domain,sortIndexField:column_a_sort_index}"
+  ]
+  "62" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, y>;
+    tooltip = "[62]&#010;FilterInvalid {x:{field:x,title:x,type:quantitative},y:{field:y,title:y,type:quantitative}}"
+  ]
+  "63" [
+    label = <Output<br/><i>child_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+  "69" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> median_x_by_a>;
+    tooltip = "[69]&#010;FilterInvalid {median_x_by_a:{aggregate:median,field:median_x_by_a,type:quantitative}}"
+  ]
+  "70" [
+    label = <Output<br/><i>child_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[70]&#010;Output 71"
+  ]
+  "75" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> median_y_by_b, median_x_by_a<br/><font color="grey" point-size="10">OUT:</font> median_median_y_by_b, median_median_x_by_a>;
+    tooltip = "[75]&#010;Aggregate {dimensions:Set(),measures:{median_x_by_a:{median:Set(\median_median_x_by_a\)},median_y_by_b:{median:Set(\median_median_y_by_b\)}}}"
+  ]
+  "76" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> median_y_by_b>;
+    tooltip = "[76]&#010;FilterInvalid {median_y_by_b:{aggregate:median,field:median_y_by_b,type:quantitative}}"
+  ]
+  "77" [
+    label = <Output<br/><i>child_layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "82" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> x, y>;
+    tooltip = "[82]&#010;FilterInvalid {x:{field:x,title:x,type:quantitative},y:{field:y,title:y,type:quantitative}}"
+  ]
+  "83" [
+    label = <Output<br/><i>clone_child_layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[83]&#010;Output 79"
+  ]
+  "84" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> b, a, median_y_by_b, median_x_by_a<br/><font color="grey" point-size="10">OUT:</font> median_median_y_by_b, median_median_x_by_a>;
+    tooltip = "[84]&#010;Aggregate {dimensions:Set(\b\,\a\),measures:{median_x_by_a:{median:Set(\median_median_x_by_a\)},median_y_by_b:{median:Set(\median_median_y_by_b\)}}}"
+  ]
+  "85" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> median_y_by_b>;
+    tooltip = "[85]&#010;FilterInvalid {median_y_by_b:{aggregate:median,field:median_y_by_b,type:quantitative}}"
+  ]
+  "86" [
+    label = <Output<br/><i>clone_child_layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[86]&#010;Output 80"
+  ]
+  "87" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> median_x_by_a>;
+    tooltip = "[87]&#010;FilterInvalid {median_x_by_a:{aggregate:median,field:median_x_by_a,type:quantitative}}"
+  ]
+  "88" [
+    label = <Output<br/><i>clone_child_layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[88]&#010;Output 81"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "51" "51" -> "53" "53" -> "62" "62" -> "63" "53" -> "75" "75" -> "76" "76" -> "77" "75" -> "69" "69" -> "70" "51" -> "82" "82" -> "83" "51" -> "84" "84" -> "85" "85" -> "86" "84" -> "87" "87" -> "88"
+}
+{ data: 'scale_child_layer_0_main', field: 'x' }
+{ data: 'scale_child_layer_1_main', field: 'median_median_x_by_a' }
+{ data: 'scale_child_layer_0_main', field: 'y' }
+{ data: 'scale_child_layer_2_main', field: 'median_median_y_by_b' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

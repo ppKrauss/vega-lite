@@ -1,3 +1,58 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Impute<br/><font color="grey" point-size="10">IN:</font> b, a, c<br/><font color="grey" point-size="10">OUT:</font> b>;
+    tooltip = "[45]&#010;Impute {frame:[-2,2],groupby:[c],impute:b,key:a,method:mean}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> a<br/><font color="grey" point-size="10">OUT:</font> a>;
+    tooltip = "[46]&#010;Parse {a:number}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Impute<br/><font color="grey" point-size="10">IN:</font> b, a, c<br/><font color="grey" point-size="10">OUT:</font> b>;
+    tooltip = "[45]&#010;Impute {frame:[-2,2],groupby:[c],impute:b,key:a,method:mean}"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> a<br/><font color="grey" point-size="10">OUT:</font> a>;
+    tooltip = "[46]&#010;Parse {a:number}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "49"
+}
+{ data: 'main', field: 'a' }
+{ data: 'main', field: 'b' }
+{ data: 'main', field: 'c', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

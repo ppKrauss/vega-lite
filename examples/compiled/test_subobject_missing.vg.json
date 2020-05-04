@@ -1,3 +1,57 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> options>;
+    tooltip = "[45]&#010;Filter datum.options != null"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> options.price<br/><font color="grey" point-size="10">OUT:</font> options.price>;
+    tooltip = "[46]&#010;Parse {options.price:flatten}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> options>;
+    tooltip = "[45]&#010;Filter datum.options != null"
+  ]
+  "46" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> options.price<br/><font color="grey" point-size="10">OUT:</font> options.price>;
+    tooltip = "[46]&#010;Parse {options.price:flatten}"
+  ]
+  "49" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[49]&#010;Output 50"
+  ]
+
+  "43" -> "46" "46" -> "45" "45" -> "49"
+}
+{ data: 'main', field: 'rank', sort: true }
+{ data: 'main', field: 'options\\.price' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

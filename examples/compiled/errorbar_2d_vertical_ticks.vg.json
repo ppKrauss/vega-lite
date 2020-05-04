@@ -1,3 +1,134 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> Year>;
+    tooltip = "[45]&#010;Parse {Year:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> year_Year>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_Year\,\field\:\Year\,\timeUnit\:{\unit\:\year\}}:{as:year_Year,field:Year,timeUnit:{unit:year}}}"
+  ]
+  "47" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_Year, Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> lower_Miles_per_Gallon, upper_Miles_per_Gallon, center_Miles_per_Gallon>;
+    tooltip = "[47]&#010;Aggregate {dimensions:Set(\year_Year\),measures:{Miles_per_Gallon:{ci0:Set(\lower_Miles_per_Gallon\),ci1:Set(\upper_Miles_per_Gallon\),mean:Set(\center_Miles_per_Gallon\)}}}"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[52]&#010;Identifier"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_Miles_per_Gallon, year_Year>;
+    tooltip = "[55]&#010;FilterInvalid {lower_Miles_per_Gallon:{field:lower_Miles_per_Gallon,scale:{zero:false},title:Miles per Gallon (95% CIs),type:quantitative},year_Year:{field:year_Year,title:Year (year),type:temporal}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> upper_Miles_per_Gallon, year_Year>;
+    tooltip = "[61]&#010;FilterInvalid {upper_Miles_per_Gallon:{field:upper_Miles_per_Gallon,scale:{zero:false},title:Miles per Gallon (95% CIs),type:quantitative},year_Year:{field:year_Year,title:Year (year),type:temporal}}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[64]&#010;Identifier"
+  ]
+  "65" [
+    label = <Output<br/><i>layer_2_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_Miles_per_Gallon, year_Year>;
+    tooltip = "[67]&#010;FilterInvalid {lower_Miles_per_Gallon:{field:lower_Miles_per_Gallon,scale:{zero:false},title:Miles per Gallon (95% CIs),type:quantitative},year_Year:{field:year_Year,title:Year (year),type:temporal}}"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "50" -> "58" "58" -> "59" "59" -> "61" "61" -> "62" "50" -> "64" "64" -> "65" "65" -> "67" "67" -> "68"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> Year>;
+    tooltip = "[45]&#010;Parse {Year:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> Year<br/><font color="grey" point-size="10">OUT:</font> year_Year>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\year_Year\,\field\:\Year\,\timeUnit\:{\unit\:\year\}}:{as:year_Year,field:Year,timeUnit:{unit:year}}}"
+  ]
+  "47" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_Year, Miles_per_Gallon<br/><font color="grey" point-size="10">OUT:</font> lower_Miles_per_Gallon, upper_Miles_per_Gallon, center_Miles_per_Gallon>;
+    tooltip = "[47]&#010;Aggregate {dimensions:Set(\year_Year\),measures:{Miles_per_Gallon:{ci0:Set(\lower_Miles_per_Gallon\),ci1:Set(\upper_Miles_per_Gallon\),mean:Set(\center_Miles_per_Gallon\)}}}"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> lower_Miles_per_Gallon, year_Year>;
+    tooltip = "[55]&#010;FilterInvalid {lower_Miles_per_Gallon:{field:lower_Miles_per_Gallon,scale:{zero:false},title:Miles per Gallon (95% CIs),type:quantitative},year_Year:{field:year_Year,title:Year (year),type:temporal}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> upper_Miles_per_Gallon, year_Year>;
+    tooltip = "[61]&#010;FilterInvalid {upper_Miles_per_Gallon:{field:upper_Miles_per_Gallon,scale:{zero:false},title:Miles per Gallon (95% CIs),type:quantitative},year_Year:{field:year_Year,title:Year (year),type:temporal}}"
+  ]
+  "62" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "68" [
+    label = <Output<br/><i>layer_2_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "55" "55" -> "68" "68" -> "56" "47" -> "61" "61" -> "62"
+}
+{ data: 'layer_0_main', field: 'year_Year' }
+{ data: 'layer_1_main', field: 'year_Year' }
+{ data: 'layer_2_main', field: 'year_Year' }
+{ data: 'layer_0_main', field: 'lower_Miles_per_Gallon' }
+{ data: 'layer_1_main', field: 'upper_Miles_per_Gallon' }
+{ data: 'layer_2_main', field: 'lower_Miles_per_Gallon' }
+{ data: 'layer_2_main', field: 'upper_Miles_per_Gallon' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

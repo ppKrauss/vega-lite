@@ -1,3 +1,95 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol !== 'GOOG'"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[50]&#010;Facet r:{fields:[symbol],name:row_domain}"
+  ]
+  "51" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[51]&#010;Identifier"
+  ]
+  "52" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[52]&#010;Parse {date:date}"
+  ]
+  "53" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> price, date, symbol<br/><font color="grey" point-size="10">OUT:</font> price_start, price_end>;
+    tooltip = "[55]&#010;Stack -1142492750"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol !== 'GOOG'"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[50]&#010;Facet r:{fields:[symbol],name:row_domain}"
+  ]
+  "52" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[52]&#010;Parse {date:date}"
+  ]
+  "55" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> price, date, symbol<br/><font color="grey" point-size="10">OUT:</font> price_start, price_end>;
+    tooltip = "[55]&#010;Stack -1156167030"
+  ]
+  "56" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "59" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 58"
+  ]
+
+  "43" -> "52" "52" -> "45" "45" -> "55" "55" -> "48" "48" -> "59" "59" -> "50" "50" -> "56"
+}
+{ data: 'scale_child_main', field: 'date' }
+{ data: 'scale_child_main', field: 'price_start' }
+{ data: 'scale_child_main', field: 'price_end' }
+{ data: 'scale_child_main', field: 'symbol', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Stock prices of four large companies as a small multiples of area charts.",

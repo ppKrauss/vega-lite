@@ -1,3 +1,101 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/anscombe.json</i>>;
+    tooltip = "[43]&#010;data/anscombe.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Series>;
+    tooltip = "[49]&#010;Facet c:{fields:[Series],name:column_domain}"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> X, Y>;
+    tooltip = "[53]&#010;FilterInvalid {X:{field:X,scale:{zero:false},type:quantitative},Y:{field:Y,scale:{zero:false},type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "56" [
+    label = <Filter>;
+    tooltip = "[56]&#010;Filter !(length(data(brush_store))) || (vlSelectionTest(brush_store, datum, intersect))"
+  ]
+  "57" [
+    label = <Output<br/><i>child_lookup_brush</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[57]&#010;Output 58"
+  ]
+  "59" [
+    label = <Filter>;
+    tooltip = "[59]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "60" [
+    label = <Output<br/><i>child_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Filter>;
+    tooltip = "[62]&#010;Filter !(length(data(xenc_store))) || (vlSelectionTest(xenc_store, datum))"
+  ]
+  "63" [
+    label = <Output<br/><i>child_lookup_xenc</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[63]&#010;Output 64"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "53" -> "54" "54" -> "56" "56" -> "57" "54" -> "59" "59" -> "60" "54" -> "62" "62" -> "63"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/anscombe.json</i>>;
+    tooltip = "[43]&#010;data/anscombe.json"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> Series>;
+    tooltip = "[49]&#010;Facet c:{fields:[Series],name:column_domain}"
+  ]
+  "53" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> X, Y>;
+    tooltip = "[53]&#010;FilterInvalid {X:{field:X,scale:{zero:false},type:quantitative},Y:{field:Y,scale:{zero:false},type:quantitative}}"
+  ]
+  "54" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[54]&#010;Output 55"
+  ]
+  "66" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[66]&#010;Output 65"
+  ]
+
+  "43" -> "53" "53" -> "47" "47" -> "66" "66" -> "49" "49" -> "54"
+}
+{ data: 'scale_child_main', field: 'X' }
+{ data: 'scale_child_main', field: 'Y' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Anscombe's Quartet",

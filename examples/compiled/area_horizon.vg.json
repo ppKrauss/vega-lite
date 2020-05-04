@@ -1,3 +1,90 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[50]&#010;Parse {x:number}"
+  ]
+  "51" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> y<br/><font color="grey" point-size="10">OUT:</font> ny>;
+    tooltip = "[56]&#010;Calculate {as:ny,calculate:datum.y - 50}"
+  ]
+  "57" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[57]&#010;Parse {x:number}"
+  ]
+  "58" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[58]&#010;Output 59"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53" "47" -> "55" "55" -> "56" "56" -> "57" "57" -> "58" "58" -> "60"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "56" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> y<br/><font color="grey" point-size="10">OUT:</font> ny>;
+    tooltip = "[56]&#010;Calculate {as:ny,calculate:datum.y - 50}"
+  ]
+  "60" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[60]&#010;Output 61"
+  ]
+  "62" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> x<br/><font color="grey" point-size="10">OUT:</font> x>;
+    tooltip = "[62]&#010;Parse {x:number}"
+  ]
+
+  "43" -> "62" "62" -> "53" "53" -> "56" "56" -> "60"
+}
+{ data: 'layer_0_main', field: 'x' }
+{ data: 'layer_1_main', field: 'x' }
+[ 0, 50 ]
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Horizon Graph with 2 layers. (See https://idl.cs.washington.edu/papers/horizon/ for more details on Horizon Graphs.)",

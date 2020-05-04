@@ -1,3 +1,74 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-temps.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-temps.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> yearmonth_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\yearmonth_date\,\field\:\date\,\timeUnit\:{\unit\:\yearmonth\}}:{as:yearmonth_date,band:true,field:date,timeUnit:{unit:yearmonth}}}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> yearmonth_date, yearmonth_date_end, temp<br/><font color="grey" point-size="10">OUT:</font> mean_temp>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\yearmonth_date\,\yearmonth_date_end\),measures:{temp:{mean:Set(\mean_temp\)}}}"
+  ]
+  "50" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, temp>;
+    tooltip = "[50]&#010;FilterInvalid {date:{axis:{format:%B of %Y},field:date,timeUnit:{unit:yearmonth},type:temporal},temp:{aggregate:mean,field:temp,type:quantitative}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50" "50" -> "51"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/seattle-temps.csv</i>>;
+    tooltip = "[43]&#010;data/seattle-temps.csv"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[45]&#010;Parse {date:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> yearmonth_date>;
+    tooltip = "[46]&#010;TimeUnit {{\as\:\yearmonth_date\,\field\:\date\,\timeUnit\:{\unit\:\yearmonth\}}:{as:yearmonth_date,band:true,field:date,timeUnit:{unit:yearmonth}}}"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> yearmonth_date, yearmonth_date_end, temp<br/><font color="grey" point-size="10">OUT:</font> mean_temp>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\yearmonth_date\,\yearmonth_date_end\),measures:{temp:{mean:Set(\mean_temp\)}}}"
+  ]
+  "50" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, temp>;
+    tooltip = "[50]&#010;FilterInvalid {date:{axis:{format:%B of %Y},field:date,timeUnit:{unit:yearmonth},type:temporal},temp:{aggregate:mean,field:temp,type:quantitative}}"
+  ]
+  "51" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50" "50" -> "51"
+}
+{ data: 'main', field: 'yearmonth_date' }
+{ data: 'main', field: 'yearmonth_date_end' }
+{ data: 'main', field: 'mean_temp' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Custom time format on x-axis.",

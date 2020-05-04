@@ -1,3 +1,183 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>child__row_Displacementcolumn_Horsepower_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Displacement>;
+    tooltip = "[52]&#010;FilterInvalid {Displacement:{field:Displacement,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>child__row_Displacementcolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[55]&#010;Identifier"
+  ]
+  "56" [
+    label = <Output<br/><i>child__row_Displacementcolumn_Miles_per_Gallon_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon, Displacement>;
+    tooltip = "[58]&#010;FilterInvalid {Displacement:{field:Displacement,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "59" [
+    label = <Output<br/><i>child__row_Displacementcolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[61]&#010;Identifier"
+  ]
+  "62" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[64]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[70]&#010;FilterInvalid {Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "53" "47" -> "55" "55" -> "56" "56" -> "58" "58" -> "59" "47" -> "61" "61" -> "62" "62" -> "64" "64" -> "65" "47" -> "67" "67" -> "68" "68" -> "70" "70" -> "71"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Displacement>;
+    tooltip = "[52]&#010;FilterInvalid {Displacement:{field:Displacement,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>child__row_Displacementcolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "58" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon, Displacement>;
+    tooltip = "[58]&#010;FilterInvalid {Displacement:{field:Displacement,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "59" [
+    label = <Output<br/><i>child__row_Displacementcolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "64" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[64]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "65" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[70]&#010;FilterInvalid {Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+
+  "43" -> "52" "52" -> "53" "43" -> "58" "58" -> "59" "43" -> "64" "64" -> "65" "43" -> "70" "70" -> "71"
+}
+{
+  data: 'child__row_Displacementcolumn_Horsepower_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Displacementcolumn_Miles_per_Gallon_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Horsepower_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Displacementcolumn_Horsepower_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Displacementcolumn_Horsepower_main',
+  field: 'Displacement'
+}
+{
+  data: 'child__row_Displacementcolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Displacementcolumn_Miles_per_Gallon_main',
+  field: 'Displacement'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Horsepower_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Horsepower_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

@@ -1,3 +1,119 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol==='GOOG'"
+  ]
+  "46" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[46]&#010;Output 47"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[51]&#010;Parse {date:date}"
+  ]
+  "52" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[52]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "53" [
+    label = <Output<br/><i>layer_0_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[55]&#010;FilterInvalid {date:{field:date,timeUnit:{unit:year},type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[59]&#010;Parse {date:date}"
+  ]
+  "60" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[60]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "61" [
+    label = <Output<br/><i>layer_1_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[61]&#010;Output 62"
+  ]
+  "63" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_date, price<br/><font color="grey" point-size="10">OUT:</font> mean_price>;
+    tooltip = "[63]&#010;Aggregate {dimensions:Set(\year_date\),measures:{price:{mean:Set(\mean_price\)}}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "48" "48" -> "50" "50" -> "51" "51" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "48" -> "58" "58" -> "59" "59" -> "60" "60" -> "61" "61" -> "63" "63" -> "64"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/stocks.csv</i>>;
+    tooltip = "[43]&#010;data/stocks.csv"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> symbol>;
+    tooltip = "[45]&#010;Filter datum.symbol==='GOOG'"
+  ]
+  "55" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> date, price>;
+    tooltip = "[55]&#010;FilterInvalid {date:{field:date,timeUnit:{unit:year},type:temporal},price:{field:price,type:quantitative}}"
+  ]
+  "56" [
+    label = <Output<br/><i>layer_0_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "60" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> year_date>;
+    tooltip = "[60]&#010;TimeUnit {{\as\:\year_date\,\field\:\date\,\timeUnit\:{\unit\:\year\}}:{as:year_date,field:date,timeUnit:{unit:year}}}"
+  ]
+  "63" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> year_date, price<br/><font color="grey" point-size="10">OUT:</font> mean_price>;
+    tooltip = "[63]&#010;Aggregate {dimensions:Set(\year_date\),measures:{price:{mean:Set(\mean_price\)}}}"
+  ]
+  "64" [
+    label = <Output<br/><i>layer_1_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[64]&#010;Output 65"
+  ]
+  "66" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> date<br/><font color="grey" point-size="10">OUT:</font> date>;
+    tooltip = "[66]&#010;Parse {date:date}"
+  ]
+
+  "43" -> "66" "66" -> "45" "45" -> "60" "60" -> "63" "63" -> "64" "60" -> "55" "55" -> "56"
+}
+{ data: 'layer_0_main', field: 'year_date' }
+{ data: 'layer_1_main', field: 'year_date' }
+{ data: 'layer_0_main', field: 'price' }
+{ data: 'layer_1_main', field: 'mean_price' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Plot showing average data with raw values in the background.",

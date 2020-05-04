@@ -1,3 +1,83 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sex<br/><font color="grey" point-size="10">OUT:</font> gender>;
+    tooltip = "[46]&#010;Calculate {as:gender,calculate:datum.sex == 2 ? 'Female' : 'Male'}"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\age\,\people\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "50" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> sum_people, age, people<br/><font color="grey" point-size="10">OUT:</font> sum_people_start, sum_people_end>;
+    tooltip = "[50]&#010;Stack {as:[sum_people_start,sum_people_end],dimensionFieldDef:{field:age,type:ordinal},facetby:[],impute:false,offset:zero,sort:{field:[people],order:[descending]},stackField:sum_people,stackby:[people]}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[51]&#010;FilterInvalid {people:{field:people,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "52"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/population.json</i>>;
+    tooltip = "[43]&#010;data/population.json"
+  ]
+  "45" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> year>;
+    tooltip = "[45]&#010;Filter datum.year == 2000"
+  ]
+  "46" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> sex<br/><font color="grey" point-size="10">OUT:</font> gender>;
+    tooltip = "[46]&#010;Calculate {as:gender,calculate:datum.sex == 2 ? 'Female' : 'Male'}"
+  ]
+  "49" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> age, people<br/><font color="grey" point-size="10">OUT:</font> sum_people>;
+    tooltip = "[49]&#010;Aggregate {dimensions:Set(\age\,\people\),measures:{people:{sum:Set(\sum_people\)}}}"
+  ]
+  "50" [
+    label = <Stack<br/><font color="grey" point-size="10">IN:</font> sum_people, age, people<br/><font color="grey" point-size="10">OUT:</font> sum_people_start, sum_people_end>;
+    tooltip = "[50]&#010;Stack {as:[sum_people_start,sum_people_end],dimensionFieldDef:{field:age,type:ordinal},facetby:[],impute:false,offset:zero,sort:{field:[people],order:[descending]},stackField:sum_people,stackby:[people]}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> people>;
+    tooltip = "[51]&#010;FilterInvalid {people:{field:people,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "49" "49" -> "50" "50" -> "51" "51" -> "52"
+}
+{ data: 'main', field: 'age', sort: true }
+{ data: 'main', field: 'sum_people_start' }
+{ data: 'main', field: 'sum_people_end' }
+{ data: 'main', field: 'people' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A bar chart showing the US population distribution of age groups and gender in 2000.",

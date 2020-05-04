@@ -1,3 +1,81 @@
+{ data: 'child_main', field: 'a', sort: true }
+{ data: 'child_main', field: 'b', sort: true }
+{ data: 'child_main', field: 'b', sort: true }
+{ data: 'child_main', field: 'a', sort: true }
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> r, c>;
+    tooltip = "[49]&#010;Facet r:{fields:[r],name:row_domain} c:{fields:[c],name:column_domain}"
+  ]
+  "50" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[50]&#010;Identifier"
+  ]
+  "51" [
+    label = <Output<br/><i>child_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[51]&#010;Output 52"
+  ]
+  "53" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "51" "51" -> "53"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Facet<br/><font color="grey" point-size="10">IN:</font> r, c>;
+    tooltip = "[49]&#010;Facet r:{fields:[r],name:row_domain} c:{fields:[c],name:column_domain}"
+  ]
+  "53" [
+    label = <Output<br/><i>child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "56" [
+    label = <Output<br/><i>clone_child_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[56]&#010;Output 55"
+  ]
+
+  "43" -> "47" "47" -> "56" "56" -> "49" "49" -> "53"
+}
+{ data: 'child_main', field: 'a', sort: true }
+{ data: 'child_main', field: 'b', sort: true }
+{ data: 'child_main', field: 'a', sort: true }
+{ data: 'child_main', field: 'b', sort: true }
+{ data: 'child_main', field: 'a', sort: true }
+{ data: 'child_main', field: 'b', sort: true }
+{ data: 'facet', field: 'a', sort: true }
+{ data: 'facet', field: 'b', sort: true }
+{ data: 'facet', field: 'a', sort: true }
+{ data: 'facet', field: 'b', sort: true }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

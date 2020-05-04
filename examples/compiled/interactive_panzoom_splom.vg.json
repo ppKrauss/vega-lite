@@ -1,3 +1,440 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[49]&#010;Identifier"
+  ]
+  "50" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Miles_per_Gallon_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon, Horsepower>;
+    tooltip = "[52]&#010;FilterInvalid {Horsepower:{axis:{minExtent:30},field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "55" [
+    label = <Filter>;
+    tooltip = "[55]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "56" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Miles_per_Gallon_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[56]&#010;Output 57"
+  ]
+  "58" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[58]&#010;Identifier"
+  ]
+  "59" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Acceleration_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[59]&#010;Output 60"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower>;
+    tooltip = "[61]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{axis:{minExtent:30},field:Horsepower,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Acceleration_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "64" [
+    label = <Filter>;
+    tooltip = "[64]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "65" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Acceleration_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[65]&#010;Output 66"
+  ]
+  "67" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[67]&#010;Identifier"
+  ]
+  "68" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Horsepower_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[68]&#010;Output 69"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[70]&#010;FilterInvalid {Horsepower:{axis:{minExtent:30},field:Horsepower,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "73" [
+    label = <Filter>;
+    tooltip = "[73]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "74" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Horsepower_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[74]&#010;Output 75"
+  ]
+  "76" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[76]&#010;Identifier"
+  ]
+  "77" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Miles_per_Gallon_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[77]&#010;Output 78"
+  ]
+  "79" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon, Acceleration>;
+    tooltip = "[79]&#010;FilterInvalid {Acceleration:{axis:{minExtent:30},field:Acceleration,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "80" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "82" [
+    label = <Filter>;
+    tooltip = "[82]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "83" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Miles_per_Gallon_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[83]&#010;Output 84"
+  ]
+  "85" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[85]&#010;Identifier"
+  ]
+  "86" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Acceleration_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[86]&#010;Output 87"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration>;
+    tooltip = "[88]&#010;FilterInvalid {Acceleration:{axis:{minExtent:30},field:Acceleration,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Acceleration_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "91" [
+    label = <Filter>;
+    tooltip = "[91]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "92" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Acceleration_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[92]&#010;Output 93"
+  ]
+  "94" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[94]&#010;Identifier"
+  ]
+  "95" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Horsepower_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[95]&#010;Output 96"
+  ]
+  "97" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[97]&#010;FilterInvalid {Acceleration:{axis:{minExtent:30},field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "98" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[98]&#010;Output 99"
+  ]
+  "100" [
+    label = <Filter>;
+    tooltip = "[100]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "101" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Horsepower_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[101]&#010;Output 102"
+  ]
+  "103" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[103]&#010;Identifier"
+  ]
+  "104" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[104]&#010;Output 105"
+  ]
+  "106" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[106]&#010;FilterInvalid {Miles_per_Gallon:{axis:{minExtent:30},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "107" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[107]&#010;Output 108"
+  ]
+  "109" [
+    label = <Filter>;
+    tooltip = "[109]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "110" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[110]&#010;Output 111"
+  ]
+  "112" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[112]&#010;Identifier"
+  ]
+  "113" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Acceleration_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[113]&#010;Output 114"
+  ]
+  "115" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Miles_per_Gallon>;
+    tooltip = "[115]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Miles_per_Gallon:{axis:{minExtent:30},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "116" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Acceleration_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[116]&#010;Output 117"
+  ]
+  "118" [
+    label = <Filter>;
+    tooltip = "[118]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "119" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Acceleration_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[119]&#010;Output 120"
+  ]
+  "121" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[121]&#010;Identifier"
+  ]
+  "122" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[122]&#010;Output 123"
+  ]
+  "124" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[124]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{axis:{minExtent:30},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "125" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[125]&#010;Output 126"
+  ]
+  "127" [
+    label = <Filter>;
+    tooltip = "[127]&#010;Filter !(length(data(grid_store))) || (vlSelectionTest(grid_store, datum))"
+  ]
+  "128" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_lookup_grid</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[128]&#010;Output 129"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "49" "49" -> "50" "50" -> "52" "52" -> "53" "53" -> "55" "55" -> "56" "47" -> "58" "58" -> "59" "59" -> "61" "61" -> "62" "62" -> "64" "64" -> "65" "47" -> "67" "67" -> "68" "68" -> "70" "70" -> "71" "71" -> "73" "73" -> "74" "47" -> "76" "76" -> "77" "77" -> "79" "79" -> "80" "80" -> "82" "82" -> "83" "47" -> "85" "85" -> "86" "86" -> "88" "88" -> "89" "89" -> "91" "91" -> "92" "47" -> "94" "94" -> "95" "95" -> "97" "97" -> "98" "98" -> "100" "100" -> "101" "47" -> "103" "103" -> "104" "104" -> "106" "106" -> "107" "107" -> "109" "109" -> "110" "47" -> "112" "112" -> "113" "113" -> "115" "115" -> "116" "116" -> "118" "118" -> "119" "47" -> "121" "121" -> "122" "122" -> "124" "124" -> "125" "125" -> "127" "127" -> "128"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/cars.json</i>>;
+    tooltip = "[43]&#010;data/cars.json"
+  ]
+  "52" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon, Horsepower>;
+    tooltip = "[52]&#010;FilterInvalid {Horsepower:{axis:{minExtent:30},field:Horsepower,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "53" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[53]&#010;Output 54"
+  ]
+  "61" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Horsepower>;
+    tooltip = "[61]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Horsepower:{axis:{minExtent:30},field:Horsepower,type:quantitative}}"
+  ]
+  "62" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Acceleration_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[62]&#010;Output 63"
+  ]
+  "70" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower>;
+    tooltip = "[70]&#010;FilterInvalid {Horsepower:{axis:{minExtent:30},field:Horsepower,type:quantitative}}"
+  ]
+  "71" [
+    label = <Output<br/><i>child__row_Horsepowercolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[71]&#010;Output 72"
+  ]
+  "79" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon, Acceleration>;
+    tooltip = "[79]&#010;FilterInvalid {Acceleration:{axis:{minExtent:30},field:Acceleration,type:quantitative},Miles_per_Gallon:{field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "80" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[80]&#010;Output 81"
+  ]
+  "88" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration>;
+    tooltip = "[88]&#010;FilterInvalid {Acceleration:{axis:{minExtent:30},field:Acceleration,type:quantitative}}"
+  ]
+  "89" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Acceleration_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[89]&#010;Output 90"
+  ]
+  "97" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Acceleration>;
+    tooltip = "[97]&#010;FilterInvalid {Acceleration:{axis:{minExtent:30},field:Acceleration,type:quantitative},Horsepower:{field:Horsepower,type:quantitative}}"
+  ]
+  "98" [
+    label = <Output<br/><i>child__row_Accelerationcolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[98]&#010;Output 99"
+  ]
+  "106" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Miles_per_Gallon>;
+    tooltip = "[106]&#010;FilterInvalid {Miles_per_Gallon:{axis:{minExtent:30},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "107" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[107]&#010;Output 108"
+  ]
+  "115" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Acceleration, Miles_per_Gallon>;
+    tooltip = "[115]&#010;FilterInvalid {Acceleration:{field:Acceleration,type:quantitative},Miles_per_Gallon:{axis:{minExtent:30},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "116" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Acceleration_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[116]&#010;Output 117"
+  ]
+  "124" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> Horsepower, Miles_per_Gallon>;
+    tooltip = "[124]&#010;FilterInvalid {Horsepower:{field:Horsepower,type:quantitative},Miles_per_Gallon:{axis:{minExtent:30},field:Miles_per_Gallon,type:quantitative}}"
+  ]
+  "125" [
+    label = <Output<br/><i>child__row_Miles_per_Galloncolumn_Horsepower_main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[125]&#010;Output 126"
+  ]
+
+  "43" -> "52" "52" -> "53" "43" -> "61" "61" -> "62" "43" -> "70" "70" -> "71" "43" -> "79" "79" -> "80" "43" -> "88" "88" -> "89" "43" -> "97" "97" -> "98" "43" -> "106" "106" -> "107" "43" -> "115" "115" -> "116" "43" -> "124" "124" -> "125"
+}
+{
+  data: 'child__row_Horsepowercolumn_Miles_per_Gallon_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Horsepowercolumn_Acceleration_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Horsepowercolumn_Horsepower_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Accelerationcolumn_Miles_per_Gallon_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Accelerationcolumn_Acceleration_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Accelerationcolumn_Horsepower_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Acceleration_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Horsepower_main',
+  field: 'Origin',
+  sort: true
+}
+{
+  data: 'child__row_Horsepowercolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Horsepowercolumn_Miles_per_Gallon_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Horsepowercolumn_Acceleration_main',
+  field: 'Acceleration'
+}
+{
+  data: 'child__row_Horsepowercolumn_Acceleration_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Horsepowercolumn_Horsepower_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Horsepowercolumn_Horsepower_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Accelerationcolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Accelerationcolumn_Miles_per_Gallon_main',
+  field: 'Acceleration'
+}
+{
+  data: 'child__row_Accelerationcolumn_Acceleration_main',
+  field: 'Acceleration'
+}
+{
+  data: 'child__row_Accelerationcolumn_Acceleration_main',
+  field: 'Acceleration'
+}
+{
+  data: 'child__row_Accelerationcolumn_Horsepower_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Accelerationcolumn_Horsepower_main',
+  field: 'Acceleration'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Miles_per_Gallon_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Acceleration_main',
+  field: 'Acceleration'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Acceleration_main',
+  field: 'Miles_per_Gallon'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Horsepower_main',
+  field: 'Horsepower'
+}
+{
+  data: 'child__row_Miles_per_Galloncolumn_Horsepower_main',
+  field: 'Miles_per_Gallon'
+}
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",

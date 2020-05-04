@@ -1,3 +1,73 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> score<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[45]&#010;WindowTransform {sort:[{field:score,order:descending}],window:[{as:rank,op:rank}]}"
+  ]
+  "46" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> rank>;
+    tooltip = "[46]&#010;Filter datum.rank <= 5"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> score>;
+    tooltip = "[49]&#010;FilterInvalid {score:{field:score,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "45" [
+    label = <WindowTransform<br/><font color="grey" point-size="10">IN:</font> score<br/><font color="grey" point-size="10">OUT:</font> rank>;
+    tooltip = "[45]&#010;WindowTransform {sort:[{field:score,order:descending}],window:[{as:rank,op:rank}]}"
+  ]
+  "46" [
+    label = <Filter<br/><font color="grey" point-size="10">IN:</font> rank>;
+    tooltip = "[46]&#010;Filter datum.rank <= 5"
+  ]
+  "47" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[47]&#010;Output 48"
+  ]
+  "49" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> score>;
+    tooltip = "[49]&#010;FilterInvalid {score:{field:score,type:quantitative}}"
+  ]
+  "50" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[50]&#010;Output 51"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "49" "49" -> "50"
+}
+{ data: 'main', field: 'score' }
+{
+  data: 'raw',
+  field: 'student',
+  sort: { op: 'average', field: 'score', order: 'descending' }
+}
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A bar graph showing the scores of the top 5 students. This shows an example of the window transform, for how the top K (5) can be filtered, and also how a rank can be computed for each student.",

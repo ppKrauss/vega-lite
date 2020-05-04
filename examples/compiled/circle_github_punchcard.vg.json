@@ -1,3 +1,90 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/github.csv</i>>;
+    tooltip = "[43]&#010;data/github.csv"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> time>;
+    tooltip = "[45]&#010;Parse {time:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> day_time, hours_time>;
+    tooltip = "[46]&#010;TimeUnit -1723094120"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> y_day_time_sort_index>;
+    tooltip = "[47]&#010;Calculate -631217349"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> day_time, hours_time, count<br/><font color="grey" point-size="10">OUT:</font> sum_count>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\day_time\,\hours_time\),measures:{count:{sum:Set(\sum_count\)}}}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> count>;
+    tooltip = "[51]&#010;FilterInvalid {count:{aggregate:sum,field:count,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "51" "51" -> "52"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source<br/><i>data/github.csv</i>>;
+    tooltip = "[43]&#010;data/github.csv"
+  ]
+  "45" [
+    label = <Parse<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> time>;
+    tooltip = "[45]&#010;Parse {time:date}"
+  ]
+  "46" [
+    label = <TimeUnit<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> day_time, hours_time>;
+    tooltip = "[46]&#010;TimeUnit -1723094120"
+  ]
+  "47" [
+    label = <Calculate<br/><font color="grey" point-size="10">IN:</font> time<br/><font color="grey" point-size="10">OUT:</font> y_day_time_sort_index>;
+    tooltip = "[47]&#010;Calculate -631217349"
+  ]
+  "48" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+  "50" [
+    label = <Aggregate<br/><font color="grey" point-size="10">IN:</font> day_time, hours_time, count<br/><font color="grey" point-size="10">OUT:</font> sum_count>;
+    tooltip = "[50]&#010;Aggregate {dimensions:Set(\day_time\,\hours_time\),measures:{count:{sum:Set(\sum_count\)}}}"
+  ]
+  "51" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> count>;
+    tooltip = "[51]&#010;FilterInvalid {count:{aggregate:sum,field:count,type:quantitative}}"
+  ]
+  "52" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[52]&#010;Output 53"
+  ]
+
+  "43" -> "45" "45" -> "46" "46" -> "47" "47" -> "48" "48" -> "50" "50" -> "51" "51" -> "52"
+}
+{ data: 'main', field: 'hours_time', sort: true }
+{
+  data: 'raw',
+  field: 'day_time',
+  sort: { op: 'min', field: 'y_day_time_sort_index', order: 'ascending' }
+}
+{ data: 'main', field: 'sum_count' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Punchcard Visualization like on Github. The day on y-axis uses a custom order from Monday to Sunday.  The sort property supports both full day names (e.g., 'Monday') and their three letter initials (e.g., 'mon') -- both of which are case insensitive.",

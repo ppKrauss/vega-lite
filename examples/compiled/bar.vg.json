@@ -1,3 +1,49 @@
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "44" [
+    label = <Identifier<br/><font color="grey" point-size="10">OUT:</font> _vgsid_>;
+    tooltip = "[44]&#010;Identifier"
+  ]
+  "45" [
+    label = <Output<br/><i>raw</i><br/><font color="grey" point-size="10">required:</font> false>;
+    tooltip = "[45]&#010;Output 46"
+  ]
+  "47" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[47]&#010;FilterInvalid {b:{field:b,type:quantitative}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "44" "44" -> "45" "45" -> "47" "47" -> "48"
+}
+digraph DataFlow {
+  rankdir = TB;
+  node [shape=record]
+    "43" [
+    label = <Source>;
+    tooltip = "[43]&#010;undefined"
+  ]
+  "47" [
+    label = <FilterInvalid<br/><font color="grey" point-size="10">IN:</font> b>;
+    tooltip = "[47]&#010;FilterInvalid {b:{field:b,type:quantitative}}"
+  ]
+  "48" [
+    label = <Output<br/><i>main</i><br/><font color="grey" point-size="10">required:</font> true>;
+    tooltip = "[48]&#010;Output 49"
+  ]
+
+  "43" -> "47" "47" -> "48"
+}
+{ data: 'main', field: 'a', sort: true }
+{ data: 'main', field: 'b' }
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A simple bar chart with embedded data.",
